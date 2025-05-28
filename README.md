@@ -1,8 +1,8 @@
-# PAHINGALAY WEBSITE
+# PAHINGALAY HOTEL WEBSITE
 
 ## 📌 Project Overview
 
-**Pahingalay Website** is the final project of **Group 4** for the subject **Information Management**. This project aims to provide a calm and relaxing online space where users can pause, unwind, and recharge — inspired by the Filipino word *"pahinga"* which means "rest". The website reflects our understanding of how to organize and manage information effectively using full-stack web development.
+**Pahingalay Hotel Website** is the final project of **Group 4** for the subject **Information Management**. This website serves as a mock hotel management system designed to promote convenience, organization, and relaxation — inspired by the Filipino word *"pahinga"* meaning "rest." It allows users to browse services, view rooms, and manage bookings in a clean and calming digital environment.
 
 ## 👥 Group Members – Group 4
 
@@ -14,10 +14,10 @@
 
 ## 🧠 Objectives
 
-- Apply Information Management concepts in a real-world web project.
-- Store and retrieve user data efficiently using a MySQL database.
-- Design a clean, user-friendly, and calming user experience.
-- Collaborate as a team to develop a full-stack application.
+- Apply Information Management concepts in a practical hotel system.
+- Store, retrieve, and manage hotel data efficiently using MySQL.
+- Offer a user-friendly platform for booking and inquiries.
+- Collaborate as a group using version control and clean project structure.
 
 ## 💻 Technologies Used
 
@@ -26,13 +26,23 @@
 - **Database:** MySQL  
 - **Other Tools:** VS Code, GitHub, Figma
 
-## 🗂️ Features
+  ## 🌐 Website Sections
 
-- Peaceful landing page with soft animations
-- Daily quote or affirmation generator
-- Breathing or meditation timer
-- User feedback form (connected to MySQL)
-- (Optional) Background music player
+- **🏠 Home** – Introduction to Pahingalay Hotel and a calming landing experience
+- **🛏️ Rooms** – List of available rooms with descriptions and pricing
+- **🛁 Amenities** – Features and facilities offered by the hotel
+- **🖼️ Gallery** – Photos showcasing the hotel, rooms, and relaxing atmosphere
+- **📞 Contact** – Form where users can send inquiries or feedback (connected to database)
+- 
+
+## 🗂️ Key Features
+
+- Landing page with hotel overview
+- Room listings with details and availability
+- Booking form (connected to MySQL)
+- Admin dashboard (optional)
+- Contact or feedback form
 
 ## 📁 Folder Structure
 
+.... To be follow
