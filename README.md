@@ -24,7 +24,7 @@
 - **Frontend:** HTML, CSS, JavaScript  
 - **Backend:** Python (Flask Framework)  
 - **Database:** MySQL  
-- **Other Tools:** VS Code, GitHub, Canva, [others if any]
+- **Other Tools:** VS Code, GitHub, Figma
 
 ## 🗂️ Features
 
