@@ -7,9 +7,9 @@
 ## 👥 Group Members – Group 4
 
 - [Abot, Rafael Joshua] – [Role/Responsibility]
-- [Agapito, Johannah S.] – [Role/Responsibility]
+- [Agapito, Johannah] – [Role/Responsibility]
 - [Celoza, Kristine Eunice] – [Role/Responsibility]
-- [Remigio, Mikylla P.] – [Role/Responsibility]
+- [Remigio, Mikylla] – [Role/Responsibility]
 - [Sadullo, Aurold John] – [Role/Responsibility]
 
 ## 🧠 Objectives
