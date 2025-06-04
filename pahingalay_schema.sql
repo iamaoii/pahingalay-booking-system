@@ -12,7 +12,8 @@ CREATE TABLE guest_information (
 	guestSex CHAR(1) NOT NULL,
 	guestAge INT NOT NULL,
 	nationality VARCHAR(20) NOT NULL,
-	address VARCHAR(50) NOT NULL
+	address VARCHAR(50) NOT NULL,
+    password VARCHAR(100)
 );
 
 -- RESERVATION INFORMATION TABLE
