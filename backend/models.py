@@ -14,6 +14,7 @@ class GuestInformation(db.Model):
     guestAge = db.Column(db.Integer, nullable=False)
     nationality = db.Column(db.String(20), nullable=False)
     address = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(128), nullable=False)
 
 class ReservationInformation(db.Model):
     __tablename__ = 'reservation_information'
