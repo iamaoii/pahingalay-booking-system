@@ -125,7 +125,7 @@ button:nth-child(2) a {
     text-decoration: none;
     position: relative;
     transition: color 0.2s;
-    cursor: pointer;
+    pointer-events: none;
 }
 
 .booking-tab.active {
@@ -268,10 +268,6 @@ button:nth-child(2) a {
     display: flex;
     justify-content: flex-start;
     margin-top: 15px;
-}
-
-.add-companion-wrapper button {
-    width: 10rem;
 }
 
 .add-companion {
@@ -430,10 +426,6 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 3rem;
-}
-
-.form-navigation:nth-child(2) button {
-    width: 12rem;
 }
 
 [data-content] {
