@@ -44,24 +44,28 @@
                         <div class="booking-tab-list">
                             <ul>
                                 <li>
-                                    <a class="booking-tab active" data-tab="guest-info">
+                                    <a href="#" class="booking-tab active" data-tab="guest-information">
                                         Guest Information
                                     </a>
                                 </li>
-                                <li><a class="booking-tab" data-tab="reservation-details">
+                                <li>
+                                    <a href="#" class="booking-tab" data-tab="reserve-details">
                                         Reservation Details
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="booking-tab" data-tab="room-preferences">
+                                    <a href="#" class="booking-tab" data-tab="room-preferences">
                                         Room Preferences
                                     </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="guest-information">
+
+
+
+                        <div class="guest-information active" data-content="guest-information">
                             <div class="primary-content">
-                                <div class="booking-tab-content active" id="guest-info-tab">
+                                <div class="booking-tab-content" id="guest-info-tab">
                                     <h3>Primary Guest Information</h3>
                                     <div class="form-grid-2">
                                         <div class="form-group">
@@ -161,18 +165,67 @@
                                     </div>
                                 </div>
                                 <div class="add-companion-wrapper">
-                                    <a type="button" id="add-companion-btn" class="add-companion">
-
+                                    <button type="button" id="add-companion-btn" class="add-companion">
                                         <i class="fas fa-plus-circle"></i> Add Companion
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <div class="form-navigation">
-                                <a type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
+                                <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
                                     Next: Reservation Details
-                                </a>
+                                </button>
                             </div>
                         </div>
+
+
+
+
+
+
+                        <div class="reserve-details" data-content="reserve-details">
+                            <div class="booking-tab-content" id="guest-info-tab">
+                                <h3>Reservation Details</h3>
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label>Check-in Date</label>
+                                        <input type="text" placeholder="Select Date" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Check-out Date</label>
+                                        <input type="email" placeholder="Select Date" required />
+                                    </div>
+                                </div>
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label>Number of Nights</label>
+                                        <input type="number" placeholder="Nights" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Number of Adults</label>
+                                        <input type="text" placeholder="Adults" required />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Number of Children</label>
+                                        <input type="text" placeholder="Children" required />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" id="add-companion-btn" class="add-companion">
+                                    Back: Gues Information
+                                </button>
+                                <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
+                                    Next: Reservation Details
+                                </button>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -220,6 +273,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="./assets/js/booking.js"></script>
 </body>
 
 </html>
