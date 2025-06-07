@@ -44,17 +44,17 @@
                         <div class="booking-tab-list">
                             <ul>
                                 <li>
-                                    <a href="#" class="booking-tab active" data-tab="guest-information">
+                                    <a class="booking-tab active">
                                         Guest Information
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="booking-tab" data-tab="reserve-details">
+                                    <a class="booking-tab">
                                         Reservation Details
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="booking-tab" data-tab="room-preferences">
+                                    <a class="booking-tab">
                                         Room Preferences
                                     </a>
                                 </li>
@@ -138,43 +138,18 @@
                                             </select>
                                             <button class="remove-btn" title="Remove">&#10005;</button>
                                         </div>
-                                        <div class="companion-row">
-                                            <input type="text" placeholder="Full Name" />
-                                            <input type="text" placeholder="Contact Number" />
-                                            <input type="email" placeholder="Email" />
-                                            <input type="number" placeholder="Age" />
-                                            <select>
-                                                <option disabled selected hidden value="">Sex</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                            <button class="remove-btn" title="Remove">&#10005;</button>
-                                        </div>
-                                        <div class="companion-row">
-                                            <input type="text" placeholder="Full Name" />
-                                            <input type="text" placeholder="Contact Number" />
-                                            <input type="email" placeholder="Email" />
-                                            <input type="number" placeholder="Age" />
-                                            <select>
-                                                <option disabled selected hidden value="">Sex</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                            <button class="remove-btn" title="Remove">&#10005;</button>
-                                        </div>
                                     </div>
                                     <div class="add-companion-wrapper">
-                                        <button type="submit" id="add-companion-btn" class="add-companion">
+                                        <a type="submit" id="add-companion-btn" class="add-companion">
                                             <i class="fas fa-plus-circle"></i> Add Companion
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="form-navigation">
-                                    <button type="submit" class="next-btn btn-primary next-tab" data-next="reservation-details">
+                                    <a class="next-btn btn-primary next-tab" data-next="reserve-details">
                                         Next: Reservation Details
-                                    </button>
+                                    </a>
                                 </div>
-                        
                             </form>
                         </div>
 
@@ -208,12 +183,12 @@
                                     </div>
                                 </div>
                                 <div class="form-navigation">
-                                    <button type="button" id="add-companion-btn" class="add-companion">
+                                    <a href="#" data-next="guest-information" class="next-btn btn-secondary next-tab">
                                         Back: Gues Information
-                                    </button>
-                                    <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
-                                        Next: Reservation Details
-                                    </button>
+                                    </a>
+                                    <a href="#" class="next-btn btn-primary next-tab" data-next="room-preferences">
+                                        Next: Room Preferences
+                                    </a>
                                 </div>
                             </form>
                         </div>
@@ -265,6 +240,7 @@
 
     <script src="script.js"></script>
     <script src="./assets/js/booking.js"></script>
+    <script src="./assets/js/add_companion.js"></script>
 </body>
 
 </html>
