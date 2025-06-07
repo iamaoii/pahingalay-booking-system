@@ -125,6 +125,7 @@ button:nth-child(2) a {
     text-decoration: none;
     position: relative;
     transition: color 0.2s;
+    cursor: pointer;
 }
 
 .booking-tab.active {
@@ -269,6 +270,10 @@ button:nth-child(2) a {
     margin-top: 15px;
 }
 
+.add-companion-wrapper button {
+    width: 10rem;
+}
+
 .add-companion {
     display: inline-flex;
     align-items: center;
@@ -295,6 +300,10 @@ button:nth-child(2) a {
     display: flex;
     justify-content: flex-start;
     margin-top: 15px;
+}
+
+.form-navigation button {
+    width: 12rem;
 }
 
 .next-btn {
@@ -399,4 +408,50 @@ body {
     padding-top: 15px;
     color: #a0aec0;
     font-size: 13px;
+}
+
+.booking-tab-content .form-grid-2:nth-child(3) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-top: 3rem;
+}
+
+.booking-tab-content .form-grid-2:nth-child(3) .form-group input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.form-navigation:nth-child(2) {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+.form-navigation:nth-child(2) button {
+    width: 12rem;
+}
+
+[data-content] {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+[data-content].active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    position: relative;
+    z-index: 1;
 }
