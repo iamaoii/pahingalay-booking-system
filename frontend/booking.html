@@ -61,177 +61,168 @@
                             </ul>
                         </div>
 
-
-
                         <div class="guest-information active" data-content="guest-information">
-                            <div class="primary-content">
-                                <div class="booking-tab-content" id="guest-info-tab">
-                                    <h3>Primary Guest Information</h3>
-                                    <div class="form-grid-2">
-                                        <div class="form-group">
-                                            <label for="guest-name">Guest Name</label>
-                                            <input type="text" id="guest-name" placeholder="Full Name" required />
+                            <form action="" method="POST">
+                                <div class="primary-content">
+                                    <div class="booking-tab-content" id="guest-info-tab">
+                                        <h3>Primary Guest Information</h3>
+                                        <div class="form-grid-2">
+                                            <div class="form-group">
+                                                <label for="guest-name">Guest Name</label>
+                                                <input type="text" id="guest-name" placeholder="Full Name" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email Address</label>
+                                                <input type="email" id="email" placeholder="email@example.com" required />
+                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="email">Email Address</label>
-                                            <input type="email" id="email" placeholder="email@example.com" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-grid-2">
-                                        <div class="form-group">
-                                            <label for="contact">Contact Number</label>
-                                            <input type="tel" id="contact" placeholder="+63 XXX XXX XXXX" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Sex</label>
-                                            <div class="radio-group">
-                                                <div class="radio-item">
-                                                    <input type="radio" id="male" name="sex" value="male" checked />
-                                                    <label for="male">Male</label>
-                                                </div>
-                                                <div class="radio-item">
-                                                    <input type="radio" id="female" name="sex" value="female" />
-                                                    <label for="female">Female</label>
+                                        <div class="form-grid-2">
+                                            <div class="form-group">
+                                                <label for="contact">Contact Number</label>
+                                                <input type="tel" id="contact" placeholder="+63 XXX XXX XXXX" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Sex</label>
+                                                <div class="radio-group">
+                                                    <div class="radio-item">
+                                                        <input type="radio" id="male" name="sex" value="male" checked />
+                                                        <label for="male">Male</label>
+                                                    </div>
+                                                    <div class="radio-item">
+                                                        <input type="radio" id="female" name="sex" value="female" />
+                                                        <label for="female">Female</label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-grid-2">
+                                            <div class="form-group">
+                                                <label for="age">Age</label>
+                                                <input type="number" id="age" min="18" placeholder="Age" required />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nationality">Nationality</label>
+                                                <input type="text" id="nationality" placeholder="Nationality" required />
+                                            </div>
+                                        </div>
+                                        <div class="form-grid-3">
+                                            <div class="form-group">
+                                                <label for="address">Address (City, State/Province)</label>
+                                                <input type="text" id="address" placeholder="Complete Address" required />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="companions-section">
+                                    <div class="companions-header">
+                                        <h3>Guest's Companions</h3>
+                                    </div>
+                                    <div id="companions-table-container" class="companions-table-container">
+                                        <div class="table-header">
+                                            <div>Full Name</div>
+                                            <div>Contact Number</div>
+                                            <div>Email Address</div>
+                                            <div>Age</div>
+                                            <div>Sex</div>
+                                            <div></div>
+                                        </div>
+                                        <div class="companion-row">
+                                            <input type="text" placeholder="Full Name" />
+                                            <input type="text" placeholder="Contact Number" />
+                                            <input type="email" placeholder="Email" />
+                                            <input type="number" placeholder="Age" />
+                                            <select>
+                                                <option disabled selected hidden value="">Sex</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <button class="remove-btn" title="Remove">&#10005;</button>
+                                        </div>
+                                        <div class="companion-row">
+                                            <input type="text" placeholder="Full Name" />
+                                            <input type="text" placeholder="Contact Number" />
+                                            <input type="email" placeholder="Email" />
+                                            <input type="number" placeholder="Age" />
+                                            <select>
+                                                <option disabled selected hidden value="">Sex</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <button class="remove-btn" title="Remove">&#10005;</button>
+                                        </div>
+                                        <div class="companion-row">
+                                            <input type="text" placeholder="Full Name" />
+                                            <input type="text" placeholder="Contact Number" />
+                                            <input type="email" placeholder="Email" />
+                                            <input type="number" placeholder="Age" />
+                                            <select>
+                                                <option disabled selected hidden value="">Sex</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+                                            <button class="remove-btn" title="Remove">&#10005;</button>
+                                        </div>
+                                    </div>
+                                    <div class="add-companion-wrapper">
+                                        <button type="submit" id="add-companion-btn" class="add-companion">
+                                            <i class="fas fa-plus-circle"></i> Add Companion
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="form-navigation">
+                                    <button type="submit" class="next-btn btn-primary next-tab" data-next="reservation-details">
+                                        Next: Reservation Details
+                                    </button>
+                                </div>
+                        
+                            </form>
+                        </div>
+
+                        <div class="reserve-details" data-content="reserve-details">
+                            <form action="" method="POST">
+                                <div class="booking-tab-content" id="guest-info-tab">
+                                    <h3>Reservation Details</h3>
+                                    <div class="form-grid-2">
+                                        <div class="form-group">
+                                            <label>Check-in Date</label>
+                                            <input type="text" placeholder="Select Date" required />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Check-out Date</label>
+                                            <input type="email" placeholder="Select Date" required />
+                                        </div>
                                     </div>
                                     <div class="form-grid-2">
                                         <div class="form-group">
-                                            <label for="age">Age</label>
-                                            <input type="number" id="age" min="18" placeholder="Age" required />
+                                            <label>Number of Nights</label>
+                                            <input type="number" placeholder="Nights" required />
                                         </div>
                                         <div class="form-group">
-                                            <label for="nationality">Nationality</label>
-                                            <input type="text" id="nationality" placeholder="Nationality" required />
+                                            <label>Number of Adults</label>
+                                            <input type="text" placeholder="Adults" required />
                                         </div>
-                                    </div>
-                                    <div class="form-grid-3">
                                         <div class="form-group">
-                                            <label for="address">Address (City, State/Province)</label>
-                                            <input type="text" id="address" placeholder="Complete Address" required />
+                                            <label>Number of Children</label>
+                                            <input type="text" placeholder="Children" required />
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="companions-section">
-                                <div class="companions-header">
-                                    <h3>Guest's Companions</h3>
-                                </div>
-                                <div id="companions-table-container" class="companions-table-container">
-                                    <div class="table-header">
-                                        <div>Full Name</div>
-                                        <div>Contact Number</div>
-                                        <div>Email Address</div>
-                                        <div>Age</div>
-                                        <div>Sex</div>
-                                        <div></div>
-                                    </div>
-                                    <div class="companion-row">
-                                        <input type="text" placeholder="Full Name" />
-                                        <input type="text" placeholder="Contact Number" />
-                                        <input type="email" placeholder="Email" />
-                                        <input type="number" placeholder="Age" />
-                                        <select>
-                                            <option disabled selected hidden value="">Sex</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                        <button class="remove-btn" title="Remove">&#10005;</button>
-                                    </div>
-                                    <div class="companion-row">
-                                        <input type="text" placeholder="Full Name" />
-                                        <input type="text" placeholder="Contact Number" />
-                                        <input type="email" placeholder="Email" />
-                                        <input type="number" placeholder="Age" />
-                                        <select>
-                                            <option disabled selected hidden value="">Sex</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                        <button class="remove-btn" title="Remove">&#10005;</button>
-                                    </div>
-                                    <div class="companion-row">
-                                        <input type="text" placeholder="Full Name" />
-                                        <input type="text" placeholder="Contact Number" />
-                                        <input type="email" placeholder="Email" />
-                                        <input type="number" placeholder="Age" />
-                                        <select>
-                                            <option disabled selected hidden value="">Sex</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                        <button class="remove-btn" title="Remove">&#10005;</button>
-                                    </div>
-                                </div>
-                                <div class="add-companion-wrapper">
+                                <div class="form-navigation">
                                     <button type="button" id="add-companion-btn" class="add-companion">
-                                        <i class="fas fa-plus-circle"></i> Add Companion
+                                        Back: Gues Information
+                                    </button>
+                                    <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
+                                        Next: Reservation Details
                                     </button>
                                 </div>
-                            </div>
-                            <div class="form-navigation">
-                                <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
-                                    Next: Reservation Details
-                                </button>
-                            </div>
+                            </form>
                         </div>
-
-
-
-
-
-
-                        <div class="reserve-details" data-content="reserve-details">
-                            <div class="booking-tab-content" id="guest-info-tab">
-                                <h3>Reservation Details</h3>
-                                <div class="form-grid-2">
-                                    <div class="form-group">
-                                        <label>Check-in Date</label>
-                                        <input type="text" placeholder="Select Date" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Check-out Date</label>
-                                        <input type="email" placeholder="Select Date" required />
-                                    </div>
-                                </div>
-                                <div class="form-grid-2">
-                                    <div class="form-group">
-                                        <label>Number of Nights</label>
-                                        <input type="number" placeholder="Nights" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Number of Adults</label>
-                                        <input type="text" placeholder="Adults" required />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Number of Children</label>
-                                        <input type="text" placeholder="Children" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-navigation">
-                                <button type="button" id="add-companion-btn" class="add-companion">
-                                    Back: Gues Information
-                                </button>
-                                <button type="button" class="next-btn btn-primary next-tab" data-next="reservation-details">
-                                    Next: Reservation Details
-                                </button>
-                            </div>
-                        </div>
-
-
-
-
-
-
 
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
 
     <footer class="footer">
         <div class="container">
