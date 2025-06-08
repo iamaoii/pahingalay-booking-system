@@ -48,6 +48,11 @@ def signin():
     else:
         return jsonify({'message': 'Invalid email or password', 'status': 'fail'}), 401
 
+@app.route('/signup', methods=['POST'])
+def signup():
+    data = request.get_json()
+    
+
 
 
 

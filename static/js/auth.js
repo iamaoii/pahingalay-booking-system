@@ -1,11 +1,9 @@
-// Enhanced authentication handler with Google OAuth integration
+// Authentication handler
 class AuthHandler {
     constructor() {
         this.apiBaseUrl = "http://localhost:5000/api"
-        this.googleClientId = "YOUR_GOOGLE_CLIENT_ID" // Replace with your actual Google Client ID
         this.initializeEventListeners()
         this.loadStoredToken()
-        this.initializeGoogleAuth()
     }
 
     initializeEventListeners() {
@@ -21,79 +19,8 @@ class AuthHandler {
             signupForm.addEventListener("submit", (e) => this.handleSignUp(e))
         }
 
-        // Google buttons
-        const googleSignInBtn = document.getElementById("googleSignInBtn")
-        if (googleSignInBtn) {
-            googleSignInBtn.addEventListener("click", () => this.handleGoogleAuth('signin'))
-        }
-
-        const googleSignUpBtn = document.getElementById("googleSignUpBtn")
-        if (googleSignUpBtn) {
-            googleSignUpBtn.addEventListener("click", () => this.handleGoogleAuth('signup'))
-        }
-
         // Real-time validation
         this.setupRealTimeValidation()
-    }
-
-    initializeGoogleAuth() {
-        // Initialize Google Sign-In
-        window.google = window.google || {}
-        window.google.accounts = window.google.accounts || {}
-        window.google.accounts.id = window.google.accounts.id || {}
-
-        if (typeof window.google.accounts.id.initialize !== 'undefined') {
-            window.google.accounts.id.initialize({
-                client_id: this.googleClientId,
-                callback: this.handleGoogleResponse.bind(this)
-            })
-        }
-    }
-
-    handleGoogleAuth(type) {
-        if (typeof window.google.accounts.id.prompt !== 'undefined') {
-            this.googleAuthType = type
-            window.google.accounts.id.prompt()
-        } else {
-            this.showErrorMessage("Google Sign-In is not available. Please try again later.")
-        }
-    }
-
-    async handleGoogleResponse(response) {
-        try {
-            const endpoint = this.googleAuthType === 'signup' ? '/google-signup' : '/google-signin'
-            
-            const apiResponse = await fetch(`${this.apiBaseUrl}${endpoint}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    credential: response.credential
-                })
-            })
-
-            const data = await apiResponse.json()
-
-            if (apiResponse.ok) {
-                // Store token and user data
-                localStorage.setItem("authToken", data.token)
-                localStorage.setItem("user", JSON.stringify(data.user))
-
-                // Success feedback
-                this.showSuccessMessage(`Google ${this.googleAuthType} successful! Redirecting...`)
-
-                // Redirect to dashboard
-                setTimeout(() => {
-                    window.location.href = "dashboard.html"
-                }, 1500)
-            } else {
-                this.showErrorMessage(data.error || `Google ${this.googleAuthType} failed. Please try again.`)
-            }
-        } catch (error) {
-            console.error('Google auth error:', error)
-            this.showErrorMessage("Network error. Please check your connection and try again.")
-        }
     }
 
     setupRealTimeValidation() {
@@ -433,14 +360,6 @@ class AuthHandler {
                 isValid = false
             }
         })
-
-        // Terms acceptance
-        const terms = formData.get("terms")
-        if (!terms) {
-            const termsInput = document.getElementById("terms")
-            this.showError(termsInput, "You must agree to the terms and conditions")
-            isValid = false
-        }
 
         // Password validation
         const password = formData.get("password")
