@@ -30,6 +30,7 @@ app.register_blueprint(guests_bp)
 
 @app.route('/')
 def index():
+    logger.debug("Rendering index.html as root route")
     return render_template('index.html')
 
 @app.route('/signup', methods=['GET'])
