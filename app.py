@@ -29,8 +29,8 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(guests_bp)
 
 @app.route('/')
-def home():
-    return jsonify({'message': 'Welcome to the Flask backend!'})
+def index():
+    return render_template('index.html')
 
 @app.route('/signup', methods=['GET'])
 def signup_page():

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAHINGALAY HOTEL - Luxury Accommodations</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <a href="{{ url_for('index') }}">PAHINGALAY HOTEL</a>
+        </div>
+        <nav class="nav">
+          <ul class="nav-list">
+            <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+            <li><a href="{{ url_for('facilities') }}">Facilities</a></li>
+            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+            <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+            <li><a href="{{ url_for('contact') }}">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="book-now">
+          {% if not session.get('user_id') %}
+            <a href="{{ url_for('signin') }}" class="btn btn-outline">Sign in</a>
+            <a href="{{ url_for('signup') }}" class="btn btn-primary">Sign up</a>
+          {% else %}
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline">Dashboard</a>
+            <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+          {% endif %}
+        </div>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <article>
+    <!-- Hero Section -->
+ 
+    <section class="hero text-center" aria-label="home" id="home">
+      <ul class="hero-slider" data-hero-slider>
+        <li class="slider-item active" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="{{ url_for('static', filename='images/pahingalay-slider1.jpg') }}" width="1880" height="950" alt="Comfort & Tranquility" class="img-cover">
+          </div>
+          <p class="label-2 section-subtitle slider-reveal">Comfort & Tranquility</p>
+          <h1 class="display-1 hero-title slider-reveal">Your relaxing escape <br> starts here</h1>
+          <p class="body-2 hero-text slider-reveal">
+            Experience world-class comfort and serene accommodations with your loved ones.
+          </p>
+          <a href="{{ url_for('rooms') }}" class="btn btn-primary slider-reveal">
+            <span class="text text-1">Explore Rooms</span>
+            <span class="text text-2" aria-hidden="true">Explore Rooms</span>
+          </a>
+        </li>
+        <li class="slider-item" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="{{ url_for('static', filename='images/pahingalay-slider2.jpg') }}" width="1880" height="950" alt="Unforgettable Stays" class="img-cover">
+          </div>
+          <p class="label-2 section-subtitle slider-reveal">Unforgettable Stays</p>
+          <h1 class="display-1 hero-title slider-reveal">Hospitality that <br> feels like home</h1>
+          <p class="body-2 hero-text slider-reveal">
+            Relax and unwind in beautifully designed spaces tailored for your comfort.
+          </p>
+          <a href="{{ url_for('rooms') }}" class="btn btn-primary slider-reveal">
+            <span class="text text-1">Explore Rooms</span>
+            <span class="text text-2" aria-hidden="true">Explore Rooms</span>
+          </a>
+        </li>
+        <li class="slider-item" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="{{ url_for('static', filename='images/pahingalay-slider3.jpg') }}" width="1880" height="950" alt="Peaceful & Elegant" class="img-cover">
+          </div>
+          <p class="label-2 section-subtitle slider-reveal">Peaceful & Elegant</p>
+          <h1 class="display-1 hero-title slider-reveal">Escape the ordinary <br> in luxury</h1>
+          <p class="body-2 hero-text slider-reveal">
+            Discover a tranquil retreat with top-class amenities and friendly service.
+          </p>
+          <a href="{{ url_for('rooms') }}" class="btn btn-primary slider-reveal">
+            <span class="text text-1">Explore Rooms</span>
+            <span class="text text-2" aria-hidden="true">Explore Rooms</span>
+          </a>
+        </li>
+      </ul>
+      <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+      <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </button>
+    </section>
+    </article>
+
+    <!-- Featured Rooms Section -->
+    <section id="rooms" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Accommodations</h2>
+          <p>Choose from our selection of comfortable and elegant rooms designed to make your stay memorable</p>
+        </div>
+        <div class="room-grid">
+          <div class="room-card">
+            <div class="room-image">
+              <img src="{{ url_for('static', filename='images/single-room.jpg') }}" alt="Single Room">
+            </div>
+            <div class="room-content">
+              <h3>Single Room</h3>
+              <p>Perfect for solo travelers, our single rooms offer comfort and convenience.</p>
+              <div class="room-details">
+                <span>1 Person</span>
+              </div>
+              <div class="room-price">
+                Php 999 <span class="price-period">/ night</span>
+              </div>
+              <a href="{{ url_for('booking') }}" class="btn btn-primary btn-full">Book Now</a>
+            </div>
+          </div>
+          <div class="room-card featured">
+            <div class="room-image">
+              <img src="{{ url_for('static', filename='images/double-room.jpg') }}" alt="Double Room">
+              <span class="room-badge">Popular Choice</span>
+            </div>
+            <div class="room-content">
+              <h3>Double Room</h3>
+              <p>Spacious accommodation ideal for couples or friends traveling together.</p>
+              <div class="room-details">
+                <span>2 People</span>
+                <span>Queen Bed</span>
+              </div>
+              <div class="room-price">
+                $149 <span class="price-period">/ night</span>
+              </div>
+              <a href="{{ url_for('booking') }}" class="btn btn-primary btn-full">Book Now</a>
+            </div>
+          </div>
+          <div class="room-card">
+            <div class="room-image">
+              <img src="{{ url_for('static', filename='images/family-suite.jpg') }}" alt="Family Suite">
+            </div>
+            <div class="room-content">
+              <h3>Family Suite</h3>
+              <p>Comfortable suite with separate living area, perfect for families.</p>
+              <div class="room-details">
+                <span>4-6 People</span>
+                <span>King Bed + Twin Beds</span>
+              </div>
+              <div class="room-price">
+                $249 <span class="price-period">/ night</span>
+              </div>
+              <a href="{{ url_for('booking') }}" class="btn btn-primary btn-full">Book Now</a>
+            </div>
+          </div>
+          <div class="room-card">
+            <div class="room-image">
+              <img src="{{ url_for('static', filename='images/deluxe-suite.jpg') }}" alt="Deluxe Suite">
+            </div>
+            <div class="room-content">
+              <h3>Deluxe Suite</h3>
+              <p>Our premium offering with luxurious amenities and breathtaking views.</p>
+              <div class="room-details">
+                <span>2-4 People</span>
+                <span>King Bed</span>
+              </div>
+              <div class="room-price">
+                $299 <span class="price-period">/ night</span>
+              </div>
+              <a href="{{ url_for('booking') }}" class="btn btn-primary btn-full">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <h2>Hotel Amenities</h2>
+          <p>Enjoy our wide range of amenities designed to make your stay comfortable and enjoyable</p>
+        </div>
+        <div class="amenities-grid">
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-wifi"></i>
+            </div>
+            <h3>Free Wi-Fi</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-coffee"></i>
+            </div>
+            <h3>Breakfast</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <h3>Restaurant</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-dumbbell"></i>
+            </div>
+            <h3>Fitness Center</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-swimming-pool"></i>
+            </div>
+            <h3>Swimming Pool</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-car"></i>
+            </div>
+            <h3>Free Parking</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-tv"></i>
+            </div>
+            <h3>Smart TV</h3>
+          </div>
+          <div class="amenity-item">
+            <div class="amenity-icon">
+              <i class="fas fa-snowflake"></i>
+            </div>
+            <h3>Air Conditioning</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Guest Experiences</h2>
+          <p>See what our guests have to say about their stay at PAHINGALAY HOTEL</p>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Our stay at PAHINGALAY HOTEL was absolutely wonderful. The staff was attentive and the rooms were immaculate. Will definitely return!"</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="{{ url_for('static', filename='images/maria-santos.jpg') }}" alt="Maria Santos">
+              </div>
+              <div class="testimonial-info">
+                <h4>Maria Santos</h4>
+                <p>Manila</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <p class="testimonial-text">"Perfect location with amazing amenities. The breakfast buffet was outstanding and the pool area was very relaxing."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="{{ url_for('static', filename='images/john-rivera.jpg') }}" alt="John Rivera">
+              </div>
+              <div class="testimonial-info">
+                <h4>John Rivera</h4>
+                <p>Cebu</p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="testimonial-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+            <p class="testimonial-text">"We had a wonderful family vacation at PAHINGALAY. The family suite was spacious and the staff was great with our children."</p>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">
+                <img src="{{ url_for('static', filename='images/anna-reyes.jpg') }}" alt="Anna Reyes">
+              </div>
+              <div class="testimonial-info">
+                <h4>Anna Reyes</h4>
+                <p>Davao</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section bg-light">
+      <div class="container">
+        <div class="section-header">
+          <h2>Contact Us</h2>
+          <p>Have questions or need assistance? Reach out to our friendly team</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-form-container">
+            <form class="contact-form" action="{{ url_for('contact_submit') }}" method="POST">
+              <h3>Send Us a Message</h3>
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" placeholder="Your Email" required>
+              </div>
+              <div class="form-group">
+                <input type="text" name="subject" placeholder="Subject">
+              </div>
+              <div class="form-group">
+                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-details">
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div>
+                  <h4>Address</h4>
+                  <p>123 Relaxation Avenue, Paradise City</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-phone"></i>
+                </div>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+123 456 7890</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-icon">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <div>
+                  <h4>Email</h4>
+                  <p>info@pahingalayhotel.com</p>
+                </div>
+              </div>
+            </div>
+            <div class="map-container">
+              <div class="map-placeholder">Google Map Integration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="section">
+      <div class="container">
+        <div class="newsletter-container">
+          <h3>Subscribe to Our Newsletter</h3>
+          <p>Stay updated with special offers, promotions, and news from PAHINGALAY HOTEL</p>
+          <form class="newsletter-form" action="{{ url_for('newsletter_subscribe') }}" method="POST">
+            <input type="email" name="email" placeholder="Your email address" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>PAHINGALAY HOTEL</h3>
+          <p>Your perfect getaway destination for relaxation and comfort.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="{{ url_for('about') }}">About Us</a></li>
+            <li><a href="{{ url_for('rooms') }}">Rooms & Suites</a></li>
+            <li><a href="#">Special Offers</a></li>
+            <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li>123 Relaxation Avenue, Paradise City</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Email: info@pahingalayhotel.com</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <span>PAHINGALAY HOTEL</span>
+      <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="{{ url_for('index') }}" class="active">Home</a></li>
+      <li><a href="{{ url_for('facilities') }}">Facilities</a></li>
+      <li><a href="{{ url_for('gallery') }}">Gallery</a></li>
+      <li><a href="{{ url_for('rooms') }}">Rooms</a></li>
+      <li><a href="{{ url_for('contact') }}">Contact</a></li>
+      <li><a href="{{ url_for('booking') }}" class="btn btn-primary">Book Now</a></li>
+    </ul>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
