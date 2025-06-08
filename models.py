@@ -8,7 +8,7 @@ class GuestInformation(db.Model):
 
     guestID = db.Column(db.String(10), primary_key=True)
     guestName = db.Column(db.String(60), nullable=False)
-    guestEmail = db.Column(db.String(60), nullable=False)
+    guestEmail = db.Column(db.String(60), unique=True, nullable=False)
     guestContactNo = db.Column(db.String(13), nullable=False)
     guestSex = db.Column(db.String(1), nullable=False)
     guestAge = db.Column(db.Integer, nullable=False)

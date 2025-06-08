@@ -1,78 +1,68 @@
-// Authentication handler
 class AuthHandler {
     constructor() {
-        this.apiBaseUrl = "http://localhost:5000/api"
-        this.initializeEventListeners()
-        this.loadStoredToken()
+        this.apiBaseUrl = "/api";
+        this.initializeEventListeners();
+        this.loadStoredToken();
     }
 
     initializeEventListeners() {
-        // Sign in form
-        const signinForm = document.getElementById("signinForm")
+        const signinForm = document.getElementById("signinForm");
         if (signinForm) {
-            signinForm.addEventListener("submit", (e) => this.handleSignIn(e))
+            signinForm.addEventListener("submit", (e) => this.handleSignIn(e));
         }
 
-        // Sign up form
-        const signupForm = document.getElementById("signupForm")
+        const signupForm = document.getElementById("signupForm");
         if (signupForm) {
-            signupForm.addEventListener("submit", (e) => this.handleSignUp(e))
+            signupForm.addEventListener("submit", (e) => this.handleSignUp(e));
         }
 
-        // Real-time validation
-        this.setupRealTimeValidation()
+        this.setupRealTimeValidation();
     }
 
     setupRealTimeValidation() {
-        // Email validation with backend check
-        const emailInputs = document.querySelectorAll('input[type="email"]')
+        const emailInputs = document.querySelectorAll('input[type="email"]');
         emailInputs.forEach((input) => {
-            input.addEventListener("blur", () => this.validateEmail(input))
-            input.addEventListener("input", () => this.clearError(input))
-        })
+            input.addEventListener("blur", () => this.validateEmail(input));
+            input.addEventListener("input", () => this.clearError(input));
+        });
 
-        // Password validation
-        const passwordInputs = document.querySelectorAll('input[type="password"]')
+        const passwordInputs = document.querySelectorAll('input[type="password"]');
         passwordInputs.forEach((input) => {
-            input.addEventListener("blur", () => this.validatePassword(input))
-            input.addEventListener("input", () => this.clearError(input))
-        })
+            input.addEventListener("blur", () => this.validatePassword(input));
+            input.addEventListener("input", () => this.clearError(input));
+        });
 
-        // Confirm password validation
-        const confirmPassword = document.getElementById("confirmPassword")
+        const confirmPassword = document.getElementById("confirmPassword");
         if (confirmPassword) {
-            confirmPassword.addEventListener("blur", () => this.validatePasswordMatch())
-            confirmPassword.addEventListener("input", () => this.clearError(confirmPassword))
+            confirmPassword.addEventListener("blur", () => this.validatePasswordMatch());
+            confirmPassword.addEventListener("input", () => this.clearError(confirmPassword));
         }
 
-        // Phone number formatting
-        const contactInput = document.getElementById("contact")
+        const contactInput = document.getElementById("contact");
         if (contactInput) {
-            contactInput.addEventListener("input", (e) => this.formatPhoneNumber(e))
+            contactInput.addEventListener("input", (e) => this.formatPhoneNumber(e));
         }
 
-        // Age validation
-        const ageInput = document.getElementById("age")
+        const ageInput = document.getElementById("age");
         if (ageInput) {
-            ageInput.addEventListener("blur", () => this.validateAge(ageInput))
+            ageInput.addEventListener("blur", () => this.validateAge(ageInput));
         }
 
-        // Email availability check for signup
-        const signupEmailInput = document.getElementById("emailSignup")
+        const signupEmailInput = document.getElementById("emailSignup");
         if (signupEmailInput) {
-            let emailCheckTimeout
+            let emailCheckTimeout;
             signupEmailInput.addEventListener("input", () => {
-                clearTimeout(emailCheckTimeout)
+                clearTimeout(emailCheckTimeout);
                 emailCheckTimeout = setTimeout(() => {
-                    this.checkEmailAvailability(signupEmailInput)
-                }, 500)
-            })
+                    this.checkEmailAvailability(signupEmailInput);
+                }, 500);
+            });
         }
     }
 
     async checkEmailAvailability(input) {
-        const email = input.value.trim()
-        if (!email || !this.validateEmailFormat(email)) return
+        const email = input.value.trim();
+        if (!email || !this.validateEmailFormat(email)) return;
 
         try {
             const response = await fetch(`${this.apiBaseUrl}/check-email`, {
@@ -81,130 +71,144 @@ class AuthHandler {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ email }),
-            })
+            });
 
-            const data = await response.json()
+            const data = await response.json();
 
             if (response.ok) {
                 if (data.exists) {
-                    this.showError(input, "This email is already registered")
+                    this.showError(input, "This email is already registered");
                 } else {
-                    this.showSuccess(input)
+                    this.showSuccess(input);
                 }
             }
         } catch (error) {
-            console.error("Email check failed:", error)
+            console.error("Email check failed:", error);
         }
     }
 
     validateEmailFormat(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-        return emailRegex.test(email)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
 
     validateEmail(input) {
-        const isValid = this.validateEmailFormat(input.value)
+        const isValid = this.validateEmailFormat(input.value);
 
         if (!isValid && input.value) {
-            this.showError(input, "Please enter a valid email address")
-            return false
+            this.showError(input, "Please enter a valid email address");
+            return false;
         }
 
         if (isValid) {
-            this.showSuccess(input)
+            this.showSuccess(input);
         }
-        return true
+        return true;
     }
 
     validatePassword(input) {
-        const password = input.value
-        const minLength = 8
+        const password = input.value;
+        const minLength = 8;
 
         if (password.length < minLength && password.length > 0) {
-            this.showError(input, `Password must be at least ${minLength} characters long`)
-            return false
+            this.showError(input, `Password must be at least ${minLength} characters long`);
+            return false;
         }
 
         if (password.length >= minLength) {
-            this.showSuccess(input)
+            this.showSuccess(input);
         }
 
-        return password.length >= minLength
+        return password.length >= minLength;
     }
 
     validatePasswordMatch() {
-        const password = document.getElementById("passwordSignup")
-        const confirmPassword = document.getElementById("confirmPassword")
+        const password = document.getElementById("passwordSignup");
+        const confirmPassword = document.getElementById("confirmPassword");
 
-        if (!password || !confirmPassword) return true
+        if (!password || !confirmPassword) return true;
 
         if (password.value !== confirmPassword.value && confirmPassword.value) {
-            this.showError(confirmPassword, "Passwords do not match")
-            return false
+            this.showError(confirmPassword, "Passwords do not match");
+            return false;
         }
 
         if (password.value === confirmPassword.value && confirmPassword.value) {
-            this.showSuccess(confirmPassword)
+            this.showSuccess(confirmPassword);
         }
 
-        return true
+        return true;
     }
 
     validateAge(input) {
-        const age = Number.parseInt(input.value)
+        const age = Number.parseInt(input.value);
 
         if (age < 18 && input.value) {
-            this.showError(input, "You must be at least 18 years old")
-            return false
+            this.showError(input, "You must be at least 18 years old");
+            return false;
         }
 
         if (age > 120 && input.value) {
-            this.showError(input, "Please enter a valid age")
-            return false
+            this.showError(input, "Please enter a valid age");
+            return false;
         }
 
         if (age >= 18 && age <= 120) {
-            this.showSuccess(input)
+            this.showSuccess(input);
         }
 
-        return age >= 18 && age <= 120
+        return age >= 18 && age <= 120;
     }
 
     formatPhoneNumber(e) {
-        let value = e.target.value.replace(/\D/g, "")
-
-        if (value.startsWith("63")) {
-            value = value.substring(2)
+        let input = e.target.value.replace(/\D/g, "");
+      
+        // Remove leading 63 or 0
+        if (input.startsWith("63")) {
+          input = input.slice(2);
+        } else if (input.startsWith("0")) {
+          input = input.slice(1);
         }
-
-        if (value.length <= 10) {
-            if (value.length >= 7) {
-                value = value.replace(/(\d{3})(\d{3})(\d{4})/, "$1 $2 $3")
-            } else if (value.length >= 4) {
-                value = value.replace(/(\d{3})(\d{3})/, "$1 $2")
-            }
-
-            e.target.value = "+63 " + value
+      
+        // Keep max 10 digits
+        input = input.slice(0, 10);
+      
+        // Format nicely
+        let formatted = "";
+        if (input.length >= 7) {
+          formatted = input.replace(/(\d{3})(\d{3})(\d{0,4})/, "$1 $2 $3").trim();
+        } else if (input.length >= 4) {
+          formatted = input.replace(/(\d{3})(\d{0,3})/, "$1 $2").trim();
+        } else {
+          formatted = input;
         }
+      
+        e.target.value = input.length > 0 ? `+63 ${formatted}` : "";
+    }
+      
+    getPhoneNumberForBackend(inputValue) {
+        let digits = inputValue.replace(/\D/g, "");
+        if (digits.startsWith("63")) {
+          digits = "0" + digits.slice(2);
+        }
+        return digits;
     }
 
     async handleSignIn(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        const form = e.target
-        const formData = new FormData(form)
-        const email = formData.get("email")
-        const password = formData.get("password")
-        const remember = formData.get("remember")
+        const form = e.target;
+        const formData = new FormData(form);
+        const email = formData.get("email");
+        const password = formData.get("password");
+        const remember = formData.get("remember");
 
-        // Validate form
         if (!this.validateSignInForm(email, password)) {
-            return
+            return;
         }
 
-        // Show loading state
-        const submitBtn = form.querySelector('button[type="submit"]')
-        this.setLoadingState(submitBtn, true)
+        const submitBtn = form.querySelector('button[type="submit"]');
+        this.setLoadingState(submitBtn, true);
 
         try {
             const response = await fetch(`${this.apiBaseUrl}/signin`, {
@@ -217,54 +221,47 @@ class AuthHandler {
                     password,
                     remember: !!remember,
                 }),
-            })
+            });
 
-            const data = await response.json()
+            const data = await response.json();
 
             if (response.ok) {
-                // Store token
-                localStorage.setItem("authToken", data.token)
-                localStorage.setItem("user", JSON.stringify(data.user))
+                localStorage.setItem("authToken", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
 
-                // Store remembered email if remember me is checked
                 if (remember) {
-                    localStorage.setItem("rememberedEmail", email)
+                    localStorage.setItem("rememberedEmail", email);
                 } else {
-                    localStorage.removeItem("rememberedEmail")
+                    localStorage.removeItem("rememberedEmail");
                 }
 
-                // Success feedback
-                this.showSuccessMessage("Sign in successful! Redirecting...")
-
-                // Redirect to dashboard
+                // Removed showSuccessMessage
                 setTimeout(() => {
-                    window.location.href = "dashboard.html"
-                }, 1500)
+                    window.location.href = "/dashboard";
+                }, 1500);
             } else {
-                this.showErrorMessage(data.error || "Sign in failed. Please try again.")
+                console.log(data.error || "Sign in failed. Please try again."); // Replaced with console.log
             }
         } catch (error) {
-            console.error("Sign in error:", error)
-            this.showErrorMessage("Network error. Please check your connection and try again.")
+            console.error("Sign in error:", error);
+            console.log("Network error. Please check your connection and try again."); // Replaced with console.log
         } finally {
-            this.setLoadingState(submitBtn, false)
+            this.setLoadingState(submitBtn, false);
         }
     }
 
     async handleSignUp(e) {
-        e.preventDefault()
+        e.preventDefault();
 
-        const form = e.target
-        const formData = new FormData(form)
+        const form = e.target;
+        const formData = new FormData(form);
 
-        // Validate form
         if (!this.validateSignUpForm(formData)) {
-            return
+            return;
         }
 
-        // Show loading state
-        const submitBtn = form.querySelector('button[type="submit"]')
-        this.setLoadingState(submitBtn, true)
+        const submitBtn = form.querySelector('button[type="submit"]');
+        this.setLoadingState(submitBtn, true);
 
         try {
             const signupData = {
@@ -272,12 +269,12 @@ class AuthHandler {
                 email: formData.get("email"),
                 password: formData.get("password"),
                 confirmPassword: formData.get("confirmPassword"),
-                contact: formData.get("contact"),
+                contact: this.getPhoneNumberForBackend(formData.get("contact")),
                 age: Number.parseInt(formData.get("age")),
                 nationality: formData.get("nationality"),
                 address: formData.get("address"),
                 sex: formData.get("sex"),
-            }
+            };
 
             const response = await fetch(`${this.apiBaseUrl}/signup`, {
                 method: "POST",
@@ -285,58 +282,54 @@ class AuthHandler {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(signupData),
-            })
+            });
 
-            const data = await response.json()
+            const data = await response.json();
 
             if (response.ok) {
-                // Store token and user data
-                localStorage.setItem("authToken", data.token)
-                localStorage.setItem("user", JSON.stringify(data.user))
+                localStorage.setItem("authToken", data.token);
+                localStorage.setItem("user", JSON.stringify(data.user));
 
-                // Success feedback
-                this.showSuccessMessage("Account created successfully! Redirecting to dashboard...")
-
-                // Redirect to dashboard
+                // Removed showSuccessMessage
                 setTimeout(() => {
-                    window.location.href = "dashboard.html"
-                }, 2000)
+                    window.location.href = "/dashboard";
+                }, 2000);
             } else {
-                this.showErrorMessage(data.error || "Registration failed. Please try again.")
+                console.error("Sign up failed: ", data.error); // Replaced with console.error
+                console.log(data.error || "Registration failed: " + data.error); // Replaced with console.log
             }
         } catch (error) {
-            console.error("Sign up error:", error)
-            this.showErrorMessage("Network error. Please check your connection and try again.")
+            console.error("Sign up server error:", error);
+            console.log("Network error occurred. Please check server status and try again."); // Replaced with console.log
         } finally {
-            this.setLoadingState(submitBtn, false)
+            this.setLoadingState(submitBtn, false);
         }
     }
 
     validateSignInForm(email, password) {
-        let isValid = true
+        let isValid = true;
 
-        const emailInput = document.getElementById("email")
-        const passwordInput = document.getElementById("password")
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
 
         if (!email) {
-            this.showError(emailInput, "Email is required")
-            isValid = false
+            this.showError(emailInput, "Email is required");
+            isValid = false;
         } else if (!this.validateEmail(emailInput)) {
-            isValid = false
+            isValid = false;
         }
 
         if (!password) {
-            this.showError(passwordInput, "Password is required")
-            isValid = false
+            this.showError(passwordInput, "Password is required");
+            isValid = false;
         }
 
-        return isValid
+        return isValid;
     }
 
     validateSignUpForm(formData) {
-        let isValid = true
+        let isValid = true;
 
-        // Required fields validation
         const requiredFields = [
             { name: "fullName", message: "Full name is required" },
             { name: "email", message: "Email is required" },
@@ -347,71 +340,74 @@ class AuthHandler {
             { name: "sex", message: "Please select your gender" },
             { name: "password", message: "Password is required" },
             { name: "confirmPassword", message: "Please confirm your password" },
-        ]
+        ];
 
         requiredFields.forEach((field) => {
-            const value = formData.get(field.name)
-            const input = document.querySelector(`[name="${field.name}"]`)
+            const value = formData.get(field.name);
+            const input = document.querySelector(`[name="${field.name}"]`);
 
             if (!value) {
                 if (input) {
-                    this.showError(input, field.message)
+                    this.showError(input, field.message);
                 }
-                isValid = false
+                isValid = false;
             }
-        })
+        });
 
-        // Password validation
-        const password = formData.get("password")
-        const confirmPassword = formData.get("confirmPassword")
+        const password = formData.get("password");
+        const confirmPassword = formData.get("confirmPassword");
 
         if (password && password.length < 8) {
-            const passwordInput = document.getElementById("passwordSignup")
-            this.showError(passwordInput, "Password must be at least 8 characters long")
-            isValid = false
+            const passwordInput = document.getElementById("passwordSignup");
+            this.showError(passwordInput, "Password must be at least 8 characters long");
+            isValid = false;
         }
 
         if (password !== confirmPassword) {
-            const confirmPasswordInput = document.getElementById("confirmPassword")
-            this.showError(confirmPasswordInput, "Passwords do not match")
-            isValid = false
+            const confirmPasswordInput = document.getElementById("confirmPassword");
+            this.showError(confirmPasswordInput, "Passwords do not match");
+            isValid = false;
         }
 
-        return isValid
+        return isValid;
     }
 
     loadStoredToken() {
-        // Load remembered email if exists
-        const rememberedEmail = localStorage.getItem("rememberedEmail")
-        const emailInput = document.getElementById("email")
+        // Clear authToken and user unless rememberedEmail exists
+        if (!localStorage.getItem("rememberedEmail")) {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("user");
+        }
+
+        const rememberedEmail = localStorage.getItem("rememberedEmail");
+        const emailInput = document.getElementById("email");
         if (rememberedEmail && emailInput) {
-            emailInput.value = rememberedEmail
-            const rememberCheckbox = document.getElementById("remember")
+            emailInput.value = rememberedEmail;
+            const rememberCheckbox = document.getElementById("remember");
             if (rememberCheckbox) {
-                rememberCheckbox.checked = true
+                rememberCheckbox.checked = true;
             }
         }
 
-        // Check if user is already logged in
-        const token = localStorage.getItem("authToken")
-        if (token && this.isTokenValid(token)) {
-            // Redirect to dashboard if already logged in
-            window.location.href = "dashboard.html"
+        const token = localStorage.getItem("authToken");
+        // Skip redirect if on /signup page, even if remembered
+        if (token && this.isTokenValid(token) && window.location.pathname !== "/signup") {
+            window.location.href = "/dashboard";
         }
     }
 
     isTokenValid(token) {
         try {
-            const payload = JSON.parse(atob(token.split(".")[1]))
-            const currentTime = Date.now() / 1000
-            return payload.exp > currentTime
+            const payload = JSON.parse(atob(token.split(".")[1]));
+            const currentTime = Date.now() / 1000;
+            return payload.exp > currentTime;
         } catch (error) {
-            return false
+            return false;
         }
     }
 
     async logout() {
-        const token = localStorage.getItem("authToken")
+        const token = localStorage.getItem("authToken");
 
         if (token) {
             try {
@@ -421,109 +417,76 @@ class AuthHandler {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json",
                     },
-                })
+                });
             } catch (error) {
-                console.error("Logout error:", error)
+                console.error("Logout error:", error);
             }
         }
 
-        // Clear local storage
-        localStorage.removeItem("authToken")
-        localStorage.removeItem("user")
-
-        // Redirect to sign in page
-        window.location.href = "signin.html"
+        // Clear all auth-related localStorage items
+        localStorage.removeItem("authToken");
+        localStorage.removeItem("user");
+        localStorage.removeItem("rememberedEmail");
+        window.location.href = "/signin";
     }
 
     showError(input, message) {
-        input.classList.add("error")
-        input.classList.remove("success")
+        input.classList.add("error");
+        input.classList.remove("success");
 
-        let errorElement = input.parentNode.nextElementSibling
+        let errorElement = input.parentNode.nextElementSibling;
         if (!errorElement || !errorElement.classList.contains("error-message")) {
-            errorElement = document.createElement("div")
-            errorElement.className = "error-message"
-            input.parentNode.insertAdjacentElement("afterend", errorElement)
+            errorElement = document.createElement("div");
+            errorElement.className = "error-message";
+            input.parentNode.insertAdjacentElement("afterend", errorElement);
         }
 
-        errorElement.textContent = message
-        errorElement.classList.add("show")
+        errorElement.textContent = message;
+        errorElement.classList.add("show");
     }
 
     showSuccess(input) {
-        input.classList.add("success")
-        input.classList.remove("error")
+        input.classList.add("success");
+        input.classList.remove("error");
 
-        const errorElement = input.parentNode.nextElementSibling
+        const errorElement = input.parentNode.nextElementSibling;
         if (errorElement && errorElement.classList.contains("error-message")) {
-            errorElement.classList.remove("show")
+            errorElement.classList.remove("show");
         }
     }
 
     clearError(input) {
-        input.classList.remove("error")
+        input.classList.remove("error");
 
-        const errorElement = input.parentNode.nextElementSibling
+        const errorElement = input.parentNode.nextElementSibling;
         if (errorElement && errorElement.classList.contains("error-message")) {
-            errorElement.classList.remove("show")
+            errorElement.classList.remove("show");
         }
     }
 
     setLoadingState(button, isLoading) {
         if (isLoading) {
-            button.classList.add("loading")
-            button.disabled = true
-            button.textContent = "Please wait..."
+            button.classList.add("loading");
+            button.disabled = true;
+            button.textContent = "Please wait...";
         } else {
-            button.classList.remove("loading")
-            button.disabled = false
-            const isSignUp = button.closest("form").id === "signupForm"
-            button.textContent = isSignUp ? "Create Account" : "Sign In"
+            button.classList.remove("loading");
+            button.disabled = false;
+            const isSignUp = button.closest("form").id === "signupForm";
+            button.textContent = isSignUp ? "Create Account" : "Sign In";
         }
-    }
-
-    showSuccessMessage(message) {
-        this.showMessage(message, "success")
-    }
-
-    showErrorMessage(message) {
-        this.showMessage(message, "error")
-    }
-
-    showMessage(message, type) {
-        // Remove existing messages
-        const existingMessage = document.querySelector(".message")
-        if (existingMessage) {
-            existingMessage.remove()
-        }
-
-        // Create new message
-        const messageDiv = document.createElement("div")
-        messageDiv.className = `message ${type}`
-        messageDiv.textContent = message
-
-        document.body.appendChild(messageDiv)
-
-        // Auto remove after 5 seconds
-        setTimeout(() => {
-            if (messageDiv.parentNode) {
-                messageDiv.style.animation = "slideOut 0.3s ease-out"
-                setTimeout(() => messageDiv.remove(), 300)
-            }
-        }, 5000)
     }
 }
 
-// Utility function to make authenticated API requests
 async function makeAuthenticatedRequest(url, options = {}) {
-    const token = localStorage.getItem("authToken")
+    const token = localStorage.getItem("authToken");
 
     const defaultOptions = {
         headers: {
             "Content-Type": "application/json",
             ...(token && { Authorization: `Bearer ${token}` }),
         },
-    }
+    };
 
     const mergedOptions = {
         ...defaultOptions,
@@ -532,57 +495,26 @@ async function makeAuthenticatedRequest(url, options = {}) {
             ...defaultOptions.headers,
             ...options.headers,
         },
-    }
+    };
 
     try {
-        const response = await fetch(url, mergedOptions)
+        const response = await fetch(url, mergedOptions);
 
         if (response.status === 401) {
-            // Token expired or invalid
-            localStorage.removeItem("authToken")
-            localStorage.removeItem("user")
-            window.location.href = "signin.html"
-            return null
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("user");
+            localStorage.removeItem("rememberedEmail");
+            window.location.href = "/signin";
+            return null;
         }
 
-        return response
+        return response;
     } catch (error) {
-        console.error("API request failed:", error)
-        throw error
+        console.error("API request failed:", error);
+        throw error;
     }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
-    new AuthHandler()
-})
-
-// auth.js
-async function handleLogin(event) {
-  event.preventDefault(); // prevent form reload
-
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  try {
-    const response = await fetch("http://127.0.0.1:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await response.json();
-
-    if (response.ok) {
-      alert("Login successful!");
-      console.log(data.user); // optional: store user info in localStorage
-    } else {
-      alert(data.message);
-    }
-  } catch (error) {
-    console.error("Error during login:", error);
-    alert("Something went wrong. Try again later.");
-  }
-}
+    new AuthHandler();
+});

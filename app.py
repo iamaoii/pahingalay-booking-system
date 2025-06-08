@@ -1,61 +1,58 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from flask_cors import CORS
-from models import db, GuestInformation
-from flask import request
+from models import db
+from db_config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS, SECRET_KEY
+from routes.auth import auth_bp
+from routes.guests import guests_bp
+from flask_bcrypt import Bcrypt
+from dotenv import load_dotenv
+import os
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})  # Same origin, for safety
 
-# Load database config from db_config.py
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:password@localhost/pahingalay_db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', SECRET_KEY)
 
 db.init_app(app)
+Bcrypt(app)
+
+app.register_blueprint(auth_bp)
+app.register_blueprint(guests_bp)
 
 @app.route('/')
 def home():
     return jsonify({'message': 'Welcome to the Flask backend!'})
 
-@app.route('/guests')
-def get_guests():   
-    guests = GuestInformation.query.all()
-    result = []
-    for guest in guests:
-        guest_data = {
-            'guestID': guest.guestID,
-            'guestName': guest.guestName,
-            'guestEmail': guest.guestEmail,
-            'guestContactNo': guest.guestContactNo,
-            'guestSex': guest.guestSex,
-            'guestAge': guest.guestAge,
-            'nationality': guest.nationality,
-            'address': guest.address
-        }
-        result.append(guest_data)
-    return jsonify(result)
+@app.route('/signup', methods=['GET'])
+def signup_page():
+    logger.debug("Rendering signup.html")
+    return render_template('signup.html')
 
-@app.route('/signin', methods=['POST'])
-def signin():
-    data = request.get_json()
-    email = data.get('email')
-    password = data.get('password')  # Only if you're storing a password field
+@app.route('/signin', methods=['GET'])
+def signin_page():
+    logger.debug("Rendering signin.html")
+    return render_template('signin.html')
 
-    # 🔁 Check if user exists in DB
-    guest = GuestInformation.query.filter_by(guestEmail=email).first()
+@app.route('/dashboard', methods=['GET'])
+def dashboard_page():
+    logger.debug("Rendering dashboard.html")
+    return render_template('dashboard.html')
 
-    if guest and guest.password == password:  # You'll need a `password` column in your table
-        return jsonify({'message': 'Login successful', 'status': 'success'}), 200
-    else:
-        return jsonify({'message': 'Invalid email or password', 'status': 'fail'}), 401
+@app.errorhandler(Exception)
+def handle_error(error):
+    logger.error(f"Unhandled error: {str(error)}")
+    return jsonify({'error': 'Internal server error'}), 500
 
-@app.route('/signup', methods=['POST'])
-def signup():
-    data = request.get_json()
-    
-
-
-
-
-# ✅ Run the app
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

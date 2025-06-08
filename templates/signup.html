@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Pahingalay Hotel</title>
-    <link rel="stylesheet" href="/static/css/auth.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
 </head>
 <body>
     <div class="container">
@@ -42,7 +41,7 @@
                         <label for="contact">Contact Number</label>
                         <div class="input-wrapper">
                             <i class="fas fa-phone input-icon"></i>
-                            <input type="tel" id="contact" name="contact" placeholder="+63 XXX XXX XXXX" required>
+                            <input type="tel" id="contact" name="contact" placeholder="Enter your contact number" oninput="new AuthHandler().formatPhoneNumber(event)" required>
                         </div>
                     </div>
                     
@@ -75,12 +74,12 @@
                     <label>Sex</label>
                     <div class="radio-group">
                         <label class="radio-label">
-                            <input type="radio" name="sex" value="male" required>
+                            <input type="radio" name="sex" value="M" required>
                             <span class="radio-mark"></span>
                             Male
                         </label>
                         <label class="radio-label">
-                            <input type="radio" name="sex" value="female" required>
+                            <input type="radio" name="sex" value="F" required>
                             <span class="radio-mark"></span>
                             Female
                         </label>
@@ -106,16 +105,16 @@
                 <button type="submit" class="btn-primary">Create Account</button>
        
                 <div class="form-links">
-                    <p>Already have account? <a href="signin.html" class="link">Sign in here</a></p>
+                    <p>Already have account? <a href="{{ url_for('signin_page') }}" class="link">Sign in here</a></p>
                 </div>
             </form>
             
             <div class="footer">
-                <a href="#" class="back-link">← Back to homepage</a>
+                <a href="/" class="back-link">← Back to homepage</a>
             </div>
         </div>
     </div>
     
-    <script src="/static/js/auth.js"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
 </html>
