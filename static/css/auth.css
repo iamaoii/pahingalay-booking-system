@@ -19,6 +19,13 @@
         max-width: 450px;
         margin: 0 auto;
     }
+    
+    .container-nav {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
 
     .auth-card {
         background: white;
@@ -48,6 +55,26 @@
         color: white;
         padding: 30px 20px;
         text-align: center;
+    }
+
+    .header-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background-color: var(--white);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .header-content-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4rem;
+    }
+
+    .logo a {
+        font-size: 1.25rem;
+        font-weight: 700;
     }
 
     .hotel-name {
