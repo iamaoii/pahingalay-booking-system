@@ -1,261 +1,621 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Book Your Stay - PAHINGALAY HOTEL</title>
-    <link rel="stylesheet" href="/static/css/nav.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-</head>
-
-<body>
-    <nav class="navbar">
-        <div class="navdiv">
-            <div class="logo">
-                <a href="home.html
-                ">PAHINGALAY HOTEL</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Book Your Stay - PAHINGALAY HOTEL</title>
+        <link rel="stylesheet" href="/static/css/pahingalay.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+    </head>
+    <body>
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="logo">
+                        <a href="/">PAHINGALAY HOTEL</a>
+                    </div>
+                    <nav class="nav">
+                        <ul class="nav-list">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="facilities.html">Facilities</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="rooms.html">Rooms</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="book-now">
+                        <a href="booking.html" class="btn btn-primary active"
+                            >Book Now</a
+                        >
+                    </div>
+                    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
-            <ul class="nav-list">
-                <li><a href="home.html">Home</a></li>
+        </header>
+
+        <main>
+            <section class="booking-section">
+                <div class="container">
+                    <div class="booking-header">
+                        <h1>Book Your Stay</h1>
+                        <p>
+                            Complete the form below to make your reservation at
+                            PAHINGALAY HOTEL
+                        </p>
+                    </div>
+
+                    <div class="booking-form-container">
+                        <div class="booking-tabs">
+                            <div class="booking-tab-list">
+                                <button
+                                    class="booking-tab active"
+                                    data-tab="guest-info"
+                                >
+                                    Guest Information
+                                </button>
+                                <button
+                                    class="booking-tab"
+                                    data-tab="reservation-details"
+                                >
+                                    Reservation Details
+                                </button>
+                                <button
+                                    class="booking-tab"
+                                    data-tab="room-preferences"
+                                >
+                                    Room Preferences
+                                </button>
+                            </div>
+
+                            <div
+                                class="booking-tab-content active"
+                                id="guest-info-tab"
+                            >
+                                <div class="booking-info-box">
+                                    <div class="booking-info-grid">
+                                        <div>
+                                            <p class="info-label">
+                                                Reservation No.
+                                            </p>
+                                            <p class="info-value">
+                                                [System provided]
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p class="info-label">Guest ID</p>
+                                            <p class="info-value">
+                                                [System provided]
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h3>Primary Guest Information</h3>
+
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label for="guest-name"
+                                            >Guest Name</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="guest-name"
+                                            placeholder="Full Name"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            placeholder="email@example.com"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label for="contact"
+                                            >Contact Number</label
+                                        >
+                                        <input
+                                            type="tel"
+                                            id="contact"
+                                            placeholder="+63 XXX XXX XXXX"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sex</label>
+                                        <div class="radio-group">
+                                            <div class="radio-item">
+                                                <input
+                                                    type="radio"
+                                                    id="male"
+                                                    name="sex"
+                                                    value="male"
+                                                    checked
+                                                />
+                                                <label for="male">Male</label>
+                                            </div>
+                                            <div class="radio-item">
+                                                <input
+                                                    type="radio"
+                                                    id="female"
+                                                    name="sex"
+                                                    value="female"
+                                                />
+                                                <label for="female"
+                                                    >Female</label
+                                                >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label for="age">Age</label>
+                                        <input
+                                            type="number"
+                                            id="age"
+                                            min="18"
+                                            placeholder="Age"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="nationality"
+                                            >Nationality</label
+                                        >
+                                        <input
+                                            type="text"
+                                            id="nationality"
+                                            placeholder="Nationality"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address"
+                                        >Address (City, State/Province)</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="address"
+                                        placeholder="Complete Address"
+                                        required
+                                    />
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="companions-section">
+                                    <div class="companions-header">
+                                        <h3>Guest's Companions</h3>
+                                        <p>Maximum of 5 companions allowed</p>
+                                    </div>
+
+                                    <div
+                                        id="companions-table-container"
+                                        class="companions-table-container"
+                                    >
+                                        <table
+                                            class="companions-table"
+                                            id="companions-table"
+                                        >
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Full Name</th>
+                                                    <th>Contact Number</th>
+                                                    <th>Email Address</th>
+                                                    <th>Age</th>
+                                                    <th>Sex</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="companions-tbody">
+                                                <!-- Companions will be added here by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        id="add-companion-btn"
+                                        class="btn btn-outline"
+                                    >
+                                        <i class="fas fa-plus-circle"></i> Add
+                                        Companion
+                                    </button>
+                                </div>
+
+                                <div class="form-navigation">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary next-tab"
+                                        data-next="reservation-details"
+                                    >
+                                        Next: Reservation Details
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div
+                                class="booking-tab-content"
+                                id="reservation-details-tab"
+                            >
+                                <h3>Reservation Details</h3>
+
+                                <div class="form-grid-2">
+                                    <div class="form-group">
+                                        <label for="check-in"
+                                            >Check-in Date</label
+                                        >
+                                        <div class="date-picker-container">
+                                            <button
+                                                type="button"
+                                                id="check-in-button"
+                                                class="date-picker-trigger"
+                                            >
+                                                <i class="fas fa-calendar"></i>
+                                                <span id="check-in-display"
+                                                    >Select date</span
+                                                >
+                                            </button>
+                                            <div
+                                                id="check-in-picker"
+                                                class="date-picker"
+                                            >
+                                                <!-- Date picker will be inserted by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="check-out"
+                                            >Check-out Date</label
+                                        >
+                                        <div class="date-picker-container">
+                                            <button
+                                                type="button"
+                                                id="check-out-button"
+                                                class="date-picker-trigger"
+                                            >
+                                                <i class="fas fa-calendar"></i>
+                                                <span id="check-out-display"
+                                                    >Select date</span
+                                                >
+                                            </button>
+                                            <div
+                                                id="check-out-picker"
+                                                class="date-picker"
+                                            >
+                                                <!-- Date picker will be inserted by JavaScript -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-grid-3">
+                                    <div class="form-group">
+                                        <label for="nights"
+                                            >Number of Nights</label
+                                        >
+                                        <input
+                                            type="number"
+                                            id="nights"
+                                            min="1"
+                                            placeholder="Nights"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="adults"
+                                            >Number of Adults</label
+                                        >
+                                        <input
+                                            type="number"
+                                            id="adults"
+                                            min="1"
+                                            placeholder="Adults"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="children"
+                                            >Number of Children</label
+                                        >
+                                        <input
+                                            type="number"
+                                            id="children"
+                                            min="0"
+                                            placeholder="Children"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="form-navigation">
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline prev-tab"
+                                        data-prev="guest-info"
+                                    >
+                                        Back: Guest Information
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary next-tab"
+                                        data-next="room-preferences"
+                                    >
+                                        Next: Room Preferences
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div
+                                class="booking-tab-content"
+                                id="room-preferences-tab"
+                            >
+                                <h3>Room Preferences</h3>
+
+                                <div class="form-group">
+                                    <label>Room Type (Occupancy)</label>
+                                    <div class="radio-card-group">
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="single-room"
+                                                name="room-type"
+                                                value="single"
+                                            />
+                                            <label for="single-room"
+                                                >Single (1 person)</label
+                                            >
+                                        </div>
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="double-room"
+                                                name="room-type"
+                                                value="double"
+                                                checked
+                                            />
+                                            <label for="double-room"
+                                                >Double (2 people)</label
+                                            >
+                                        </div>
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="suite-room"
+                                                name="room-type"
+                                                value="suite"
+                                            />
+                                            <label for="suite-room"
+                                                >Suite (2-4 people)</label
+                                            >
+                                        </div>
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="family-room"
+                                                name="room-type"
+                                                value="family"
+                                            />
+                                            <label for="family-room"
+                                                >Family (4-6 people)</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Bed Type</label>
+                                    <div
+                                        class="radio-card-group bed-type-group"
+                                    >
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="single-bed"
+                                                name="bed-type"
+                                                value="single"
+                                            />
+                                            <label for="single-bed"
+                                                >Single Bed</label
+                                            >
+                                        </div>
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="queen-bed"
+                                                name="bed-type"
+                                                value="queen"
+                                                checked
+                                            />
+                                            <label for="queen-bed"
+                                                >Queen Bed</label
+                                            >
+                                        </div>
+                                        <div class="radio-card">
+                                            <input
+                                                type="radio"
+                                                id="king-bed"
+                                                name="bed-type"
+                                                value="king"
+                                            />
+                                            <label for="king-bed"
+                                                >King Bed</label
+                                            >
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Smoking Preference</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item">
+                                            <input
+                                                type="radio"
+                                                id="non-smoking"
+                                                name="smoking"
+                                                value="non-smoking"
+                                                checked
+                                            />
+                                            <label for="non-smoking"
+                                                >Non-Smoking</label
+                                            >
+                                        </div>
+                                        <div class="radio-item">
+                                            <input
+                                                type="radio"
+                                                id="smoking"
+                                                name="smoking"
+                                                value="smoking"
+                                            />
+                                            <label for="smoking">Smoking</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="requests"
+                                        >Additional Requests</label
+                                    >
+                                    <textarea
+                                        id="requests"
+                                        placeholder="Enter any additional requests or special requirements"
+                                        rows="4"
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-divider"></div>
+
+                                <div class="booking-summary">
+                                    <h4>Booking Summary</h4>
+                                    <div class="summary-details">
+                                        <div class="summary-item">
+                                            <span>Room Type:</span>
+                                            <span>Double Room</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Check-in:</span>
+                                            <span id="summary-check-in"
+                                                >Not selected</span
+                                            >
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Check-out:</span>
+                                            <span id="summary-check-out"
+                                                >Not selected</span
+                                            >
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Guests:</span>
+                                            <span id="summary-guests"
+                                                >1 Adult + 0 Companions</span
+                                            >
+                                        </div>
+                                        <div class="summary-item">
+                                            <span>Estimated Total:</span>
+                                            <span>₱9,800.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-navigation">
+                                    <button
+                                        type="button"
+                                        class="btn btn-outline prev-tab"
+                                        data-prev="reservation-details"
+                                    >
+                                        Back: Reservation Details
+                                    </button>
+                                    <a
+                                        href="booking-confirmation.html"
+                                        class="btn btn-primary"
+                                        >Complete Reservation</a
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>PAHINGALAY HOTEL</h3>
+                        <p>
+                            Your perfect getaway destination for relaxation and
+                            comfort.
+                        </p>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="rooms.html">Rooms & Suites</a></li>
+                            <li><a href="#">Special Offers</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li>123 Relaxation Avenue, Paradise City</li>
+                            <li>Phone: +123 456 7890</li>
+                            <li>Email: info@pahingalayhotel.com</li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Follow Us</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="mobile-menu-header">
+                <span>PAHINGALAY HOTEL</span>
+                <button class="mobile-menu-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="mobile-menu-list">
+                <li><a href="/">Home</a></li>
                 <li><a href="facilities.html">Facilities</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="rooms.html">Rooms</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li>
+                    <a href="booking.html" class="btn btn-primary">Book Now</a>
+                </li>
             </ul>
-            <div class="nav-buton">
-                <button><a href="">Sign in</a></button>
-                <button><a href="">Sign up</a></button>
-            </div>
         </div>
-    </nav>
-    <main>
-        <section class="booking-section">
-            <div class="container">
-                <!-- HEADER -->
-                <div class="booking-header">
-                    <h1>Book Your Stay</h1>
-                    <p>
-                        Complete the form below to make your reservation at
-                        PAHINGALAY HOTEL
-                    </p>
-                </div>
-                <div class="booking-form-container">
-                    <div class="booking-tabs">
-                        <div class="booking-tab-list">
-                            <ul>
-                                <li>
-                                    <a class="booking-tab active">
-                                        Guest Information
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="booking-tab">
-                                        Reservation Details
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="booking-tab">
-                                        Room Preferences
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                        <form action="" method="post">
 
-
-
-
-                            <div class="guest-information active" data-content="guest-information">
-                                <div class="primary-content">
-                                    <div class="booking-tab-content" id="guest-info-tab">
-                                        <h3>Primary Guest Information</h3>
-                                        <div class="form-grid-2">
-                                            <div class="form-group">
-                                                <label for="guest-name">Guest Name</label>
-                                                <input type="text" id="guest-name" placeholder="Full Name" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="email">Email Address</label>
-                                                <input type="email" id="email" placeholder="email@example.com"
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="form-grid-2">
-                                            <div class="form-group">
-                                                <label for="contact">Contact Number</label>
-                                                <input type="tel" id="contact" placeholder="+63 XXX XXX XXXX"
-                                                    required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label>Sex</label>
-                                                <div class="radio-group">
-                                                    <div class="radio-item">
-                                                        <input type="radio" id="male" name="sex" value="male" checked />
-                                                        <label for="male">Male</label>
-                                                    </div>
-                                                    <div class="radio-item">
-                                                        <input type="radio" id="female" name="sex" value="female" />
-                                                        <label for="female">Female</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-grid-2">
-                                            <div class="form-group">
-                                                <label for="age">Age</label>
-                                                <input type="number" id="age" min="18" placeholder="Age" required />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="nationality">Nationality</label>
-                                                <input type="text" id="nationality" placeholder="Nationality"
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div class="form-grid-3">
-                                            <div class="form-group">
-                                                <label for="address">Address (City, State/Province)</label>
-                                                <input type="text" id="address" placeholder="Complete Address"
-                                                    required />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="companions-section">
-                                    <div class="companions-header">
-                                        <h3>Guest's Companions</h3>
-                                    </div>
-                                    <div id="companions-table-container" class="companions-table-container">
-                                        <div class="table-header">
-                                            <div>Full Name</div>
-                                            <div>Contact Number</div>
-                                            <div>Email Address</div>
-                                            <div>Age</div>
-                                            <div>Sex</div>
-                                            <div></div>
-                                        </div>
-                                        <div class="companion-row">
-                                            <input type="text" placeholder="Full Name" />
-                                            <input type="text" placeholder="Contact Number" />
-                                            <input type="email" placeholder="Email" />
-                                            <input type="number" placeholder="Age" />
-                                            <select>
-                                                <option disabled selected hidden value="">Sex</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                            <button class="remove-btn" title="Remove">&#10005;</button>
-                                        </div>
-                                    </div>
-                                    <div class="add-companion-wrapper">
-                                        <a id="add-companion-btn" class="add-companion">
-                                            <i class="fas fa-plus-circle"></i> Add Companion
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="form-navigation">
-                                    <a class="next-btn btn-primary next-tab" data-next="reserve-details">
-                                        Next: Reservation Details
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div class="reserve-details" data-content="reserve-details">
-                                <div class="booking-tab-content" id="guest-info-tab">
-                                    <h3>Reservation Details</h3>
-                                    <div class="form-grid-2">
-                                        <div class="form-group">
-                                            <label>Check-in Date</label>
-                                            <input type="text" placeholder="Select Date" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Check-out Date</label>
-                                            <input type="email" placeholder="Select Date" required />
-                                        </div>
-                                    </div>
-                                    <div class="form-grid-2">
-                                        <div class="form-group">
-                                            <label>Number of Nights</label>
-                                            <input type="number" placeholder="Nights" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Number of Adults</label>
-                                            <input type="text" placeholder="Adults" required />
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Number of Children</label>
-                                            <input type="text" placeholder="Children" required />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-navigation">
-                                    <a href="#" data-next="guest-information" class="next-btn btn-secondary next-tab">
-                                        Back: Gues Information
-                                    </a>
-                                    <a href="#" class="next-btn btn-primary next-tab" data-next="room-preferences">
-                                        Next: Room Preferences
-                                    </a>
-                                </div>
-                            </div>
-
-
-
-
-
-
-
-
-
-                            
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4>PAHINGALAY HOTEL</h4>
-                    <p>Your perfect getaway destination for relaxation and comfort.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="#">Special Offers</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Contact</h4>
-                    <ul>
-                        <li>123 Relaxation Avenue, Paradise City</li>
-                        <li>Phone: +123 456 7890</li>
-                        <li>Email: info@pahingalayhotel.com</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-    <script src="/static/js/booking.js"></script>
-    <script src="/static/js/add_companion.js"></script>
-</body>
-
+        <script src="/static/js/script.js"></script>
+    </body>
 </html>

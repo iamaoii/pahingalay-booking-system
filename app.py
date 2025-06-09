@@ -43,6 +43,11 @@ def signin_page():
     logger.debug("Rendering signin.html")
     return render_template('signin.html')
 
+@app.route('/booking', methods=['GET'])
+def booking_page():
+    logger.debug("Rendering booking.html")
+    return render_template('booking.html')
+
 @app.route('/dashboard', methods=['GET'])
 def dashboard_page():
     logger.debug("Rendering dashboard.html")
