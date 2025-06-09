@@ -29,9 +29,9 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(guests_bp)
 
 @app.route('/')
-def index():
-    logger.debug("Rendering index.html as root route")
-    return render_template('index.html')
+def home():
+    logger.debug("Rendering home.html as root route")
+    return render_template('home.html')
 
 @app.route('/signup', methods=['GET'])
 def signup_page():

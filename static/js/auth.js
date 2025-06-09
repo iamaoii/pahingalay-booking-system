@@ -163,17 +163,14 @@ class AuthHandler {
     formatPhoneNumber(e) {
         let input = e.target.value.replace(/\D/g, "");
       
-        // Remove leading 63 or 0
         if (input.startsWith("63")) {
           input = input.slice(2);
         } else if (input.startsWith("0")) {
           input = input.slice(1);
         }
       
-        // Keep max 10 digits
         input = input.slice(0, 10);
       
-        // Format nicely
         let formatted = "";
         if (input.length >= 7) {
           formatted = input.replace(/(\d{3})(\d{3})(\d{0,4})/, "$1 $2 $3").trim();
@@ -228,23 +225,23 @@ class AuthHandler {
             if (response.ok) {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-
                 if (remember) {
                     localStorage.setItem("rememberedEmail", email);
+                    localStorage.setItem("sessionPersistent", "true");
                 } else {
+                    localStorage.setItem("sessionPersistent", "false");
                     localStorage.removeItem("rememberedEmail");
                 }
 
-                // Removed showSuccessMessage
                 setTimeout(() => {
                     window.location.href = "/dashboard";
                 }, 1500);
             } else {
-                console.log(data.error || "Sign in failed. Please try again."); // Replaced with console.log
+                console.log(data.error || "Sign in failed. Please try again.");
             }
         } catch (error) {
             console.error("Sign in error:", error);
-            console.log("Network error. Please check your connection and try again."); // Replaced with console.log
+            console.log("Network error. Please check your connection and try again.");
         } finally {
             this.setLoadingState(submitBtn, false);
         }
@@ -289,18 +286,18 @@ class AuthHandler {
             if (response.ok) {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
+                localStorage.setItem("sessionPersistent", "false"); // Default to non-persistent unless sign-in changes it
 
-                // Removed showSuccessMessage
                 setTimeout(() => {
                     window.location.href = "/dashboard";
                 }, 2000);
             } else {
-                console.error("Sign up failed: ", data.error); // Replaced with console.error
-                console.log(data.error || "Registration failed: " + data.error); // Replaced with console.log
+                console.error("Sign up failed: ", data.error);
+                console.log(data.error || "Registration failed: " + data.error);
             }
         } catch (error) {
             console.error("Sign up server error:", error);
-            console.log("Network error occurred. Please check server status and try again."); // Replaced with console.log
+            console.log("Network error occurred. Please check server status and try again.");
         } finally {
             this.setLoadingState(submitBtn, false);
         }
@@ -373,12 +370,6 @@ class AuthHandler {
     }
 
     loadStoredToken() {
-        // Clear authToken and user unless rememberedEmail exists
-        if (!localStorage.getItem("rememberedEmail")) {
-            localStorage.removeItem("authToken");
-            localStorage.removeItem("user");
-        }
-
         const rememberedEmail = localStorage.getItem("rememberedEmail");
         const emailInput = document.getElementById("email");
         if (rememberedEmail && emailInput) {
@@ -390,9 +381,16 @@ class AuthHandler {
         }
 
         const token = localStorage.getItem("authToken");
-        // Skip redirect if on /signup page, even if remembered
-        if (token && this.isTokenValid(token) && window.location.pathname !== "/signup") {
-            window.location.href = "/dashboard";
+        const sessionPersistent = localStorage.getItem("sessionPersistent") === "true";
+
+        if (token && this.isTokenValid(token)) {
+            if (sessionPersistent) {
+                window.location.href = "/dashboard";
+            } else {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("user");
+                localStorage.removeItem("sessionPersistent");
+            }
         }
     }
 
@@ -423,10 +421,10 @@ class AuthHandler {
             }
         }
 
-        // Clear all auth-related localStorage items
         localStorage.removeItem("authToken");
         localStorage.removeItem("user");
         localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("sessionPersistent");
         window.location.href = "/signin";
     }
 
@@ -504,6 +502,7 @@ async function makeAuthenticatedRequest(url, options = {}) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("user");
             localStorage.removeItem("rememberedEmail");
+            localStorage.removeItem("sessionPersistent");
             window.location.href = "/signin";
             return null;
         }
