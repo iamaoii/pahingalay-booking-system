@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Pahingalay Hotel</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Welcome back, Mary Grace Piattos!</h1>
+            <p>Manage your bookings and account settings.</p>
+        </header>
+        <div class="dashboard-content">
+            <section class="profile-card">
+                <h2>Your Profile</h2>
+                <div class="profile-avatar">MP</div>
+                <p>Mary Grace Piattos</p>
+                <p>marygracepiattos@gmail.com</p>
+                <button class="profile-btn">Edit Profile</button>
+                <button class="profile-btn">New Booking</button>
+                <button class="profile-btn logout">Logout</button>
+            </section>
+            <div class="stats-section">
+                <div class="stat-card">
+                    <h3>Total Booking</h3>
+                    <p>1</p>
+                    <span class="stat-icon">📅</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Night Stayed</h3>
+                    <p>2</p>
+                    <span class="stat-icon">🏡</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Spent</h3>
+                    <p>1,200</p>
+                    <span class="stat-icon">💳</span>
+                </div>
+            </div>
+            <section class="bookings-section">
+                <h2>Your Bookings</h2>
+                <div class="booking-card">
+                    <h3>Double Room</h3>
+                    <p>Reservation ID: R-00000001</p>
+                    <p>Check-in: 01/10/2024 | Check-out: 01/13/2024</p>
+                    <p>Total: 1200</p>
+                    <button class="action-btn view">View</button>
+                    <button class="action-btn status confirmed">Status</button>
+                </div>
+                <div class="booking-card">
+                    <h3>Double Room</h3>
+                    <p>Reservation ID: R-00000002</p>
+                    <p>Check-in: 02/10/2024 | Check-out: 02/13/2024</p>
+                    <p>Total: 999</p>
+                    <button class="action-btn view">View</button>
+                    <button class="action-btn status pending">Status</button>
+                </div>
+            </section>
+        </div>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

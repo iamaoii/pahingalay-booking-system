@@ -4,18 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Pahingalay Hotel</title>
-    <link rel="stylesheet" href="/frontend/assets/css/auth.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Google OAuth -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
     <div class="container">
         <div class="auth-card">
             <div class="header">
                 <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
-                <p class="subtitle">Welcome back</p>
-                <p class="description">Enter your email and password to access your account</p>
+                <p class="subtitle">Sign in to your account</p>
             </div>
             
             <form class="auth-form" id="signinForm">
@@ -24,7 +21,7 @@
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <div class="input-wrapper">
-                        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+                        <i class="fas fa-envelope input-icon"></i>
                         <input type="email" id="email" name="email" placeholder="Enter your Email" required>
                     </div>
                 </div>
@@ -32,42 +29,31 @@
                 <div class="form-group">
                     <label for="password">Password</label>
                     <div class="input-wrapper">
-                        <span class="input-icon"><i class="fas fa-lock"></i></span>
+                        <i class="fas fa-lock input-icon"></i>
                         <input type="password" id="password" name="password" placeholder="Enter your Password" required>
                     </div>
                 </div>
                 
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="remember" name="remember">
-                        <span class="checkmark"></span>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="remember" id="remember">
                         Remember me
                     </label>
                 </div>
                 
                 <button type="submit" class="btn-primary">Sign In</button>
                 
-                <div class="divider">
-                    <span>or</span>
-                </div>
-                
-                <div id="google-signin-btn" class="btn-google">
-                    <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google logo" class="google-icon">
-                    Sign in with Google
-                </div>
-                
                 <div class="form-links">
-                    <p>Don't have an account? <a href="signup.html" class="link">Sign up here</a></p>
-                    <p><a href="#" class="link">Forgot your password?</a></p>
+                    <p>Don't have an account? <a href="{{ url_for('signup_page') }}" class="link">Sign up here</a></p>
                 </div>
             </form>
             
             <div class="footer">
-                <a href="#" class="back-link">← Back to homepage</a>
+                <a href="/" class="back-link">← Back to homepage</a>
             </div>
         </div>
     </div>
     
-    <script src="/frontend/assets/js/"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
 </html>

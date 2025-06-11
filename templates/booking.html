@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Your Stay - PAHINGALAY HOTEL</title>
-    <link rel="stylesheet" href="./assets/css/nav.css" />
+    <link rel="stylesheet" href="/static/css/nav.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
 
@@ -13,10 +13,11 @@
     <nav class="navbar">
         <div class="navdiv">
             <div class="logo">
-                <a href="index.html">PAHINGALAY HOTEL</a>
+                <a href="home.html
+                ">PAHINGALAY HOTEL</a>
             </div>
             <ul class="nav-list">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="home.html">Home</a></li>
                 <li><a href="facilities.html">Facilities</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="rooms.html">Rooms</a></li>
@@ -153,12 +154,14 @@
                                     </div>
                                 </div>
                                 <div class="form-navigation">
-                                    <a class="next-btn btn-primary next-tab" data-next="reserve-details">
+                                    <a class="btn-primary next-tab" data-next="reserve-details">
                                         Next: Reservation Details
                                     </a>
                                 </div>
                             </div>
 
+
+                            
                             <div class="reserve-details" data-content="reserve-details">
                                 <div class="booking-tab-content" id="guest-info-tab">
                                     <h3>Reservation Details</h3>
@@ -203,7 +206,87 @@
 
 
                             <div class="room-preferences" data-content="room-preferences">
-                                
+                                <div class="primary-content">
+                                    <div class="room-content" id="guest-info-tab">
+                                        <h3>Room Preferences</h3>
+                                        <div class="form-grid-2">
+                                            <div class="form-group">
+                                                <label for="">Room Type (Occupancy)</label>
+                                                <div class="input-grid">
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="1" required />
+                                                        Single (1 person)
+                                                    </label>
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="2" />
+                                                        Double (2 people)
+                                                    </label>
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="3" />
+                                                        Suite (2-4 people)
+                                                    </label>
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="4" />
+                                                        Family (4-6 people)
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-grid-2">
+                                            <div class="form-group">
+                                                <label for="">Bed Type</label>
+                                                <div class="input-grid">
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="Single Bed" required />
+                                                        Single Bed
+                                                    </label>
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="Queen Bed" />
+                                                        Queen Bed
+                                                    </label>
+                                                    <label class="select-option">
+                                                        <input type="radio" name="room_nights" value="King Bed" />
+                                                        King Bed
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Smoke Preference</label>
+                                            <div class="radio-group">
+                                                <div class="radio-item">
+                                                    <input type="radio" id="male" name="sex" value="Non-Smoking" checked />
+                                                    <label for="male">Non-Smoking</label>
+                                                </div>
+                                                <div class="radio-item">
+                                                    <input type="radio" id="female" name="sex" value="Smoking" />
+                                                    <label for="female">Smoking</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-grid-3">
+                                            <div class="form-group">
+                                                <label for="address">Additional Requests</label>
+                                                <textarea placeholder="Enter any additional requests"
+                                                    required ></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-navigation">
+                                    <a href="#" data-next="reserve-details" class="next-btn btn-secondary next-tab">
+                                        Back: Reservation Details
+                                    </a>
+                                    <a href="#" data-next="reserve-details" class="next-btn btn-secondary next-tab">
+                                        Complete Reservation
+                                    </a>
+                                </div>
                             </div>
 
 
@@ -258,8 +341,8 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="./assets/js/booking.js"></script>
-    <script src="./assets/js/add_companion.js"></script>
+    <script src="/static/js/booking.js"></script>
+    <script src="/static/js/add_companion.js"></script>
 </body>
 
 </html>
