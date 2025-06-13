@@ -33,15 +33,15 @@ def home():
     logger.debug("Rendering home.html as root route")
     return render_template('home.html')
 
-@app.route('/signup', methods=['GET'])
-def signup_page():
-    logger.debug("Rendering signup.html")
-    return render_template('signup.html')
+@app.route('/rooms', methods=['GET'])
+def rooms_page():
+    logger.debug("Rendering rooms.html")
+    return render_template('rooms.html')
 
-@app.route('/signin', methods=['GET'])
-def signin_page():
-    logger.debug("Rendering signin.html")
-    return render_template('signin.html')
+@app.route('/gallery', methods=['GET'])
+def gallery_page():
+    logger.debug("Rendering gallery.html")
+    return render_template('gallery.html')
 
 @app.route('/booking', methods=['GET'])
 def booking_page():
@@ -57,6 +57,20 @@ def dashboard_page():
 def handle_error(error):
     logger.error(f"Unhandled error: {str(error)}")
     return jsonify({'error': 'Internal server error'}), 500
+
+
+
+'''
+@app.route('/signup', methods=['GET'])
+def signup_page():
+    logger.debug("Rendering signup.html")
+    return render_template('signup.html')
+
+@app.route('/signin', methods=['GET'])
+def signin_page():
+    logger.debug("Rendering signin.html")
+    return render_template('signin.html')
+'''
 
 if __name__ == '__main__':
     with app.app_context():

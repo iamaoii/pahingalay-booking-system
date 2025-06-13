@@ -16,7 +16,8 @@
   <!--
     - logo icon
   -->
-  <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png"> <!-- Changed to png as per common practice for favicon -->
+  <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png">
+  <!-- Changed to png as per common practice for favicon -->
 
   <!--
     - boxicons cdn
@@ -35,13 +36,8 @@
     - custom css link
   -->
   <link rel="stylesheet" href="/static/css/pahingalay.css">
-
-  <!--
-    - preload images
-  -->
-  <link rel="preload" as="image" href="/static/images/pahingalay-slider1.jpg">
-  <link rel="preload" as="image" href="/static/images/pahingalay-slider2.jpg">
-  <link rel="preload" as="image" href="/static/images/pahingalay-slider3.jpg">
+  <link rel="stylesheet" href="/static/css/contact-section-new.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
 </head>
 
@@ -72,8 +68,7 @@
         </div>
 
         <span class="span">
-          Pahingalay Street, Sta.Mesa, M
-        </span>
+          Pahingalay Street, Sta.Mesa, Manila, Philippines</span>
       </address>
 
       <div class="separator"></div>
@@ -134,7 +129,7 @@
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link hover-underline active">
+            <a href="/" class="navbar-link hover-underline active">
               <div class="separator"></div>
 
               <span class="span">Home</span>
@@ -142,7 +137,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#rooms" class="navbar-link hover-underline">
+            <a href="{{ url_for('rooms_page') }}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
               <span class="span">Rooms</span>
@@ -150,7 +145,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#gallery" class="navbar-link hover-underline">
+            <a href="{{ url_for('gallery_page') }}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
               <span class="span">Gallery</span>
@@ -245,7 +240,7 @@
               Come with family & feel our heartwarming accomodation
             </p>
 
-            <a href="#" class="btn btn-primary slider-reveal">
+            <a href="{{ url_for('rooms_page') }}" class="btn btn-primary slider-reveal">
               <span class="text text-1">Explore Rooms</span>
 
               <span class="text text-2" aria-hidden="true">Explore Rooms</span>
@@ -269,7 +264,7 @@
               live as we serve you like a Royalty
             </p>
 
-            <a href="#" class="btn btn-primary slider-reveal">
+            <a href="{{ url_for('rooms_page') }}" class="btn btn-primary slider-reveal">
               <span class="text text-1">Explore Rooms</span>
 
               <span class="text text-2" aria-hidden="true">Explore Rooms</span>
@@ -293,7 +288,7 @@
               Reserve your place at the Room and embark on a culinary voyage unlike any other
             </p>
 
-            <a href="#" class="btn btn-primary slider-reveal">
+            <a href="{{ url_for('rooms_page') }}" class="btn btn-primary slider-reveal">
               <span class="text text-1">Explore Rooms</span>
 
               <span class="text text-2" aria-hidden="true">Explore Rooms</span>
@@ -310,12 +305,6 @@
         <button class="slider-btn next" aria-label="slide to next" data-next-btn>
           <ion-icon name="chevron-forward"></ion-icon>
         </button>
-
-        <a href="#" class="hero-btn has-after">
-          <img src="/static/images/Pahingalaylogo.png" width="48" height="48" alt="contact icon">
-
-          <span class="label-2 text-center span">Book A Room</span>
-        </a>
 
       </section>
 
@@ -334,8 +323,7 @@
           <h2 class="headline-1 section-title">We Offer Top Notch Accomodations</h2>
 
           <p class="section-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been the industrys
-            standard dummy text ever.
+            Choose from our selection of comfortable and elegant rooms designed to make your stay memorable
           </p>
 
           <ul class="flex-list">
@@ -356,7 +344,7 @@
                     <a href="#">Single Room</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Room</a>
+                  <a href="{{ url_for('rooms_page') }}" class="btn-text hover-underline label-2">View Room</a>
 
                 </div>
 
@@ -379,7 +367,7 @@
                     <a href="#">Double Room</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Room</a>
+                  <a href="{{ url_for('rooms_page') }}" class="btn-text hover-underline label-2">View Room</a>
 
                 </div>
 
@@ -391,8 +379,8 @@
 
                 <a href="#" class="has-before hover:shine">
                   <figure class="card-banner img-holder" style="--width: 285; --height: 336;">
-                    <img src="/static/images/Family Suite.jpg" width="285" height="336" loading="lazy" alt="Family Suite"
-                      class="img-cover">
+                    <img src="/static/images/Family Suite.jpg" width="285" height="336" loading="lazy"
+                      alt="Family Suite" class="img-cover">
                   </figure>
                 </a>
 
@@ -402,7 +390,7 @@
                     <a href="#">Family Suite</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Room</a>
+                  <a href="{{ url_for('rooms_page') }}" class="btn-text hover-underline label-2">View Room</a>
 
                 </div>
 
@@ -424,7 +412,7 @@
                     <a href="#">Deluxe Room</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Room</a>
+                  <a href="{{ url_for('rooms_page') }}" class="btn-text hover-underline label-2">View Room</a>
 
                 </div>
 
@@ -432,12 +420,6 @@
             </li>
 
           </ul>
-
-          <img src="./static/images/shape-1.png" width="246" height="412" loading="lazy" alt="shape"
-            class="shape shape-1 move-anim">
-          <img src="./static/images/shape-2.png" width="343" height="345" loading="lazy" alt="shape"
-            class="shape shape-2 move-anim">
-
         </div>
       </section>
 
@@ -448,65 +430,65 @@
         - #Ammenities
       -->
 
-  <section class="amenities-section">
-    <div class="container">
-      <h2 class="section-title">Hotel Amenities</h2>
-      <p class="section-subtitle">
-        Enjoy our wide range of amenities designed to make your stay comfortable
-        and enjoyable
-      </p>
+      <section class="amenities-section">
+        <div class="container">
+          <h2 class="section-title">Hotel Amenities</h2>
+          <p class="section-subtitle">
+            Enjoy our wide range of amenities designed to make your stay comfortable
+            and enjoyable
+          </p>
 
-      <div class="amenities-grid">
-        <!-- Free Wi-Fi -->
-        <div class="amenity-card">
-          <i class="bx bx-wifi"></i>
-          <p>Free Wi-Fi</p>
-        </div>
+          <div class="amenities-grid">
+            <!-- Free Wi-Fi -->
+            <div class="amenity-card">
+              <i class="bx bx-wifi"></i>
+              <p>Free Wi-Fi</p>
+            </div>
 
-        <!-- Breakfast -->
-        <div class="amenity-card">
-          <i class="bx bx-coffee"></i>
-          <p>Breakfast</p>
-        </div>
+            <!-- Breakfast -->
+            <div class="amenity-card">
+              <i class="bx bx-coffee"></i>
+              <p>Breakfast</p>
+            </div>
 
-        <!-- Restaurant -->
-        <div class="amenity-card">
-          <i class="bx bx-restaurant"></i>
-          <p>Restaurant</p>
-        </div>
+            <!-- Restaurant -->
+            <div class="amenity-card">
+              <i class="bx bx-restaurant"></i>
+              <p>Restaurant</p>
+            </div>
 
-        <!-- Fitness Center -->
-        <div class="amenity-card">
-          <i class="bx bx-dumbbell"></i>
-          <p>Fitness Center</p>
-        </div>
+            <!-- Fitness Center -->
+            <div class="amenity-card">
+              <i class="bx bx-dumbbell"></i>
+              <p>Fitness Center</p>
+            </div>
 
-        <!-- Swimming Pool -->
-        <div class="amenity-card">
-          <i class="bx bx-swim"></i>
-          <p>Swimming Pool</p>
-        </div>
+            <!-- Swimming Pool -->
+            <div class="amenity-card">
+              <i class="bx bx-swim"></i>
+              <p>Swimming Pool</p>
+            </div>
 
-        <!-- Free Parking -->
-        <div class="amenity-card">
-          <i class="bx bxs-car"></i>
-          <p>Free Parking</p>
-        </div>
+            <!-- Free Parking -->
+            <div class="amenity-card">
+              <i class="bx bxs-car"></i>
+              <p>Free Parking</p>
+            </div>
 
-        <!-- Smart TV -->
-        <div class="amenity-card">
-          <i class="bx bx-tv"></i>
-          <p>Smart TV</p>
-        </div>
+            <!-- Smart TV -->
+            <div class="amenity-card">
+              <i class="bx bx-tv"></i>
+              <p>Smart TV</p>
+            </div>
 
-        <!-- Air Conditioning -->
-        <div class="amenity-card">
-          <i class='bx bxs-tennis-ball'></i>
-          <p>Tennis Court</p>
+            <!-- Air Conditioning -->
+            <div class="amenity-card">
+              <i class="bx bxs-tennis-ball"></i>
+              <p>Tennis Court</p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
 
 
@@ -515,276 +497,141 @@
         - #GUEST EXPERIENCES
       -->
 
-       <section class="guest-experiences section text-center">
-    <div class="container">
-      <p class="section-subtitle label-2">What Guests Say</p>
-      <h2 class="headline-1 section-title">Guest Experiences</h2>
-      <p class="section-text">See what our guests have to say about their stay at PAHINGALAY HOTEL.</p>
-
-      <div class="reviews-grid">
-        <!-- Review 1 -->
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex.
-          </p>
-          <div class="profile">
-            <div class="avatar"></div>
-            <div class="name-location">
-              <strong>Jane Doe</strong>
-              <span>New York, USA</span>
-            </div>
-          </div>
-        </div>
-        <!-- Review 2 -->
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">
-            Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum suscipit aenean rhoncus posuere.
-          </p>
-          <div class="profile">
-            <div class="avatar"></div>
-            <div class="name-location">
-              <strong>John Smith</strong>
-              <span>London, UK</span>
-            </div>
-          </div>
-        </div>
-        <!-- Review 3 -->
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <p class="review-text">
-            Etiam sit amet nisl purus in mollis nunc sed id semper. Eget gravida cum sociis natoque penatibus.
-          </p>
-          <div class="profile">
-            <div class="avatar"></div>
-            <div class="name-location">
-              <strong>Maria Clara</strong>
-              <span>Manila, PH</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-      <!--
-        - #TESTIMONIALS
-      -->
-
-      <section class="section testi text-center has-bg-image"
-        style="background-image: url('/static/images/pahingalay-slider2.jpg')" aria-label="testimonials">
+      <section class="guest-experiences section text-center">
         <div class="container">
+          <p class="section-subtitle label-2">What Guests Say</p>
+          <h2 class="headline-1 section-title">Guest Experiences</h2>
+          <p class="section-text">See what our guests have to say about their stay at PAHINGALAY HOTEL.</p>
 
-          <div class="quote">”</div>
-
-          <p class="headline-2 testi-text">
-            I wanted to thank you for inviting me to Hotel Pahingalay the other night. The atmosphere was serene, the accommodations were outstanding, and the overall experience was truly memorable.
-          </p>
-
-          <div class="wrapper">
-            <div class="separator"></div>
-            <div class="separator"></div>
-            <div class="separator"></div>
+          <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="review-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque
+                faucibus ex.
+              </p>
+              <div class="profile">
+                <div class="avatar"></div>
+                <div class="name-location">
+                  <strong>Jane Doe</strong>
+                  <span>New York, USA</span>
+                </div>
+              </div>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="review-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque
+                faucibus ex.
+              </p>
+              <div class="profile">
+                <div class="avatar"></div>
+                <div class="name-location">
+                  <strong>John Smith</strong>
+                  <span>London, UK</span>
+                </div>
+              </div>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card">
+              <div class="stars">★★★★★</div>
+              <p class="review-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque
+                faucibus ex.
+              </p>
+              <div class="profile">
+                <div class="avatar"></div>
+                <div class="name-location">
+                  <strong>Maria Clara</strong>
+                  <span>Manila, PH</span>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="profile">
-            <img src="/static/images/Alden.gif" width="100" height="100" loading="lazy" alt="Alden Richard"
-              class="img">
-
-            <p class="label-2 profile-name">Alden Richard</p>
-          </div>
-
         </div>
       </section>
 
-
-
-
-      <!--
-        - #CONTACT
-      -->
-
-      <section class="contact">
-        <div class="container">
-
-          <div class="form contact-form bg-black-10">
-
-            <form action="" class="form-left">
-
-              <h2 class="headline-1 text-center">Message Us</h2>
-
+      <!-- #CONTACT -->
+      <section class="new-contact">
+        <div class="new-contact-container">
+          <div class="new-contact-form-card">
+            <h2>Send Us a Message</h2>
+            <p class="new-contact-subtitle">Have questions or need assistance? Reach out to our friendly team</p>
+            <form action="#" class="new-contact-form">
               <div class="input-wrapper">
-                <input type="text" name="name" placeholder="Your Name" autocomplete="off" class="input-field">
-
-                <input type="tel" name="phone" placeholder="Phone Number" autocomplete="off" class="input-field">
+                <input type="text" name="name" placeholder="Name" class="input-field" required>
+                <input type="email" name="email" placeholder="Email" class="input-field" required>
               </div>
-
-              <textarea name="message" placeholder="Message" autocomplete="off" class="input-field"></textarea>
-
-              <button type="submit" class="btn btn-secondary">
+              <div class="input-wrapper">
+                <input type="text" name="subject" placeholder="Subject" class="input-field" required>
+              </div>
+              <div class="input-wrapper">
+                <textarea name="message" placeholder="Message" class="input-field" rows="4" required></textarea>
+              </div>
+              <button type="submit" class="btn">
                 <span class="text text-1">Send Message</span>
-
                 <span class="text text-2" aria-hidden="true">Send Message</span>
               </button>
-
             </form>
-
-            <div class="form-right text-center" style="background-image: url('./static/images/form-pattern.png')">
-
-              <h2 class="headline-1 text-center">Contact Us</h2>
-
-              <p class="contact-label">contact Request</p>
-
-              <a href="tel:+88123123456" class="body-1 contact-number hover-underline">+88-123-123456</a>
-
-              <div class="separator"></div>
-
-              <p class="contact-label">Location</p>
-
-              <address class="body-4">
-                Restaurant St, Delicious City, <br>
-                London 9578, UK
-              </address>
-
-              <p class="contact-label">contact Hours</p>
-
-              <p class="body-4">
-                Monday to Sunday <br>
-                05:00 am - 11:00pm
-              </p>
-
-
-            </div>
-
           </div>
+          <div class="new-contact-info-card">
+            <h2>Contact Information</h2>
 
+            <div class="new-contact-details">
+              <p><span class="new-contact-icon">📍</span> 123 Relaxation Avenue, Paradise City</p>
+              <p><span class="new-contact-icon">📞</span> +123 456 7890</p>
+              <p><span class="new-contact-icon">📧</span> info@paradisehotel.com</p>
+            </div>
+            <div class="new-business-hours">
+              <h3 class="new-hours-title">Business Hours</h3>
+              <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
+              <p>Saturday - Sunday: 10:00 AM - 4:00 PM</p>
+            </div>
+          </div>
         </div>
       </section>
-
-
     </article>
   </main>
 
-
-
-
-  <!--
-    - #FOOTER
-  -->
-
-  <footer class="footer section has-bg-image text-center"
-    style="background-image: url('./static/images/footer-bg.jpg')">
+  <!-- Footer -->
+  <footer class="footer">
     <div class="container">
-
-      <div class="footer-top grid-list">
-
-        <div class="footer-brand has-before has-after">
-
-          <a href="#" class="logo">
-            <img src="./static/images/logo.svg" width="160" height="50" loading="lazy" alt="Pahingalay - Home">
-          </a>
-
-          <address class="body-4">
-            Sta Mesa, Manila
-          </address>
-
-          <a href="mailto:contact@pahingalay.com" class="body-4 contact-link">contact@pahingalay.com</a>
-
-          <a href="tel:+88123123456" class="body-4 contact-link">contact Request : +88-123-123456</a>
-
-          <p class="body-4">
-            Open : Monday to Sunday <br>
-            24 Hours Service
-          </p>
-
-          <div class="wrapper">
-            <div class="separator"></div>
-            <div class="separator"></div>
-            <div class="separator"></div>
-          </div>
-
-          <p class="title-1">Get News & Offers</p>
-
-          <p class="label-1">
-            Subscribe us & Get <span class="span">25% Off.</span>
-          </p>
-
-          <form action="" class="input-wrapper">
-            <div class="icon-wrapper">
-              <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-
-              <input type="email" name="email_address" placeholder="Your email" autocomplete="off" class="input-field">
-            </div>
-
-            <button type="submit" class="btn btn-secondary">
-              <span class="text text-1">Subscribe</span>
-
-              <span class="text text-2" aria-hidden="true">Subscribe</span>
-            </button>
-          </form>
-
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>PAHINGALAY HOTEL</h3>
+          <p>Your perfect getaway destination for relaxation and comfort.</p>
         </div>
-
-        <ul class="footer-list">
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Home</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Rooms</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Gallery</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Facilities</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Contact</a>
-          </li>
-
-        </ul>
-
-        <ul class="footer-list">
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Facebook</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Instagram</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Twitter</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Youtube</a>
-          </li>
-
-          <li>
-            <a href="#" class="label-2 footer-link hover-underline">Google Map</a>
-          </li>
-
-        </ul>
-
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="#">Special Offers</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li>Pahingalay Street, Sta.Mesa, Manila, Philippines</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Email: info@pahingalayhotel.com</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
       </div>
-
       <div class="footer-bottom">
-
-        <p class="copyright">
-          &copy; 2025 Pahingalay. All Rights Reserved | Crafted by <i>Pahingalay Team</i> </a>
-        </p>
-
+        <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
       </div>
-
     </div>
   </footer>
 
@@ -794,9 +641,6 @@
   -->
   <div class="modal-overlay" id="authModal" data-modal>
     <div class="auth-modal">
-      <button class="close-modal-btn" aria-label="Close modal" data-modal-close>
-        <ion-icon name="close-outline"></ion-icon>
-      </button>
 
       <div class="modal-content">
         <div class="modal-tabs">
@@ -806,86 +650,101 @@
 
         <!-- Sign In Form -->
         <div class="form-section active" id="signin-form">
-          <h2 class="title-2 text-center">Welcome Back!</h2>
+          <h2 class="title-1 text-center">Welcome Back!</h2>
           <form class="auth-form" action="#" method="post">
             <div class="form-group">
-              <label for="signin-email" class="label-2">Email</label>
+              <label for="signin-email" class="label-3">Email</label>
               <input type="email" id="signin-email" name="email" class="form-input" placeholder="Your Email" required>
             </div>
             <div class="form-group">
-              <label for="signin-password" class="label-2">Password</label>
-              <input type="password" id="signin-password" name="password" class="form-input" placeholder="Password" required>
+              <label for="signin-password" class="label-3">Password</label>
+              <input type="password" id="signin-password" name="password" class="form-input" placeholder="Password"
+                required>
             </div>
             <button type="submit" class="form-button btn btn-secondary">Sign In</button>
-            <p class="text-center body-4 toggle-link">Don't have an account? <a href="#" data-toggle-tab="signup">Sign Up</a></p>
+            <p class="text-center body-4 toggle-link">Don't have an account? <a href="#" data-toggle-tab="signup">Sign
+                Up</a></p>
           </form>
         </div>
 
         <!-- Sign Up Form -->
         <div class="form-section" id="signup-form">
-          <h2 class="title-2 text-center">Create your account</h2>
+          <h2 class="title-1 text-center">Create your account</h2>
           <p class="body-4 text-center" style="margin-bottom: 25px;">Join us to enjoy your perfect getaway</p>
           <form class="auth-form" action="#" method="post">
             <div class="form-group">
-              <label for="signup-full-name" class="label-2">Full Name</label>
+              <label for="signup-full-name" class="label-3">Full Name</label>
               <div class="icon-wrapper">
-                <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-                <input type="text" id="signup-full-name" name="full_name" class="form-input" placeholder="Enter your full name" required>
+                <input type="text" id="signup-full-name" name="full_name" class="form-input"
+                  placeholder="Enter your full name" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="signup-email" class="label-2">Email Address</label>
+              <label for="signup-email" class="label-3">Email Address</label>
               <div class="icon-wrapper">
-                <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
-                <input type="email" id="signup-email" name="email" class="form-input" placeholder="Enter your Email" required>
+                <input type="email" id="signup-email" name="email" class="form-input" placeholder="Enter your Email"
+                  required>
               </div>
             </div>
             <div class="form-group form-group-inline">
-                <div class="form-sub-group">
-                    <label for="signup-contact-number" class="label-2">Contact Number</label>
-                    <div class="icon-wrapper">
-                        <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
-                        <input type="tel" id="signup-contact-number" name="contact_number" class="form-input" placeholder="+63 XXX XXX XXXX" required>
-                    </div>
+              <div class="form-sub-group">
+                <label for="signup-contact-number" class="label-3">Contact Number</label>
+                <div class="icon-wrapper">
+                  <input type="tel" id="signup-contact-number" name="contact_number" class="form-input"
+                    placeholder="+63 XXX XXX XXXX" required>
                 </div>
-                <div class="form-sub-group">
-                    <label for="signup-age" class="label-2">Age</label>
-                    <div class="icon-wrapper">
-                        <ion-icon name="calendar-outline" aria-hidden="true"></ion-icon>
-                        <input type="number" id="signup-age" name="age" class="form-input" placeholder="Age" min="1" max="120" required>
-                    </div>
+              </div>
+              <div class="form-sub-group">
+                <label for="signup-age" class="label-3">Age</label>
+                <div class="icon-wrapper">
+                  <input type="number" id="signup-age" name="age" class="form-input" placeholder="Age" min="1" max="120"
+                    required>
                 </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-nationality" class="label-2">Nationality</label>
-              <div class="icon-wrapper">
-                <ion-icon name="flag-outline" aria-hidden="true"></ion-icon>
-                <input type="text" id="signup-nationality" name="nationality" class="form-input" placeholder="Enter your Nationality" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="signup-address" class="label-2">Address</label>
+              <label for="signup-nationality" class="label-3">Nationality</label>
               <div class="icon-wrapper">
-                <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
-                <input type="text" id="signup-address" name="address" class="form-input" placeholder="Enter your Address" required>
+                <input type="text" id="signup-nationality" name="nationality" class="form-input"
+                  placeholder="Enter your Nationality" required>
               </div>
             </div>
             <div class="form-group">
-              <label for="signup-password" class="label-2">Password</label>
-              <input type="password" id="signup-password-new" name="password" class="form-input" placeholder="Create Password" required>
+              <label for="signup-address" class="label-3">Address</label>
+              <div class="icon-wrapper">
+                <input type="text" id="signup-address" name="address" class="form-input"
+                  placeholder="Enter your Address" required>
+              </div>
             </div>
             <div class="form-group">
-              <label for="signup-confirm-password" class="label-2">Confirm Password</label>
-              <input type="password" id="signup-confirm-password-new" name="confirm_password" class="form-input" placeholder="Confirm Password" required>
+              <label for="signup-sex" class="label-3">Sex</label>
+              <div class="icon-wrapper">
+                <select id="signup-sex" name="sex" class="form-input" required>
+                  <option value="" disabled selected>Select your sex</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                  <option value="O">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-password" class="label-3">Password</label>
+              <input type="password" id="signup-password" name="password" class="form-input"
+                placeholder="Create Password" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm-password" class="label-3">Confirm Password</label>
+              <input type="password" id="signup-confirm-password" name="confirm_password" class="form-input"
+                placeholder="Confirm Password" required>
             </div>
             <button type="submit" class="form-button btn btn-secondary">Sign Up</button>
-            <p class="text-center body-4 toggle-link">Already have an account? <a href="#" data-toggle-tab="signin">Sign In</a></p>
+            <p class="text-center body-4 toggle-link ">Already have an account? <a href="#"
+                data-toggle-tab="signin">Sign In</a></p>
           </form>
         </div>
       </div>
     </div>
   </div>
-
 
   <!--
     - #BACK TO TOP
@@ -906,8 +765,8 @@
   <!--
     - ionicon link (Updated to Ionicons v5.5.2 for better compatibility)
   -->
- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
- <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </body>
 

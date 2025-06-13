@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rooms & Suites - PAHINGALAY HOTEL</title>
+
+    <!-- logo icon -->
+    <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png">
+    <!-- Changed to png as per common practice for favicon -->
+
+    <!-- boxicons cdn -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+    <!-- google font link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/css/rooms.css" />
+    <link rel="stylesheet" href="/static/css/pahingalay.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preload" data-preaload>
+        <div class="circle"></div>
+        <p class="text">pahingalay</p>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="topbar">
+        <div class="container">
+            <address class="topbar-item">
+                <div class="icon">
+                    <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">Pahingalay Street, Sta.Mesa, Manila, Philippines</span>
+            </address>
+            <div class="separator"></div>
+            <div class="topbar-item item-2">
+                <div class="icon">
+                    <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">Daily: 8.00 am to 10.00 pm</span>
+            </div>
+            <a href="tel:+11234567890" class="topbar-item link">
+                <div class="icon">
+                    <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">+1 123 456 7890</span>
+            </a>
+            <div class="separator"></div>
+            <a href="mailto:contact@pahingalay.com" class="topbar-item link">
+                <div class="icon">
+                    <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+                </div>
+                <span class="span">contact@pahingalay.com</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" data-header>
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="/static/images/PAHINGALAY_HOTEL.png" width="100" alt="Pahingalay- logo">
+            </a>
+            <nav class="navbar" data-navbar>
+                <button class="close-btn" aria-label="close menu" data-nav-toggler>
+                    <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+                </button>
+                <a href="#" class="logo">
+                    <img src="/static/images/logo1.png" width="160" height="50" alt="Pahingalay- Home">
+                </a>
+                <ul class="navbar-list">
+                    <li class="navbar-item">
+                        <a href="/" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Home</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{{ url_for('rooms_page') }}" class="navbar-link hover-underline active">
+                            <div class="separator"></div>
+                            <span class="span">Rooms</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="{{ url_for('gallery_page') }}" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Gallery</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#facilities" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Facilities</span>
+                        </a>
+                    </li>
+                    <li class="navbar-item">
+                        <a href="#contact" class="navbar-link hover-underline">
+                            <div class="separator"></div>
+                            <span class="span">Contact</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="text-center">
+                    <p class="headline-1 navbar-title">Visit Us</p>
+                    <address class="body-4">
+                        Pahingalay Street, Sta. Mesa, <br>
+                        Manila, Philippines
+                    </address>
+                    <p class="body-4 navbar-text">Open: 9.30 am - 2.30pm</p>
+                    <a href="mailto:contact@pahingalay.com" class="body-4 sidebar-link">contact@pahingalay.com</a>
+                    <div class="separator"></div>
+                    <p class="contact-label">Contact Request</p>
+                    <a href="tel:+88123123456" class="body-1 contact-number hover-underline">
+                        +88-123-123456
+                    </a>
+                </div>
+            </nav>
+            <button class="btn btn-secondary" data-modal-target="#authModal" data-modal-open>
+                <span class="text text-1">Sign In</span>
+                <span class="text text-2" aria-hidden="true">Sign In</span>
+            </button>
+            <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
+            </button>
+            <div class="overlay" data-nav-toggler data-overlay></div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- #HERO -->
+        <section class="hero text-center" aria-label="home" id="home">
+
+            <ul class="hero-slider" data-hero-slider>
+
+                <li class="slider-item active" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="/static/images/rooms-1.jpg" width="1880" height="950" alt="" class="img-cover">
+                    </div>
+                    <h1 class="display-1 hero-title slider-reveal">Our Rooms & Suites</h1>
+                    <p class="body-2 hero-text slider-reveal">Choose from our selection of comfortable and elegant rooms
+                        designed to make your stay memorable</p>
+                </li>
+
+                <li class="slider-item" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="/static/images/rooms-2.jpg" width="1880" height="950" alt="" class="img-cover">
+                    </div>
+                    <h1 class="display-1 hero-title slider-reveal">Our Rooms & Suites</h1>
+                    <p class="body-2 hero-text slider-reveal">Choose from our selection of comfortable and elegant rooms
+                        designed to make your stay memorable</p>
+                </li>
+
+                <li class="slider-item" data-hero-slider-item>
+                    <div class="slider-bg">
+                        <img src="/static/images/rooms-3.jpg" width="1880" height="950" alt="" class="img-cover">
+                    </div>
+                    <h1 class="display-1 hero-title slider-reveal">Our Rooms & Suites</h1>
+                    <p class="body-2 hero-text slider-reveal">Choose from our selection of comfortable and elegant rooms
+                        designed to make your stay memorable</p>
+                </li>
+
+            </ul>
+
+            <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+                <ion-icon name="chevron-back"></ion-icon>
+            </button>
+
+            <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+                <ion-icon name="chevron-forward"></ion-icon>
+            </button>
+        </section>
+
+        <!-- Room Types Section -->
+        <section class="rooms-section">
+            <div class="container">
+                <!-- Single Room -->
+                <div class="room-detail-card" data-room-type="single">
+                    <div class="room-detail-image">
+                        <img src="/static/images/Single Room.jpg" alt="Single Room" />
+                    </div>
+                    <div class="room-detail-content">
+                        <div class="room-detail-header">
+                            <div>
+                                <h2>Single Room</h2>
+                                <div class="room-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="far fa-star"></i>
+                                    <span>4.0 (120 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <div class="price">$99</div>
+                                <div class="price-period">per night</div>
+                            </div>
+                        </div>
+                        <p class="room-description">
+                            Perfect for solo travelers, our single rooms offer comfort and convenience in a cozy
+                            setting. Each room features a comfortable single bed, modern amenities, and a private
+                            bathroom.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <div class="spec-label">Room Size</div>
+                                <div class="spec-value">25 m²</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Capacity</div>
+                                <div class="spec-value">1 Person</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Bed Type</div>
+                                <div class="spec-value">Single Bed / Queen Bed / King Bed</div>
+                            </div>
+                        </div>
+                        <div class="room-features">
+                            <div class="features-label">Features</div>
+                            <div class="features-grid">
+                                <div class="feature-item"><i class="fas fa-check"></i> Free WiFi</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Air Conditioning</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Flat-screen TV</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Private Bathroom</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Work Desk</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Daily Housekeeping</div>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-single.html" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Double Room -->
+                <div class="room-detail-card" data-room-type="double">
+                    <div class="room-detail-image">
+                        <img src="/static/images/Double Room.jpg" alt="Double Room" />
+                    </div>
+                    <div class="room-detail-content">
+                        <div class="room-detail-header">
+                            <div>
+                                <h2>Double Room</h2>
+                                <div class="room-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>4.8 (210 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <div class="price">$149</div>
+                                <div class="price-period">per night</div>
+                            </div>
+                        </div>
+                        <p class="room-description">
+                            Spacious accommodation ideal for couples or friends traveling together. Our double rooms
+                            feature a queen-sized bed, elegant furnishings, and all the amenities you need for a
+                            comfortable stay.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <div class="spec-label">Room Size</div>
+                                <div class="spec-value">35 m²</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Capacity</div>
+                                <div class="spec-value">2 People</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Bed Type</div>
+                                <div class="spec-value">Single Bed / Queen Bed / King Bed</div>
+                            </div>
+                        </div>
+                        <div class="room-features">
+                            <div class="features-label">Features</div>
+                            <div class="features-grid">
+                                <div class="feature-item"><i class="fas fa-check"></i> Free WiFi</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Air Conditioning</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Flat-screen TV</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Private Bathroom</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Mini Bar</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Coffee Machine</div>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-double.html" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Family Suite -->
+                <div class="room-detail-card" data-room-type="suites">
+                    <div class="room-detail-image">
+                        <img src="/static/images/Family Suite.jpg" alt="Family Suite" />
+                    </div>
+                    <div class="room-detail-content">
+                        <div class="room-detail-header">
+                            <div>
+                                <h2>Family Suite</h2>
+                                <div class="room-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.5 (180 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <div class="price">$249</div>
+                                <div class="price-period">per night</div>
+                            </div>
+                        </div>
+                        <p class="room-description">
+                            Comfortable suite with separate living area, perfect for families. Our family suites offer
+                            ample space for everyone, with a king-sized bed in the main bedroom and twin beds in the
+                            second bedroom.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <div class="spec-label">Room Size</div>
+                                <div class="spec-value">60 m²</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Capacity</div>
+                                <div class="spec-value">4-6 People</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Bed Type</div>
+                                <div class="spec-value">Single Bed / Queen Bed / King Bed</div>
+                            </div>
+                        </div>
+                        <div class="room-features">
+                            <div class="features-label">Features</div>
+                            <div class="features-grid">
+                                <div class="feature-item"><i class="fas fa-check"></i> Free WiFi</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Air Conditioning</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> 2 Flat-screen TVs</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> 2 Bathrooms</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Living Room</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Kitchenette</div>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-family.html" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deluxe Suite -->
+                <div class="room-detail-card" data-room-type="suites">
+                    <div class="room-detail-image">
+                        <img src="/static/images/Deluxe.jpg" alt="Deluxe Suite" />
+                    </div>
+                    <div class="room-detail-content">
+                        <div class="room-detail-header">
+                            <div>
+                                <h2>Deluxe Suite</h2>
+                                <div class="room-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <span>4.9 (150 reviews)</span>
+                                </div>
+                            </div>
+                            <div class="room-price">
+                                <div class="price">$299</div>
+                                <div class="price-period">per night</div>
+                            </div>
+                        </div>
+                        <p class="room-description">
+                            Our premium offering with luxurious amenities and breathtaking views. The deluxe suite
+                            represents the pinnacle of luxury at PAHINGALAY HOTEL, with a spacious layout, premium
+                            furnishings, and exclusive amenities.
+                        </p>
+                        <div class="room-specs">
+                            <div class="room-spec">
+                                <div class="spec-label">Room Size</div>
+                                <div class="spec-value">75 m²</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Capacity</div>
+                                <div class="spec-value">2-4 People</div>
+                            </div>
+                            <div class="room-spec">
+                                <div class="spec-label">Bed Type</div>
+                                <div class="spec-value">Single Bed / Queen Bed / King Bed</div>
+                            </div>
+                        </div>
+                        <div class="room-features">
+                            <div class="features-label">Features</div>
+                            <div class="features-grid">
+                                <div class="feature-item"><i class="fas fa-check"></i> Free WiFi</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Air Conditioning</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> 65-inch Smart TV</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Jacuzzi</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Private Balcony</div>
+                                <div class="feature-item"><i class="fas fa-check"></i> Premium Toiletries</div>
+                            </div>
+                        </div>
+                        <div class="room-actions">
+                            <a href="room-deluxe.html" class="btn btn-outline">View Details</a>
+                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <div class="container">
+                <h2>Ready to Book Your Stay?</h2>
+                <p>
+                    Experience the comfort and luxury of PAHINGALAY HOTEL.
+                    Book your room today for the best rates.
+                </p>
+                <div class="cta-buttons">
+                    <a href="booking.html" class="btn btn-primary">Book Now</a>
+                    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>PAHINGALAY HOTEL</h3>
+                    <p>Your perfect getaway destination for relaxation and comfort.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="rooms.html">Rooms & Suites</a></li>
+                        <li><a href="#">Special Offers</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Pahingalay Street, Sta.Mesa, Manila, Philippines</li>
+                        <li>Phone: +123 456 7890</li>
+                        <li>Email: info@pahingalayhotel.com</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!--
+    - #AUTH MODAL
+  -->
+    <div class="modal-overlay" id="authModal" data-modal>
+        <div class="auth-modal">
+
+            <div class="modal-content">
+                <div class="modal-tabs">
+                    <button class="tab-button active" data-tab-target="signin">Sign In</button>
+                    <button class="tab-button" data-tab-target="signup">Sign Up</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <div class="form-section active" id="signin-form">
+                    <h2 class="title-1 text-center">Welcome Back!</h2>
+                    <form class="auth-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="signin-email" class="label-3">Email</label>
+                            <input type="email" id="signin-email" name="email" class="form-input"
+                                placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signin-password" class="label-3">Password</label>
+                            <input type="password" id="signin-password" name="password" class="form-input"
+                                placeholder="Password" required>
+                        </div>
+                        <button type="submit" class="form-button btn btn-secondary">Sign In</button>
+                        <p class="text-center body-4 toggle-link">Don't have an account? <a href="#"
+                                data-toggle-tab="signup">Sign
+                                Up</a></p>
+                    </form>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="form-section" id="signup-form">
+                    <h2 class="title-1 text-center">Create your account</h2>
+                    <p class="body-4 text-center" style="margin-bottom: 25px;">Join us to enjoy your perfect getaway</p>
+                    <form class="auth-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="signup-full-name" class="label-3">Full Name</label>
+                            <div class="icon-wrapper">
+                                <input type="text" id="signup-full-name" name="full_name" class="form-input"
+                                    placeholder="Enter your full name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email" class="label-3">Email Address</label>
+                            <div class="icon-wrapper">
+                                <input type="email" id="signup-email" name="email" class="form-input"
+                                    placeholder="Enter your Email" required>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-inline">
+                            <div class="form-sub-group">
+                                <label for="signup-contact-number" class="label-3">Contact Number</label>
+                                <div class="icon-wrapper">
+                                    <input type="tel" id="signup-contact-number" name="contact_number"
+                                        class="form-input" placeholder="+63 XXX XXX XXXX" required>
+                                </div>
+                            </div>
+                            <div class="form-sub-group">
+                                <label for="signup-age" class="label-3">Age</label>
+                                <div class="icon-wrapper">
+                                    <input type="number" id="signup-age" name="age" class="form-input" placeholder="Age"
+                                        min="1" max="120" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-nationality" class="label-3">Nationality</label>
+                            <div class="icon-wrapper">
+                                <input type="text" id="signup-nationality" name="nationality" class="form-input"
+                                    placeholder="Enter your Nationality" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-address" class="label-3">Address</label>
+                            <div class="icon-wrapper">
+                                <input type="text" id="signup-address" name="address" class="form-input"
+                                    placeholder="Enter your Address" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-sex" class="label-3">Sex</label>
+                            <div class="icon-wrapper">
+                                <select id="signup-sex" name="sex" class="form-input" required>
+                                    <option value="" disabled selected>Select your sex</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password" class="label-3">Password</label>
+                            <input type="password" id="signup-password" name="password" class="form-input"
+                                placeholder="Create Password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-confirm-password" class="label-3">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" name="confirm_password"
+                                class="form-input" placeholder="Confirm Password" required>
+                        </div>
+                        <button type="submit" class="form-button btn btn-secondary">Sign Up</button>
+                        <p class="text-center body-4 toggle-link ">Already have an account? <a href="#"
+                                data-toggle-tab="signin">Sign In</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    - #BACK TO TOP
+  -->
+
+    <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+        <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
+
+</body>
+
+<!-- JavaScript for Tab Functionality -->
+<script src="/static/js/pahingalay.js"></script>
+
+
+<!-- ionicon link (Updated to Ionicons v5.5.2 for better compatibility) -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+</html>

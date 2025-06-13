@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery - PAHINGALAY HOTEL</title>
+
+  <!-- logo icon -->
+  <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png">
+  <!-- Changed to png as per common practice for favicon -->
+
+  <!-- boxicons cdn -->
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+
+  <!-- google font link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/static/css/gallery.css">
+  <link rel="stylesheet" href="/static/css/pahingalay.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+
+</head>
+
+<body>
+  <!-- Preloader -->
+  <div class="preload" data-preaload>
+    <div class="circle"></div>
+    <p class="text">pahingalay</p>
+  </div>
+
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="container">
+      <address class="topbar-item">
+        <div class="icon">
+          <ion-icon name="location-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Pahingalay Street, Sta.Mesa, Manila, Philippines</span>
+      </address>
+      <div class="separator"></div>
+      <div class="topbar-item item-2">
+        <div class="icon">
+          <ion-icon name="time-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">Daily: 8.00 am to 10.00 pm</span>
+      </div>
+      <a href="tel:+11234567890" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="call-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">+1 123 456 7890</span>
+      </a>
+      <div class="separator"></div>
+      <a href="mailto:contact@pahingalay.com" class="topbar-item link">
+        <div class="icon">
+          <ion-icon name="mail-outline" aria-hidden="true"></ion-icon>
+        </div>
+        <span class="span">contact@pahingalay.com</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="/static/images/PAHINGALAY_HOTEL.png" width="100" alt="Pahingalay- logo">
+      </a>
+      <nav class="navbar" data-navbar>
+        <button class="close-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <a href="#" class="logo">
+          <img src="/static/images/logo1.png" width="160" height="50" alt="Pahingalay- Home">
+        </a>
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="/" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Home</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="{{ url_for('rooms_page') }}" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Rooms</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="{{ url_for('gallery_page') }}" class="navbar-link hover-underline active">
+              <div class="separator"></div>
+              <span class="span">Gallery</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#facilities" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Facilities</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="#contact" class="navbar-link hover-underline">
+              <div class="separator"></div>
+              <span class="span">Contact</span>
+            </a>
+          </li>
+        </ul>
+        <div class="text-center">
+          <p class="headline-1 navbar-title">Visit Us</p>
+          <address class="body-4">
+            Pahingalay Street, Sta. Mesa, <br>
+            Manila, Philippines
+          </address>
+          <p class="body-4 navbar-text">Open: 9.30 am - 2.30pm</p>
+          <a href="mailto:contact@pahingalay.com" class="body-4 sidebar-link">contact@pahingalay.com</a>
+          <div class="separator"></div>
+          <p class="contact-label">Contact Request</p>
+          <a href="tel:+88123123456" class="body-1 contact-number hover-underline">
+            +88-123-123456
+          </a>
+        </div>
+      </nav>
+      <button class="btn btn-secondary" data-modal-target="#authModal" data-modal-open>
+        <span class="text text-1">Sign In</span>
+        <span class="text text-2" aria-hidden="true">Sign In</span>
+      </button>
+      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+        <span class="line line-3"></span>
+      </button>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- #HERO -->
+    <section class="hero text-center" aria-label="home" id="home">
+
+      <ul class="hero-slider" data-hero-slider>
+
+        <li class="slider-item active" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="/static/images/infinity-pool.jpg" width="1880" height="950" alt="" class="img-cover">
+          </div>
+          <h1 class="display-1 hero-title slider-reveal">Photo Gallery</h1>
+          <p class="body-2 hero-text slider-reveal">Explore PAHINGALAY HOTEL through our collection of stunning images
+            showcasing our accommodations, facilities, and surroundings</p>
+        </li>
+
+        <li class="slider-item" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="/static/images/terrace-restaurant.jpg" width="1880" height="950" alt="" class="img-cover">
+          </div>
+          <h1 class="display-1 hero-title slider-reveal">Photo Gallery</h1>
+          <p class="body-2 hero-text slider-reveal">Explore PAHINGALAY HOTEL through our collection of stunning images
+            showcasing our accommodations, facilities, and surroundings</p>
+        </li>
+
+        <li class="slider-item" data-hero-slider-item>
+          <div class="slider-bg">
+            <img src="/static/images/suite-living-room.jpg" width="1880" height="950" alt="" class="img-cover">
+          </div>
+          <h1 class="display-1 hero-title slider-reveal">Photo Gallery</h1>
+          <p class="body-2 hero-text slider-reveal">Explore PAHINGALAY HOTEL through our collection of stunning images
+            showcasing our accommodations, facilities, and surroundings</p>
+        </li>
+
+      </ul>
+
+      <button class="slider-btn prev" aria-label="slide to previous" data-prev-btn>
+        <ion-icon name="chevron-back"></ion-icon>
+      </button>
+
+      <button class="slider-btn next" aria-label="slide to next" data-next-btn>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </button>
+    </section>
+
+
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <div class="container">
+        <div class="tabs">
+          <div class="tab-list">
+            <button class="tab-button active" data-tab="rooms">Rooms & Suites</button>
+            <button class="tab-button" data-tab="dining">Dining</button>
+            <button class="tab-button" data-tab="amenities">Amenities & Facilities</button>
+            <button class="tab-button" data-tab="surroundings">Surroundings</button>
+          </div>
+
+          <div class="tab-content active" id="rooms-tab">
+            <div class="tab-header">
+              <h2>Rooms & Suites</h2>
+              <p>Explore our luxurious accommodations designed for your comfort and relaxation.</p>
+            </div>
+
+            <div class="gallery-grid">
+              <div class="gallery-item" data-category="rooms" data-id="1">
+                <img src="/static/images/Single Room.jpg" alt="Single Room">
+                <div class="gallery-caption">
+                  <h3>Single Room</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="2">
+                <img src="/static/images/Double Room.jpg" alt="Double Suite">
+                <div class="gallery-caption">
+                  <h3>Double Suite</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="3">
+                <img src="/static/images/Family Suite.jpg" alt="Family Suite">
+                <div class="gallery-caption">
+                  <h3>Family Suite</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="4">
+                <img src="/static/images/Deluxe.jpg" alt="Deluxe Suite">
+                <div class="gallery-caption">
+                  <h3>Deluxe Suite</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="5">
+                <img src="/static/images/modern_bathroom.webp" alt="Modern Bathroom">
+                <div class="gallery-caption">
+                  <h3>Modern Bathroom</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="6">
+                <img src="/static/images/room_with_view.webp" alt="Room with a View">
+                <div class="gallery-caption">
+                  <h3>Room with a View</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="7">
+                <img src="/static/images/suite-living-room.jpg" alt="Suite Living Area">
+                <div class="gallery-caption">
+                  <h3>Suite Living Area</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="rooms" data-id="8">
+                <img src="/static/images/bedroom-detail.jpg" alt="Bedroom Detail">
+                <div class="gallery-caption">
+                  <h3>Bedroom Detail</h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tab-content" id="dining-tab">
+            <div class="tab-header">
+              <h2>Dining</h2>
+              <p>Discover our restaurants and bars offering exquisite culinary experiences.</p>
+            </div>
+
+            <div class="featured-gallery">
+              <div class="gallery-item featured" data-category="dining" data-id="9">
+                <img src="/static/images/terrace-restaurant.jpg" alt="The Terrace Restaurant">
+                <div class="gallery-caption">
+                  <h3>The Terrace Restaurant</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item featured" data-category="dining" data-id="10">
+                <img src="/static/images/seaside-grill.jpg" alt="Seaside Grill">
+                <div class="gallery-caption">
+                  <h3>Seaside Grill</h3>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="gallery-grid">
+              <div class="gallery-item" data-category="dining" data-id="11">
+                <img src="/static/images/azure-bar.jpg" alt="Azure Bar & Lounge">
+                <div class="gallery-caption">
+                  <h3>Azure Bar & Lounge</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="dining" data-id="12">
+                <img src="/static/images/breakfast.jpg" alt="Breakfast Buffet">
+                <div class="gallery-caption">
+                  <h3>Breakfast Buffet</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="dining" data-id="13">
+                <img src="/static/images/fine-dining.jpg" alt="Fine Dining Experience">
+                <div class="gallery-caption">
+                  <h3>Fine Dining Experience</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="dining" data-id="14">
+                <img src="/static/images/private-room.jpg" alt="Private Dining Room">
+                <div class="gallery-caption">
+                  <h3>Private Dining Room</h3>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="tab-content" id="amenities-tab">
+            <div class="tab-header">
+              <h2>Amenities & Facilities</h2>
+              <p>Explore our world-class facilities designed for your comfort and enjoyment.</p>
+            </div>
+            <div class="gallery-grid">
+              <div class="gallery-item" data-category="amenities" data-id="17">
+                <img src="/static/images/infinity-pool.jpg" alt="Infinity Pool">
+                <div class="gallery-caption">
+                  <h3>Infinity Pool</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="18">
+                <img src="/static/images/serenity-spa.jpg" alt="Serenity Spa">
+                <div class="gallery-caption">
+                  <h3>Serenity Spa</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="19">
+                <img src="/static/images/fitness-center.jpg" alt="Fitness Center">
+                <div class="gallery-caption">
+                  <h3>Fitness Center</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="20">
+                <img src="/static/images/yoga.webp" alt="Yoga Pavilion">
+                <div class="gallery-caption">
+                  <h3>Yoga Pavilion</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="21">
+                <img src="/static/images/tennis.webp" alt="Tennis Courts">
+                <div class="gallery-caption">
+                  <h3>Tennis Courts</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="22">
+                <img src="/static/images/kids-club.jpg" alt="Kids Club">
+                <div class="gallery-caption">
+                  <h3>Kids Club</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="22">
+                <img src="/static/images/business-center.jpg" alt="Business Center">
+                <div class="gallery-caption">
+                  <h3>Business Room</h3>
+                </div>
+              </div>
+
+              <div class="gallery-item" data-category="amenities" data-id="22">
+                <img src="/static/images/conference-room.jpg" alt="Conference Room">
+                <div class="gallery-caption">
+                  <h3>Conference Room</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content" id="surroundings-tab">
+            <div class="tab-header">
+              <h2>Surroundings</h2>
+              <p>Discover the beautiful surroundings and attractions near PAHINGALAY HOTEL.</p>
+            </div>
+
+            <div class="featured-gallery">
+              <div class="gallery-item featured" data-category="surroundings" data-id="23">
+                <img src="/static/images/hotel-exterior.jpg" alt="Hotel Exterior">
+                <div class="gallery-caption">
+                  <h3>Hotel Exterior</h3>
+                </div>
+              </div>
+              <div class="gallery-item featured" data-category="surroundings" data-id="24">
+                <img src="/static/images/beach.jpg" alt="Nearby Beach">
+                <div class="gallery-caption">
+                  <h3>Nearby Beach</h3>
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery-grid">
+              <div class="gallery-item" data-category="surroundings" data-id="25">
+                <img src="/static/images/gardens.jpg" alt="Hotel Gardens">
+                <div class="gallery-caption">
+                  <h3>Hotel Gardens</h3>
+                </div>
+              </div>
+              <div class="gallery-item" data-category="surroundings" data-id="26">
+                <img src="/static/images/sunset.jpg" alt="Sunset View">
+                <div class="gallery-caption">
+                  <h3>Sunset View</h3>
+                </div>
+              </div>
+              <div class="gallery-item" data-category="surroundings" data-id="27">
+                <img src="/static/images/local-attraction.jpg" alt="Local Attraction">
+                <div class="gallery-caption">
+                  <h3>Local Attraction</h3>
+                </div>
+              </div>
+              <div class="gallery-item" data-category="surroundings" data-id="28">
+                <img src="/static/images/aerial.webp" alt="Aerial View">
+                <div class="gallery-caption">
+                  <h3>Aerial View</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+      <div class="container">
+        <h2>Experience PAHINGALAY HOTEL</h2>
+        <p>Book your stay today and experience the luxury and comfort of PAHINGALAY HOTEL firsthand.</p>
+        <div class="cta-buttons">
+          <a href="booking.html" class="btn btn-primary">Book Now</a>
+          <a href="contact.html" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>PAHINGALAY HOTEL</h3>
+          <p>Your perfect getaway destination for relaxation and comfort.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#">About Us</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="#">Special Offers</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Contact</h4>
+          <ul>
+            <li>123 Relaxation Avenue, Paradise City</li>
+            <li>Phone: +123 456 7890</li>
+            <li>Email: info@pahingalayhotel.com</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-header">
+      <span>PAHINGALAY HOTEL</span>
+      <button class="mobile-menu-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="mobile-menu-list">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="facilities.html">Facilities</a></li>
+      <li><a href="gallery.html" class="active">Gallery</a></li>
+      <li><a href="rooms.html">Rooms</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="booking.html" class="btn btn-primary">Book Now</a></li>
+    </ul>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close">&times;</button>
+      <div class="lightbox-image-container">
+        <img src="/placeholder.svg" alt="" class="lightbox-image">
+      </div>
+      <div class="lightbox-caption">
+        <h3 class="lightbox-title"></h3>
+      </div>
+      <button class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
+      <button class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <!--
+    - #AUTH MODAL
+  -->
+  <div class="modal-overlay" id="authModal" data-modal>
+    <div class="auth-modal">
+
+      <div class="modal-content">
+        <div class="modal-tabs">
+          <button class="tab-button active" data-tab-target="signin">Sign In</button>
+          <button class="tab-button" data-tab-target="signup">Sign Up</button>
+        </div>
+
+        <!-- Sign In Form -->
+        <div class="form-section active" id="signin-form">
+          <h2 class="title-1 text-center">Welcome Back!</h2>
+          <form class="auth-form" action="#" method="post">
+            <div class="form-group">
+              <label for="signin-email" class="label-3">Email</label>
+              <input type="email" id="signin-email" name="email" class="form-input" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <label for="signin-password" class="label-3">Password</label>
+              <input type="password" id="signin-password" name="password" class="form-input" placeholder="Password"
+                required>
+            </div>
+            <button type="submit" class="form-button btn btn-secondary">Sign In</button>
+            <p class="text-center body-4 toggle-link">Don't have an account? <a href="#" data-toggle-tab="signup">Sign
+                Up</a></p>
+          </form>
+        </div>
+
+        <!-- Sign Up Form -->
+        <div class="form-section" id="signup-form">
+          <h2 class="title-1 text-center">Create your account</h2>
+          <p class="body-4 text-center" style="margin-bottom: 25px;">Join us to enjoy your perfect getaway</p>
+          <form class="auth-form" action="#" method="post">
+            <div class="form-group">
+              <label for="signup-full-name" class="label-3">Full Name</label>
+              <div class="icon-wrapper">
+                <input type="text" id="signup-full-name" name="full_name" class="form-input"
+                  placeholder="Enter your full name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-email" class="label-3">Email Address</label>
+              <div class="icon-wrapper">
+                <input type="email" id="signup-email" name="email" class="form-input" placeholder="Enter your Email"
+                  required>
+              </div>
+            </div>
+            <div class="form-group form-group-inline">
+              <div class="form-sub-group">
+                <label for="signup-contact-number" class="label-3">Contact Number</label>
+                <div class="icon-wrapper">
+                  <input type="tel" id="signup-contact-number" name="contact_number" class="form-input"
+                    placeholder="+63 XXX XXX XXXX" required>
+                </div>
+              </div>
+              <div class="form-sub-group">
+                <label for="signup-age" class="label-3">Age</label>
+                <div class="icon-wrapper">
+                  <input type="number" id="signup-age" name="age" class="form-input" placeholder="Age" min="1" max="120"
+                    required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-nationality" class="label-3">Nationality</label>
+              <div class="icon-wrapper">
+                <input type="text" id="signup-nationality" name="nationality" class="form-input"
+                  placeholder="Enter your Nationality" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-address" class="label-3">Address</label>
+              <div class="icon-wrapper">
+                <input type="text" id="signup-address" name="address" class="form-input"
+                  placeholder="Enter your Address" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-sex" class="label-3">Sex</label>
+              <div class="icon-wrapper">
+                <select id="signup-sex" name="sex" class="form-input" required>
+                  <option value="" disabled selected>Select your sex</option>
+                  <option value="M">Male</option>
+                  <option value="F">Female</option>
+                  <option value="O">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="signup-password" class="label-3">Password</label>
+              <input type="password" id="signup-password" name="password" class="form-input"
+                placeholder="Create Password" required>
+            </div>
+            <div class="form-group">
+              <label for="signup-confirm-password" class="label-3">Confirm Password</label>
+              <input type="password" id="signup-confirm-password" name="confirm_password" class="form-input"
+                placeholder="Confirm Password" required>
+            </div>
+            <button type="submit" class="form-button btn btn-secondary">Sign Up</button>
+            <p class="text-center body-4 toggle-link ">Already have an account? <a href="#"
+                data-toggle-tab="signin">Sign In</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+- #BACK TO TOP
+-->
+
+  <a href="#top" class="back-top-btn active" aria-label="back to top" data-back-top-btn>
+    <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+  </a>
+
+
+</body>
+
+<!-- JavaScript for Tab Functionality -->
+<script src="/static/js/pahingalay.js"></script>
+<script src="/static/js/page_script.js"></script>
+
+<!-- ionicon link (Updated to Ionicons v5.5.2 for better compatibility) -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</html>

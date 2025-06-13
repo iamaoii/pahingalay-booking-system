@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,80 +8,78 @@
     <link rel="stylesheet" href="/static/css/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<body>
-    <header class="header-nav">
-        <div class="container-nav">
-            <div class="header-content-nav">
-                <div class="logo">
-                    <a href="/">PAHINGALAY HOTEL</a>
-                </div>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="facilities.html">Facilities</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="book-now">
-                    <a href="booking.html" class="btn btn-primary active"
-                        >Book Now</a
-                    >
-                </div>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
 
-    <div class="container">
-        <div class="auth-card">
-            <div class="header">
-                <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
-                <p class="subtitle">Sign in to your account</p>
-            </div>
-            
-            <form class="auth-form" id="signinForm">
-                <h2 class="form-title">Sign In</h2>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-envelope input-icon"></i>
-                        <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+<body>
+
+
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <span>Menu</span>
+            <button class="mobile-menu-close" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="mobile-menu-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="facilities.html">Facilities</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="auth-container">
+        <div class="container">
+            <div class="auth-card">
+                <div class="header">
+                    <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
+                    <p class="subtitle">Sign in to your account</p>
+                </div>
+
+                <form class="auth-form" id="signinForm">
+                    <h2 class="form-title">Sign In</h2>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" id="email" name="email" placeholder="Enter your Email" required>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <i class="fas fa-lock input-icon"></i>
-                        <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" name="password" placeholder="Enter your Password"
+                                required>
+                        </div>
                     </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="remember" id="remember">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Sign In</button>
+
+                    <div class="form-links">
+                        <p>Don't have an account? <a href="{{ url_for('signup_page') }}" class="link">Sign up here</a>
+                        </p>
+                    </div>
+                </form>
+
+                <div class="footer">
+                    <a href="/" class="back-link">← Back to homepage</a>
                 </div>
-                
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" name="remember" id="remember">
-                        Remember me
-                    </label>
-                </div>
-                
-                <button type="submit" class="btn-primary">Sign In</button>
-                
-                <div class="form-links">
-                    <p>Don't have an account? <a href="{{ url_for('signup_page') }}" class="link">Sign up here</a></p>
-                </div>
-            </form>
-            
-            <div class="footer">
-                <a href="/" class="back-link">← Back to homepage</a>
             </div>
         </div>
     </div>
-    
+
     <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
 </body>
+
 </html>

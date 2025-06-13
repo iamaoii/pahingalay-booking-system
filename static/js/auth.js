@@ -517,3 +517,63 @@ async function makeAuthenticatedRequest(url, options = {}) {
 document.addEventListener("DOMContentLoaded", () => {
     new AuthHandler();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileMenu = document.querySelector('.mobile-menu');
+  
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.add('active');
+    });
+  
+    mobileMenuClose.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+    });
+  
+    // Optional: Close menu when clicking a link
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
+    mobileMenuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+  });
+
+  class AuthHandler {
+    formatPhoneNumber(event) {
+      const input = event.target;
+      let value = input.value.replace(/\D/g, ''); // Remove non-digits
+      if (value.length > 10) value = value.slice(0, 10); // Limit to 10 digits
+      const match = value.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+      if (match) {
+        input.value = !match[2]
+          ? match[1]
+          : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ''}`;
+      }
+    }
+  }
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenuClose = document.querySelector('.mobile-menu-close');
+    const mobileMenu = document.querySelector('.mobile-menu');
+  
+    if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
+      mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+  
+      mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+  
+      // Close menu when clicking a link
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+    }
+  });

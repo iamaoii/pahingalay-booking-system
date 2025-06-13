@@ -8,7 +8,6 @@
    * COLORS
    */
 
-  --blue: hsl(38, 61%, 73%);
   --quick-blue: rgb(238, 241, 255);
   --light-blue: hsl(229, 100%, 98%);
   --blue: hsl(231, 93%, 72%);
@@ -16,7 +15,7 @@
   --smoky-black-1: hsla(40, 12%, 5%, 1);
   --smoky-black-2: hsla(30, 8%, 5%, 1);
   --smoky-black-3: hsla(0, 3%, 7%, 1);
-  --eerie-black-1: hsla(210, 4%, 9%, 1);
+  --eerie-black-1: #161718;
   --eerie-black-2: hsla(210, 4%, 11%, 1);
   --eerie-black-3: hsla(180, 2%, 8%, 1);
   --eerie-black-4: hsla(0, 0%, 13%, 1);
@@ -258,6 +257,8 @@ body.modal-open { overflow: hidden; }
 .label-1 { font-size: var(--fontSize-label-1); }
 
 .label-2 { font-size: var(--fontSize-label-2); }
+
+.label-3 {font-size: var(--fontSize-body-4);}
 
 
 
@@ -842,6 +843,7 @@ body.modal-open { overflow: hidden; }
   pointer-events: none;
   user-select: none;
   z-index: -1;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, .5), transparent);
 }
 
 .hero .slider-item.active .slider-bg {
@@ -1389,99 +1391,84 @@ textarea.input-field {
 }
 
 
-
 /*-----------------------------------*\
   #FOOTER
 \*-----------------------------------*/
 
-.footer-top { margin-block-end: 70px; }
-
-.footer-brand {
-  position: relative;
-  padding: 50px 40px;
-  background: var(--smoky-black-1) url("../images/footer-form-bg.png");
-  background-position: center top;
-  background-repeat: repeat;
-}
-
-.footer-brand::before,
-.footer-brand::after {
-  top: 0;
-  width: 15px;
-  height: 100%;
-  background-image: url("../images/footer-form-pattern.svg");
-}
-
-.footer-brand::before { left: 0; }
-
-.footer-brand::after { right: 0; }
-
-.footer-brand .logo {
-  max-width: max-content;
-  margin-inline: auto;
-  margin-block-end: 40px;
-}
-
-.footer-brand :is(.body-4, .label-1) {
+.custom-footer {
+  background-color: var(--white-alpha-10);
+  padding: 20px 0;
   color: var(--quick-blue);
-  line-height: var(--lineHeight-3);
+  font-size: var(--fontSize-body-4);
+  line-height: var(--lineHeight-4);
 }
 
-.footer-brand .contact-link {
-  margin-block: 6px;
-  transition: var(--transition-1);
-}
-
-.footer-brand .contact-link:is(:hover, :focus-visible) { color: var(--blue); }
-
-.footer-brand .wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 2px;
-  margin-block: 40px 25px;
-}
-
-.footer-brand .separator { animation: rotate360 15s linear infinite; }
-
-.footer-brand .label-1 { margin-block-end: 30px; }
-
-.footer-brand .label-1 .span {
-  display: inline;
-  color: var(--white);
-}
-
-.footer-brand .icon-wrapper .input-field { cursor: text; }
-
-.footer-brand .btn { min-width: 100%; }
-
-.footer-list {
+.custom-footer-container {
+  max-width: 1500px;
+  margin-inline: auto;
+  padding-inline: 16px;
   display: grid;
-  gap: 20px;
+  grid-template-columns: 2fr 2fr 2fr 2fr;
+  gap: 50px;
+  align-items: center;
 }
 
-.footer-link {
+.footer {
+  background-color: var(--eerie-black-4);
+  padding: 40px 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.footer-column h3, .footer-column h4 {
+  font-size: var(--fontSize-title-3);
+  margin-bottom: 15px;
+}
+
+.footer-column p, .footer-column ul li {
+  font-size: var(--fontSize-body-4);
   color: var(--quick-blue);
-  font-weight: var(--weight-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--letterSpacing-4);
-  margin-inline: auto;
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
   transition: var(--transition-1);
 }
 
-.footer-link:is(:hover, :focus-visible) { color: var(--blue); }
-
-.copyright {
-  color: var(--quick-blue);
-  line-height: var(--lineHeight-3);
-}
-
-.copyright .link {
-  display: inline;
+.footer-column ul li a:hover {
   color: var(--blue);
-  text-decoration: underline;
 }
 
+.social-links {
+  display: flex;
+  gap: 15px;
+}
 
+.social-links a {
+  font-size: 1.8rem;
+  color: var(--quick-blue);
+  transition: var(--transition-1);
+}
+
+.social-links a:hover {
+  color: var(--blue);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid var(--white-alpha-10);
+}
+
+.footer-bottom p {
+  font-size: var(--fontSize-label-2);
+  color: var(--quick-blue);
+}
 
 /*-----------------------------------*\
   #BACK TO TOP
@@ -1641,7 +1628,7 @@ textarea.input-field {
   width: 100%;
   padding: 14px 20px;
   background-color: var(--eerie-black-3);
-  border: 1px solid var(--black-alpha-15);
+  border: 1px solid var(--white-alpha-20);
   border-radius: var(--radius-8);
   color: var(--white);
   font-size: 1em;
@@ -1678,7 +1665,7 @@ textarea.input-field {
   margin-top: 25px;
   padding: 15px 0;
   border-radius: var(--radius-8);
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: var(--letterSpacing-1);
   background-image: var(--button-gradient);
@@ -1699,7 +1686,7 @@ textarea.input-field {
 
 .toggle-link {
   margin-top: 20px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: var(--quick-blue);
 }
 
@@ -1734,7 +1721,7 @@ textarea.input-field {
     margin-inline: auto;
   }
 
-  .contact-number { --fontSize-body-1: 3rem; }
+  .contact-number { --fontSize-body-1: 2rem; }
 
   .topbar {
     display: block;
@@ -2097,7 +2084,7 @@ textarea.input-field {
   }
 
   .hero-text {
-    font-size: 2.5em;
+    font-size: 1.5em;
     margin-block: 1em;
   }
 
@@ -2136,20 +2123,6 @@ textarea.input-field {
     font-size: 0.8em;
   }
 
-  /* ======================
-||      TESTIMONIALS     ||
-====================== */ 
-
-  .testi {height: 100vh; background-position: top;}
-
-
-  .form-left,
-  .form-right { padding: 75px 60px; }
-
-  .testi .testi-text { font-size: 3em;}
-
-  .testi .profile-name { font-size: 1.5em; }
-
 }
 
 
@@ -2169,4 +2142,25 @@ textarea.input-field {
     top: 46%;
     left: 0;
   }
+}
+
+/* Existing CSS remains unchanged, only adding styles for scrollable sign-up form */
+.form-section#signup-form {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px; /* To prevent content from being hidden under scrollbar */
+}
+
+/* Ensure the scrollbar is styled consistently with the theme */
+.form-section#signup-form::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-section#signup-form::-webkit-scrollbar-track {
+  background-color: var(--eerie-black-3);
+}
+
+.form-section#signup-form::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: var(--radius-8);
 }
