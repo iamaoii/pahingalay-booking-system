@@ -10,35 +10,19 @@
 </head>
 
 <body>
-
-
-    <div class="mobile-menu">
-        <div class="mobile-menu-header">
-            <span>Menu</span>
-            <button class="mobile-menu-close" aria-label="Close menu">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
-        <ul class="mobile-menu-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="facilities.html">Facilities</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-
     <div class="auth-container">
-        <div class="container">
+        <div class="auth-wrapper">
+            <div class="auth-image">
+                <!-- Placeholder for hotel image; replace with actual image path -->
+                <img src="/static/images/infinity-pool.jpg" alt="Pahingalay Hotel" class="hotel-image">
+            </div>
             <div class="auth-card">
                 <div class="header">
                     <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
                     <p class="subtitle">Sign in to your account</p>
                 </div>
-
                 <form class="auth-form" id="signinForm">
                     <h2 class="form-title">Sign In</h2>
-
                     <div class="form-group">
                         <label for="email">Email Address</label>
                         <div class="input-wrapper">
@@ -46,7 +30,6 @@
                             <input type="email" id="email" name="email" placeholder="Enter your Email" required>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="password">Password</label>
                         <div class="input-wrapper">
@@ -55,31 +38,19 @@
                                 required>
                         </div>
                     </div>
-
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="remember" id="remember">
-                            <span class="checkmark"></span>
-                            Remember me
-                        </label>
-                    </div>
-
                     <button type="submit" class="btn-primary">Sign In</button>
-
                     <div class="form-links">
                         <p>Don't have an account? <a href="{{ url_for('signup_page') }}" class="link">Sign up here</a>
                         </p>
                     </div>
                 </form>
-
                 <div class="footer">
                     <a href="/" class="back-link">← Back to homepage</a>
                 </div>
             </div>
         </div>
     </div>
-
-    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    <script src="/static/js/auth.js"></script>
 </body>
 
 </html>

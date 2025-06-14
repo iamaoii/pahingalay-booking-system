@@ -193,10 +193,10 @@
 
       </nav>
 
-      <button class="btn btn-secondary" data-modal-target="#authModal" data-modal-open>
+      <a class="btn btn-secondary" href="{{ url_for('signin_page') }}">
         <span class="text text-1">Sign In</span>
         <span class="text text-2" aria-hidden="true">Sign In</span>
-      </button>
+      </a>
 
       <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
         <span class="line line-1"></span>
@@ -634,117 +634,6 @@
       </div>
     </div>
   </footer>
-
-
-  <!--
-    - #AUTH MODAL
-  -->
-  <div class="modal-overlay" id="authModal" data-modal>
-    <div class="auth-modal">
-
-      <div class="modal-content">
-        <div class="modal-tabs">
-          <button class="tab-button active" data-tab-target="signin">Sign In</button>
-          <button class="tab-button" data-tab-target="signup">Sign Up</button>
-        </div>
-
-        <!-- Sign In Form -->
-        <div class="form-section active" id="signin-form">
-          <h2 class="title-1 text-center">Welcome Back!</h2>
-          <form class="auth-form" action="#" method="post">
-            <div class="form-group">
-              <label for="signin-email" class="label-3">Email</label>
-              <input type="email" id="signin-email" name="email" class="form-input" placeholder="Your Email" required>
-            </div>
-            <div class="form-group">
-              <label for="signin-password" class="label-3">Password</label>
-              <input type="password" id="signin-password" name="password" class="form-input" placeholder="Password"
-                required>
-            </div>
-            <button type="submit" class="form-button btn btn-secondary">Sign In</button>
-            <p class="text-center body-4 toggle-link">Don't have an account? <a href="#" data-toggle-tab="signup">Sign
-                Up</a></p>
-          </form>
-        </div>
-
-        <!-- Sign Up Form -->
-        <div class="form-section" id="signup-form">
-          <h2 class="title-1 text-center">Create your account</h2>
-          <p class="body-4 text-center" style="margin-bottom: 25px;">Join us to enjoy your perfect getaway</p>
-          <form class="auth-form" action="#" method="post">
-            <div class="form-group">
-              <label for="signup-full-name" class="label-3">Full Name</label>
-              <div class="icon-wrapper">
-                <input type="text" id="signup-full-name" name="full_name" class="form-input"
-                  placeholder="Enter your full name" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-email" class="label-3">Email Address</label>
-              <div class="icon-wrapper">
-                <input type="email" id="signup-email" name="email" class="form-input" placeholder="Enter your Email"
-                  required>
-              </div>
-            </div>
-            <div class="form-group form-group-inline">
-              <div class="form-sub-group">
-                <label for="signup-contact-number" class="label-3">Contact Number</label>
-                <div class="icon-wrapper">
-                  <input type="tel" id="signup-contact-number" name="contact_number" class="form-input"
-                    placeholder="+63 XXX XXX XXXX" required>
-                </div>
-              </div>
-              <div class="form-sub-group">
-                <label for="signup-age" class="label-3">Age</label>
-                <div class="icon-wrapper">
-                  <input type="number" id="signup-age" name="age" class="form-input" placeholder="Age" min="1" max="120"
-                    required>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-nationality" class="label-3">Nationality</label>
-              <div class="icon-wrapper">
-                <input type="text" id="signup-nationality" name="nationality" class="form-input"
-                  placeholder="Enter your Nationality" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-address" class="label-3">Address</label>
-              <div class="icon-wrapper">
-                <input type="text" id="signup-address" name="address" class="form-input"
-                  placeholder="Enter your Address" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-sex" class="label-3">Sex</label>
-              <div class="icon-wrapper">
-                <select id="signup-sex" name="sex" class="form-input" required>
-                  <option value="" disabled selected>Select your sex</option>
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
-                  <option value="O">Other</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="signup-password" class="label-3">Password</label>
-              <input type="password" id="signup-password" name="password" class="form-input"
-                placeholder="Create Password" required>
-            </div>
-            <div class="form-group">
-              <label for="signup-confirm-password" class="label-3">Confirm Password</label>
-              <input type="password" id="signup-confirm-password" name="confirm_password" class="form-input"
-                placeholder="Confirm Password" required>
-            </div>
-            <button type="submit" class="form-button btn btn-secondary">Sign Up</button>
-            <p class="text-center body-4 toggle-link ">Already have an account? <a href="#"
-                data-toggle-tab="signin">Sign In</a></p>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!--
     - #BACK TO TOP
