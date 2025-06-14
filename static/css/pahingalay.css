@@ -339,6 +339,7 @@ body.modal-open { overflow: hidden; }
 .btn {
   position: relative;
   color: var(--blue);
+  border-radius: var(--radius-8);
   font-size: var(--fontSize-label-2);
   font-weight: var(--weight-bold);
   text-transform: uppercase;

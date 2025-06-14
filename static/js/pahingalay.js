@@ -247,3 +247,30 @@ toggleLinks.forEach(link => {
 // This function will be called when the modal is opened via the openModal function.
 // For the initial load, it's good practice to set one form as active in HTML.
 // I've already set 'signin-form' as 'active' in the HTML.
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default action if any
+      const tab = button.getAttribute('data-tab');
+
+      // Remove active class from all buttons and contents
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+
+      // Add active class to clicked button and corresponding content
+      button.classList.add('active');
+      document.getElementById(`${tab}-tab`).classList.add('active');
+
+      // Stop propagation to prevent modal interference
+      e.stopPropagation();
+    });
+  });
+
+  // Ensure the first tab is active on load
+  tabButtons[0].click();
+});

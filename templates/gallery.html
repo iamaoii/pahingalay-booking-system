@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="navbar-item">
-            <a href="#contact" class="navbar-link hover-underline">
+            <a href="{{ url_for('contact_page') }}" class="navbar-link hover-underline">
               <div class="separator"></div>
               <span class="span">Contact</span>
             </a>
@@ -482,39 +482,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <div class="mobile-menu-header">
-      <span>PAHINGALAY HOTEL</span>
-      <button class="mobile-menu-close">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <ul class="mobile-menu-list">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="facilities.html">Facilities</a></li>
-      <li><a href="gallery.html" class="active">Gallery</a></li>
-      <li><a href="rooms.html">Rooms</a></li>
-      <li><a href="contact.html">Contact</a></li>
-      <li><a href="booking.html" class="btn btn-primary">Book Now</a></li>
-    </ul>
-  </div>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-      <button class="lightbox-close">&times;</button>
-      <div class="lightbox-image-container">
-        <img src="/placeholder.svg" alt="" class="lightbox-image">
-      </div>
-      <div class="lightbox-caption">
-        <h3 class="lightbox-title"></h3>
-      </div>
-      <button class="lightbox-nav lightbox-prev"><i class="fas fa-chevron-left"></i></button>
-      <button class="lightbox-nav lightbox-next"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
 
   <!--
     - #AUTH MODAL

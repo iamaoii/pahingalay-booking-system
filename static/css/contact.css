@@ -1,0 +1,275 @@
+/*-----------------------------------*\
+  #CUSTOM PROPERTY (Inherit from pahingalay.css)
+\*-----------------------------------*/
+:root {
+  --blue: hsl(231, 93%, 72%);
+  --eerie-black-1: #161718;
+  --eerie-black-2: hsla(210, 4%, 11%, 1);
+  --eerie-black-3: hsla(180, 2%, 8%, 1);
+  --eerie-black-4: hsla(0, 0%, 13%, 1);
+  --quick-blue: rgb(238, 241, 255);
+  --white: hsla(0, 0%, 100%, 1);
+  --white-alpha-20: hsla(0, 0%, 100%, 0.2);
+  --black-alpha-15: hsla(0, 0%, 0%, 0.15);
+  --success: #28a745;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --fontFamily-forum: 'Forum', cursive;
+  --fontFamily-dm_sans: 'DM Sans', sans-serif;
+  --fontSize-title-1: 3.6rem;
+  --fontSize-title-2: 2.2rem;
+  --fontSize-title-3: 2.1rem;
+  --fontSize-body-2: 1.6rem;
+  --fontSize-label-1: 1.4rem;
+  --fontSize-label-2: 1.2rem;
+  --weight-bold: 700;
+  --radius-8: 8px;
+  --radius-24: 24px;
+  --transition-1: 250ms ease;
+  --section-space: 70px;
+}
+
+/*-----------------------------------*\
+  #CONTACT SECTION
+\*-----------------------------------*/
+.contact-page-section {
+  padding: var(--section-space) 0;
+  background: var(--eerie-black-2);
+}
+
+.contact-page-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: var(--section-space);
+}
+
+.contact-form-container h2,
+.contact-info-container h2 {
+  font-family: var(--fontFamily-forum);
+  font-size: var(--fontSize-title-2);
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: var(--eerie-black-4);
+  padding: 20px;
+  border-radius: var(--radius-8);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group label {
+  font-size: var(--fontSize-label-1);
+  color: var(--quick-blue);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border-radius: var(--radius-8);
+  background: var(--eerie-black-1);
+  color: var(--white);
+  font-size: var(--fontSize-label-1);
+  transition: var(--transition-1);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--blue);
+  outline: none;
+}
+
+.btn {
+  border-radius: var(--radius-8);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+  padding: 12px;
+  border: none;
+  border-radius: var(--radius-8);
+  font-size: var(--fontSize-label-1);
+  font-weight: var(--weight-bold);
+  cursor: pointer;
+  transition: var(--transition-1);
+}
+
+.btn-primary:hover {
+  background: hsl(231, 93%, 60%);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  color: var(--blue);
+}
+
+.contact-details h3 {
+  font-size: var(--fontSize-label-1);
+  color: var(--quick-blue);
+  margin-bottom: 5px;
+}
+
+.contact-details p {
+  font-size: var(--fontSize-label-2);
+}
+
+.social-media-contact {
+  margin-top: 30px;
+}
+
+.social-links {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-links a {
+  color: var(--quick-blue);
+  font-size: 1.2rem;
+  transition: var(--transition-1);
+}
+
+.social-links a:hover {
+  color: var(--blue);
+}
+
+/*-----------------------------------*\
+  #MAP SECTION
+\*-----------------------------------*/
+.map-section {
+  margin-top: 40px;
+}
+
+.map-container {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  background: var(--eerie-black-4);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--black-alpha-15);
+  border-radius: var(--radius-8);
+}
+
+/*-----------------------------------*\
+  #FAQ SECTION
+\*-----------------------------------*/
+.faq-section {
+  padding: var(--section-space) 0;
+  background: var(--eerie-black-3);
+}
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--black-alpha-15);
+  padding: 15px 0;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.faq-question h3 {
+  font-size: var(--fontSize-label-1);
+  color: var(--quick-blue);
+}
+
+.faq-toggle {
+  background: none;
+  border: none;
+  color: var(--blue);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform var(--transition-1);
+}
+
+.faq-answer {
+  display: none;
+  padding-top: 15px;
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+.faq-item.active .faq-toggle i {
+  transform: rotate(45deg);
+}
+
+/*-----------------------------------*\
+  #RESPONSIVE
+\*-----------------------------------*/
+@media (max-width: 991px) {
+  .contact-page-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero {
+    margin-top: 60px; /* Adjust for smaller header */
+  }
+}
+
+@media (max-width: 768px) {
+  .map-container {
+    padding-bottom: 40%; /* Adjusted for smaller screens */
+  }
+  .faq-section {
+    padding: calc(var(--section-space) / 1.5) 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-form {
+    padding: 15px;
+  }
+  .btn-primary {
+    padding: 10px;
+  }
+  .social-links a {
+    font-size: 1rem;
+  }
+  .faq-question h3 {
+    font-size: var(--fontSize-label-2);
+  }
+}

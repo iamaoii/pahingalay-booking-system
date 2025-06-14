@@ -43,6 +43,13 @@ def gallery_page():
     logger.debug("Rendering gallery.html")
     return render_template('gallery.html')
 
+@app.route('/contact', methods=['GET'])
+def contact_page():
+    logger.debug("Rendering contact.html")
+    return render_template('contact.html')
+
+
+
 @app.route('/booking', methods=['GET'])
 def booking_page():
     logger.debug("Rendering booking.html")
