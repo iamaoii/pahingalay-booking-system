@@ -80,6 +80,11 @@ body {
   justify-content: center;
 }
 
+.signup-card-wide {
+  max-width: 1200px;
+  width: 100%;
+}
+
 @keyframes slideUp {
   from {
       opacity: 0;
@@ -279,6 +284,10 @@ body {
   padding: 30px;
 }
 
+.signup-form-grid {
+  padding: 30px;
+}
+
 .form-title {
   font-size: 20px;
   font-weight: 600;
@@ -302,6 +311,12 @@ body {
 
 .form-row .form-group {
   flex: 1;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 label {
@@ -341,11 +356,24 @@ input[type="number"] {
   color: var(--text-color);
 }
 
+select {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: var(--gray-200);
+  color: var(--text-color);
+  appearance: none;
+}
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus,
-input[type="number"]:focus {
+input[type="number"]:focus,
+select:focus {
   outline: none;
   border-color: var(--primary-color);
   background: var(--gray-100);
@@ -495,6 +523,27 @@ input[type="number"]:focus {
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .signup-card-wide {
+      max-width: 1000px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+      display: flex;
+      gap: 1rem;
+  }
+
+  .book-now {
+      display: block;
+  }
+
+  .mobile-menu-toggle {
+  display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .auth-wrapper {
       flex-direction: column;
@@ -502,22 +551,39 @@ input[type="number"]:focus {
   }
 
   .auth-image {
-      display: none;
+      display: 100%;
   }
 
   .auth-card {
-      width: 100%;
-  }
-}
+      width: none;
+    }
 
-@media (max-width: 480px) {
-  .auth-form {
+  .signup-card-wide {
+      width: 100%;
+      max-width: 100%;
+  }
+
+  .form-grid {
+      grid-template-columns: repeat(40px, 1fr);
+      gap: 20px;
+    }
+
+  }
+
+@media (max-width: 600px) {
+  .signup-form-grid {
       padding: 20px;
   }
 
+  .form-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
   .form-row {
       flex-direction: column;
-      gap: 0;
+      top: 0;
+      gap: 10px;
   }
 
   .form-row .form-group {
@@ -527,44 +593,26 @@ input[type="number"]:focus {
   .radio-group {
       flex-direction: column;
       gap: 10px;
-  }
-}
-
-@media (min-width: 768px) {
-  .nav-list {
-      display: flex;
-      gap: 1.5rem;
-  }
-
-  .book-now {
-      display: block;
-  }
-
-  .mobile-menu-toggle {
-      display: none;
-  }
+    }
 }
 
 /* Error states */
-.error {
-  border-color: var(--danger) !important;
-  background: rgba(239, 83, 80, 0.1) !important;
+@media (max-width: 480px) {
+  .auth-form {
+      padding: 40px;
+    }
+
+  .radio-group {
+      direction: 20px;
+      gap: 10px;
+    }
 }
 
-.error-message {
-  color: var(--danger);
-  font-size: 12px;
-  margin-top: 4px;
-  display: none;
-}
-
-.error-message.show {
-  display: block;
-}
-
-.success {
-  border-color: var(--success) !important;
-  background: rgba(76, 175, 80, 0.1) !important;
+@media (max-height: 600px) {
+    .auth-container {
+        min-height: 100vh;
+        padding-top: 2rem;
+    }
 }
 
 /* Loading state */
@@ -573,24 +621,8 @@ input[type="number"]:focus {
   pointer-events: none;
 }
 
-.btn-primary.loading::after,
-.btn-google.loading::after {
-  content: "";
-  width: 16px;
-  height: 16px;
-  border: 2px solid transparent;
-  border-top: 2px solid currentColor;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-left: 10px;
-}
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.btn-google.loading {
-  opacity: 0.7;
-  pointer-events: none;
 }

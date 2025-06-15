@@ -644,6 +644,13 @@ body.modal-open { overflow: hidden; }
   transition: var(--transition-1);
 }
 
+.authheader {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: var(--white);
+  padding: 30px 20px;
+  text-align: center;
+}
+
 .header.active {
   padding-block: 20px;
   background-color: var(--eerie-black-4);

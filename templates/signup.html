@@ -4,7 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Pahingalay Hotel</title>
+    <title>Sign Up - PAHINGALAY HOTEL</title>
+
+    <!--
+    - logo icon
+  -->
+    <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png">
+    <!-- Changed to png as per common practice for favicon -->
+
+    <!--
+    - custom css link
+  -->
+    <link rel="stylesheet" href="/static/css/pahingalay.css">
     <link rel="stylesheet" href="/static/css/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -12,114 +23,117 @@
 <body>
     <div class="auth-container">
         <div class="container">
-            <div class="auth-card signup-card">
-                <div class="header">
-                    <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
-                    <p class="subtitle">Create your account</p>
-                    <p class="description">Join us to enjoy your perfect getaway</p>
-                </div>
-
-                <form class="auth-form" id="signupForm">
-                    <h2 class="form-title">Sign Up</h2>
-                    <p class="form-subtitle">Create a new account to start booking with us</p>
-
-                    <div class="form-group">
-                        <label for="fullName">Full Name</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-user input-icon"></i>
-                            <input type="text" id="fullName" name="fullName" placeholder="Enter your full name"
-                                required>
-                        </div>
+            <div class="auth-wrapper">
+                <div class="auth-card signup-card-enhanced">
+                    <div class="authheader signup-header">
+                        <h1 class="hotel-name">PAHINGALAY HOTEL</h1>
+                        <p class="subtitle">Create your account</p>
+                        <p class="description">Join us to enjoy your perfect getaway</p>
                     </div>
 
-                    <div class="form-group">
-                        <label for="emailSignup">Email Address</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-envelope input-icon"></i>
-                            <input type="email" id="emailSignup" name="email" placeholder="Enter your Email" required>
-                        </div>
-                    </div>
+                    <form class="auth-form signup-form" id="signupForm">
+                        <h2 class="form-title">Sign Up</h2>
 
-                    <div class="form-row">
-                        <div class="form-group half">
-                            <label for="contact">Contact Number</label>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
                             <div class="input-wrapper">
-                                <i class="fas fa-phone input-icon"></i>
-                                <input type="tel" id="contact" name="contact" placeholder="+x"
-                                    oninput="new AuthHandler().formatPhoneNumber(event)" required>
+                                <i class="fas fa-user input-icon"></i>
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter your Full Name"
+                                    required>
                             </div>
                         </div>
 
-                        <div class="form-group half">
-                            <label for="age">Age</label>
+                        <div class="form-group">
+                            <label for="emailSignup">Email Address</label>
                             <div class="input-wrapper">
-                                <i class="fas fa-calendar-alt input-icon"></i>
-                                <input type="number" id="age" name="age" placeholder="Age" min="18" max="120" required>
+                                <i class="fas fa-envelope input-icon"></i>
+                                <input type="email" id="emailSignup" name="email" placeholder="Enter your Email"
+                                    required>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="nationality">Nationality</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-flag input-icon"></i>
-                            <input type="text" id="nationality" name="nationality" placeholder="Enter your Nationality"
-                                required>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="contact">Contact Number</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input type="tel" id="contact" name="contact"
+                                        placeholder="Enter your Contact Number"
+                                        oninput="new AuthHandler().formatPhoneNumber(event)" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group half">
+                                <label for="age">Age</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar-alt input-icon"></i>
+                                    <input type="number" id="age" name="age" placeholder="Age" min="18" max="120"
+                                        required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-map-marker-alt input-icon"></i>
-                            <input type="text" id="address" name="address" placeholder="Enter your Address" required>
+                        <div class="form-group">
+                            <label for="nationality">Nationality</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-flag input-icon"></i>
+                                <input type="text" id="nationality" name="nationality"
+                                    placeholder="Enter your Nationality" required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Sex</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="sex" value="M" required>
-                                <span class="radio-mark"></span>
-                                Male
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="sex" value="F" required>
-                                <span class="radio-mark"></span>
-                                Female
-                            </label>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                                <input type="text" id="address" name="address" placeholder="Enter your Address"
+                                    required>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="passwordSignup">Password</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-lock input-icon"></i>
-                            <input type="password" id="passwordSignup" name="password" placeholder="Enter your Password"
-                                required>
+                        <div class="form-group">
+                            <label for="sex">Sex</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-venus-mars input-icon"></i>
+                                <select id="sex" name="sex" required>
+                                    <option value="" disabled selected>Select your Sex</option>
+                                    <option value="M">Male</option>
+                                    <option value="F">Female</option>
+                                    <option value="O">Others</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <div class="input-wrapper">
-                            <i class="fas fa-check-circle input-icon"></i>
-                            <input type="password" id="confirmPassword" name="confirmPassword"
-                                placeholder="Confirm your Password" required>
+                        <div class="form-group">
+                            <label for="passwordSignup">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock input-icon"></i>
+                                <input type="password" id="passwordSignup" name="password"
+                                    placeholder="Enter your Password" required>
+                            </div>
                         </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-check-circle input-icon"></i>
+                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                    placeholder="Confirm your Password" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-primary signup-btn">Create Account</button>
+
+                        <div class="form-links">
+                            <p>Already have an account? <a href="{{ url_for('signin_page') }}" class="link">Sign in
+                                    here</a>
+                            </p>
+                        </div>
+                    </form>
+
+                    <div class="footer">
+                        <a href="/" class="back-link">← Back to homepage</a>
                     </div>
-
-                    <button type="submit" class="btn-primary">Create Account</button>
-
-                    <div class="form-links">
-                        <p>Already have an account? <a href="{{ url_for('signin_page') }}" class="link">Sign in here</a>
-                        </p>
-                    </div>
-                </form>
-
-                <div class="footer">
-                    <a href="/" class="back-link">← Back to homepage</a>
                 </div>
             </div>
         </div>
