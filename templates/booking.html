@@ -5,57 +5,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Your Stay - PAHINGALAY HOTEL</title>
-    <link rel="stylesheet" href="/static/css/styles.css" />
+
+    <!-- logo icon -->
+    <link rel="shortcut icon" href="/static/images/PAHINGALAY_HOTEL.png" type="image/png">
+    <!-- Changed to png as per common practice for favicon -->
+
+    <link rel="stylesheet" href="/static/css/booking.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <a href="/">PAHINGALAY HOTEL</a>
-                </div>
-                <nav class="nav">
-                    <ul class="nav-list">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="facilities.html">Facilities</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="rooms.html">Rooms</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
-                <div class="book-now">
-                    <a href="booking.html" class="btn btn-primary active">Book Now</a>
-                </div>
-                <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </header>
-
     <main>
+        <section class="booking-hero">
+            <div class="container">
+                <h1 class="booking-hero__title">Book Your Stay</h1>
+                <p class="booking-hero__subtitle">Complete the form below to reserve your perfect getaway at PAHINGALAY
+                    HOTEL</p>
+            </div>
+        </section>
+
         <section class="booking-section">
             <div class="container">
-                <div class="booking-header">
-                    <h1>Book Your Stay</h1>
-                    <p>
-                        Complete the form below to make your reservation at
-                        PAHINGALAY HOTEL
-                    </p>
-                </div>
-
                 <div class="booking-form-container">
                     <div class="booking-tabs">
                         <div class="booking-tab-list">
                             <button class="booking-tab active" data-tab="guest-info">
+                                <span class="tab-icon"><i class="fas fa-user"></i></span>
                                 Guest Information
                             </button>
                             <button class="booking-tab" data-tab="reservation-details">
+                                <span class="tab-icon"><i class="fas fa-calendar-alt"></i></span>
                                 Reservation Details
                             </button>
                             <button class="booking-tab" data-tab="room-preferences">
+                                <span class="tab-icon"><i class="fas fa-bed"></i></span>
                                 Room Preferences
                             </button>
                         </div>
@@ -64,79 +54,73 @@
                             <div class="booking-info-box">
                                 <div class="booking-info-grid">
                                     <div>
-                                        <p class="info-label">
-                                            Reservation No.
-                                        </p>
-                                        <p class="info-value">
-                                            [System provided]
-                                        </p>
+                                        <p class="info-label">Reservation No.</p>
+                                        <p class="info-value">[System provided]</p>
                                     </div>
                                     <div>
                                         <p class="info-label">Guest ID</p>
-                                        <p class="info-value">
-                                            [System provided]
-                                        </p>
+                                        <p class="info-value">[System provided]</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <h3>Primary Guest Information</h3>
+                            <h3 class="section-title">Primary Guest Information</h3>
 
                             <div class="form-grid-2">
                                 <div class="form-group">
-                                    <label for="guest-name">Guest Name</label>
-                                    <input type="text" id="guest-name" placeholder="Full Name" required />
+                                    <label for="guest-name" class="label-3">Guest Name</label>
+                                    <input type="text" id="guest-name" class="form-input" placeholder="Full Name"
+                                        required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" placeholder="email@example.com" required />
-                                </div>
-                            </div>
-
-                            <div class="form-grid-2">
-
-                                <div class="form-group">
-                                    <label for="contact">Contact Number</label>
-                                    <input type="tel" id="contact" placeholder="+63 XXX XXX XXXX" required />
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Sex</label>
-                                    <div class="radio-group">
-                                        <div class="radio-item">
-                                            <input type="radio" id="male" name="sex" value="male" checked />
-                                            <label for="male">Male</label>
-                                        </div>
-                                        <div class="radio-item">
-                                            <input type="radio" id="female" name="sex" value="female" />
-                                            <label for="female">Female</label>
-                                        </div>
-                                    </div>
+                                    <label for="email" class="label-3">Email Address</label>
+                                    <input type="email" id="email" class="form-input" placeholder="email@example.com"
+                                        required />
                                 </div>
                             </div>
 
                             <div class="form-grid-2">
                                 <div class="form-group">
-                                    <label for="age">Age</label>
-                                    <input type="number" id="age" min="18" placeholder="Age" required />
+                                    <label for="contact" class="label-3">Contact Number</label>
+                                    <input type="tel" id="contact" class="form-input" placeholder="+63 XXX XXX XXXX"
+                                        required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="nationality">Nationality</label>
-                                    <input type="text" id="nationality" placeholder="Nationality" required />
+                                    <label for="sex">Sex</label>
+                                    <select id="sex" name="sex" required>
+                                        <option value="" disabled selected>Select your Sex</option>
+                                        <option value="M">Male</option>
+                                        <option value="F">Female</option>
+                                        <option value="O">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label for="age" class="label-3">Age</label>
+                                    <input type="number" id="age" class="form-input" min="18" placeholder="Age"
+                                        required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="nationality" class="label-3">Nationality</label>
+                                    <input type="text" id="nationality" class="form-input" placeholder="Nationality"
+                                        required />
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="address">Address (City, State/Province)</label>
-                                <input type="text" id="address" placeholder="Complete Address" required />
+                                <label for="address" class="label-3">Address (City, State/Province)</label>
+                                <input type="text" id="address" class="form-input" placeholder="Complete Address"
+                                    required />
                             </div>
 
                             <div class="form-divider"></div>
 
                             <div class="companions-section">
                                 <div class="companions-header">
-                                    <h3>Guest's Companions</h3>
-                                    <p>Maximum of 5 companions allowed</p>
+                                    <h3 class="section-title">Guest's Companions</h3>
+                                    <p class="body-4">Maximum of 5 companions allowed</p>
                                 </div>
 
                                 <div id="companions-table-container" class="companions-table-container">
@@ -159,8 +143,7 @@
                                 </div>
 
                                 <button type="button" id="add-companion-btn" class="btn btn-outline">
-                                    <i class="fas fa-plus-circle"></i> Add
-                                    Companion
+                                    <i class="fas fa-plus-circle"></i> Add Companion
                                 </button>
                             </div>
 
@@ -172,47 +155,42 @@
                         </div>
 
                         <div class="booking-tab-content" id="reservation-details-tab">
-                            <h3>Reservation Details</h3>
+                            <h3 class="section-title">Reservation Details</h3>
 
                             <div class="form-grid-2">
                                 <div class="form-group">
-                                    <label for="check-in">Check-in Date</label>
-                                    <div class="date-picker-container">
-                                        <button type="button" id="check-in-button" class="date-picker-trigger">
-                                            <i class="fas fa-calendar"></i>
-                                            <span id="check-in-display">Select date</span>
-                                        </button>
-                                        <div id="check-in-picker" class="date-picker">
-                                            <!-- Date picker will be inserted by JavaScript -->
-                                        </div>
+                                    <label for="check-in" class="label-3">Check-in Date</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-calendar input-icon"></i>
+                                        <input type="text" id="check-in" class="form-input date-picker-input"
+                                            placeholder="Select date" required readonly />
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="check-out">Check-out Date</label>
-                                    <div class="date-picker-container">
-                                        <button type="button" id="check-out-button" class="date-picker-trigger">
-                                            <i class="fas fa-calendar"></i>
-                                            <span id="check-out-display">Select date</span>
-                                        </button>
-                                        <div id="check-out-picker" class="date-picker">
-                                            <!-- Date picker will be inserted by JavaScript -->
-                                        </div>
+                                    <label for="check-out" class="label-3">Check-out Date</label>
+                                    <div class="input-wrapper">
+                                        <i class="fas fa-calendar input-icon"></i>
+                                        <input type="text" id="check-out" class="form-input date-picker-input"
+                                            placeholder="Select date" required readonly />
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-grid-3">
                                 <div class="form-group">
-                                    <label for="nights">Number of Nights</label>
-                                    <input type="number" id="nights" min="1" placeholder="Nights" required />
+                                    <label for="nights" class="label-3">Number of Nights</label>
+                                    <input type="number" id="nights" class="form-input" min="1" placeholder="Nights"
+                                        required readonly />
                                 </div>
                                 <div class="form-group">
-                                    <label for="adults">Number of Adults</label>
-                                    <input type="number" id="adults" min="1" placeholder="Adults" required />
+                                    <label for="adults" class="label-3">Number of Adults</label>
+                                    <input type="number" id="adults" class="form-input" min="1" placeholder="Adults"
+                                        required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="children">Number of Children</label>
-                                    <input type="number" id="children" min="0" placeholder="Children" required />
+                                    <label for="children" class="label-3">Number of Children</label>
+                                    <input type="number" id="children" class="form-input" min="0" placeholder="Children"
+                                        required />
                                 </div>
                             </div>
 
@@ -227,10 +205,10 @@
                         </div>
 
                         <div class="booking-tab-content" id="room-preferences-tab">
-                            <h3>Room Preferences</h3>
+                            <h3 class="section-title">Room Preferences</h3>
 
                             <div class="form-group">
-                                <label>Room Type (Occupancy)</label>
+                                <label class="label-3">Room Type (Occupancy)</label>
                                 <div class="radio-card-group">
                                     <div class="radio-card">
                                         <input type="radio" id="single-room" name="room-type" value="single" />
@@ -252,7 +230,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Bed Type</label>
+                                <label class="label-3">Bed Type</label>
                                 <div class="radio-card-group bed-type-group">
                                     <div class="radio-card">
                                         <input type="radio" id="single-bed" name="bed-type" value="single" />
@@ -270,7 +248,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Smoking Preference</label>
+                                <label class="label-3">Smoking Preference</label>
                                 <div class="radio-group">
                                     <div class="radio-item">
                                         <input type="radio" id="non-smoking" name="smoking" value="non-smoking"
@@ -285,8 +263,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="requests">Additional Requests</label>
-                                <textarea id="requests"
+                                <label for="requests" class="label-3">Additional Requests</label>
+                                <textarea id="requests" class="form-textarea"
                                     placeholder="Enter any additional requests or special requirements"
                                     rows="4"></textarea>
                             </div>
@@ -294,27 +272,27 @@
                             <div class="form-divider"></div>
 
                             <div class="booking-summary">
-                                <h4>Booking Summary</h4>
+                                <h4 class="section-title">Booking Summary</h4>
                                 <div class="summary-details">
                                     <div class="summary-item">
-                                        <span>Room Type:</span>
-                                        <span>Double Room</span>
+                                        <span class="body-4">Room Type:</span>
+                                        <span class="body-4">Double Room</span>
                                     </div>
                                     <div class="summary-item">
-                                        <span>Check-in:</span>
-                                        <span id="summary-check-in">Not selected</span>
+                                        <span class="body-4">Check-in:</span>
+                                        <span id="summary-check-in" class="body-4">Not selected</span>
                                     </div>
                                     <div class="summary-item">
-                                        <span>Check-out:</span>
-                                        <span id="summary-check-out">Not selected</span>
+                                        <span class="body-4">Check-out:</span>
+                                        <span id="summary-check-out" class="body-4">Not selected</span>
                                     </div>
                                     <div class="summary-item">
-                                        <span>Guests:</span>
-                                        <span id="summary-guests">1 Adult + 0 Companions</span>
+                                        <span class="body-4">Guests:</span>
+                                        <span id="summary-guests" class="body-4">1 Adult + 0 Companions</span>
                                     </div>
                                     <div class="summary-item">
-                                        <span>Estimated Total:</span>
-                                        <span>₱9,800.00</span>
+                                        <span class="body-4">Estimated Total:</span>
+                                        <span class="body-4">₱9,800.00</span>
                                     </div>
                                 </div>
                             </div>
@@ -336,45 +314,42 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>PAHINGALAY HOTEL</h3>
-                    <p>
-                        Your perfect getaway destination for relaxation and
-                        comfort.
-                    </p>
+                    <h3 class="title-3">PAHINGALAY HOTEL</h3>
+                    <p class="body-4">Your perfect getaway destination for relaxation and comfort.</p>
                 </div>
                 <div class="footer-column">
-                    <h4>Quick Links</h4>
+                    <h4 class="label-1">Quick Links</h4>
                     <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="rooms.html">Rooms & Suites</a></li>
-                        <li><a href="#">Special Offers</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="#" class="body-4 hover-underline">About Us</a></li>
+                        <li><a href="rooms.html" class="body-4 hover-underline">Rooms & Suites</a></li>
+                        <li><a href="#" class="body-4 hover-underline">Special Offers</a></li>
+                        <li><a href="gallery.html" class="body-4 hover-underline">Gallery</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Contact</h4>
+                    <h4 class="label-1">Contact</h4>
                     <ul>
-                        <li>123 Relaxation Avenue, Paradise City</li>
-                        <li>Phone: +123 456 7890</li>
-                        <li>Email: info@pahingalayhotel.com</li>
+                        <li class="body-4">123 Relaxation Avenue, Paradise City</li>
+                        <li class="body-4">Phone: +123 456 7890</li>
+                        <li class="body-4">Email: info@pahingalayhotel.com</li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Follow Us</h4>
+                    <h4 class="label-1">Follow Us</h4>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="body-4 hover-underline"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="body-4 hover-underline"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="body-4 hover-underline"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 PAHINGALAY HOTEL. All rights reserved.</p>
+                <p class="body-4">© 2025 PAHINGALAY HOTEL. All rights reserved. Last Updated: 03:51 PM PST, June 16,
+                    2025</p>
             </div>
         </div>
     </footer>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-menu-header">
             <span>PAHINGALAY HOTEL</span>
@@ -394,7 +369,8 @@
         </ul>
     </div>
 
-    <script src="/static/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/static/js/booking.js"></script>
 </body>
 
 </html>

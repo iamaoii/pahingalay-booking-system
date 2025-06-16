@@ -17,6 +17,30 @@ class AuthHandler {
         }
 
         this.setupRealTimeValidation();
+        this.setupMobileMenu();
+    }
+
+    setupMobileMenu() {
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+
+        if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenu.classList.add('active');
+            });
+
+            mobileMenuClose.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+            });
+
+            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+        }
     }
 
     setupRealTimeValidation() {
@@ -46,6 +70,7 @@ class AuthHandler {
         const ageInput = document.getElementById("age");
         if (ageInput) {
             ageInput.addEventListener("blur", () => this.validateAge(ageInput));
+            ageInput.addEventListener("input", () => this.clearError(ageInput));
         }
 
         const signupEmailInput = document.getElementById("emailSignup");
@@ -75,12 +100,10 @@ class AuthHandler {
 
             const data = await response.json();
 
-            if (response.ok) {
-                if (data.exists) {
-                    this.showError(input, "This email is already registered");
-                } else {
-                    this.showSuccess(input);
-                }
+            if (response.ok && data.exists) {
+                this.showError(input, "This email is already registered");
+            } else if (response.ok) {
+                this.showSuccess(input);
             }
         } catch (error) {
             console.error("Email check failed:", error);
@@ -95,14 +118,14 @@ class AuthHandler {
     validateEmail(input) {
         const isValid = this.validateEmailFormat(input.value);
 
-        if (!isValid && input.value) {
+        if (!input.value) {
+            this.showError(input, "Email is required");
+            return false;
+        } else if (!isValid) {
             this.showError(input, "Please enter a valid email address");
             return false;
         }
 
-        if (isValid) {
-            this.showSuccess(input);
-        }
         return true;
     }
 
@@ -110,16 +133,16 @@ class AuthHandler {
         const password = input.value;
         const minLength = 8;
 
-        if (password.length < minLength && password.length > 0) {
+        if (!password) {
+            this.showError(input, "Password is required");
+            return false;
+        } else if (password.length < minLength) {
             this.showError(input, `Password must be at least ${minLength} characters long`);
             return false;
         }
 
-        if (password.length >= minLength) {
-            this.showSuccess(input);
-        }
-
-        return password.length >= minLength;
+        this.showSuccess(input);
+        return true;
     }
 
     validatePasswordMatch() {
@@ -128,77 +151,71 @@ class AuthHandler {
 
         if (!password || !confirmPassword) return true;
 
-        if (password.value !== confirmPassword.value && confirmPassword.value) {
+        if (!confirmPassword.value) {
+            this.showError(confirmPassword, "Please confirm your password");
+            return false;
+        } else if (password.value !== confirmPassword.value) {
             this.showError(confirmPassword, "Passwords do not match");
             return false;
         }
 
-        if (password.value === confirmPassword.value && confirmPassword.value) {
-            this.showSuccess(confirmPassword);
-        }
-
+        this.showSuccess(confirmPassword);
         return true;
     }
 
     validateAge(input) {
-        const age = Number.parseInt(input.value);
+        const age = parseInt(input.value);
 
-        if (age < 18 && input.value) {
+        if (!input.value) {
+            this.showError(input, "Age is required");
+            return false;
+        } else if (isNaN(age) || age < 18) {
             this.showError(input, "You must be at least 18 years old");
             return false;
-        }
-
-        if (age > 120 && input.value) {
+        } else if (age > 120) {
             this.showError(input, "Please enter a valid age");
             return false;
         }
 
-        if (age >= 18 && age <= 120) {
-            this.showSuccess(input);
-        }
-
-        return age >= 18 && age <= 120;
+        this.showSuccess(input);
+        return true;
     }
 
     formatPhoneNumber(e) {
         let input = e.target.value.replace(/\D/g, "");
-      
         if (input.startsWith("63")) {
-          input = input.slice(2);
+            input = input.slice(2);
         } else if (input.startsWith("0")) {
-          input = input.slice(1);
+            input = input.slice(1);
         }
-      
         input = input.slice(0, 10);
-      
         let formatted = "";
         if (input.length >= 7) {
-          formatted = input.replace(/(\d{3})(\d{3})(\d{0,4})/, "$1 $2 $3").trim();
+            formatted = input.replace(/(\d{3})(\d{3})(\d{0,4})/, "$1 $2 $3").trim();
         } else if (input.length >= 4) {
-          formatted = input.replace(/(\d{3})(\d{0,3})/, "$1 $2").trim();
+            formatted = input.replace(/(\d{3})(\d{0,3})/, "$1 $2").trim();
         } else {
-          formatted = input;
+            formatted = input;
         }
-      
         e.target.value = input.length > 0 ? `+63 ${formatted}` : "";
     }
-      
+
     getPhoneNumberForBackend(inputValue) {
         let digits = inputValue.replace(/\D/g, "");
         if (digits.startsWith("63")) {
-          digits = "0" + digits.slice(2);
+            digits = "0" + digits.slice(2);
         }
         return digits;
     }
 
     async handleSignIn(e) {
         e.preventDefault();
-
         const form = e.target;
         const formData = new FormData(form);
         const email = formData.get("email");
         const password = formData.get("password");
         const remember = formData.get("remember");
+        const messageDiv = document.getElementById("form-message");
 
         if (!this.validateSignInForm(email, password)) {
             return;
@@ -229,19 +246,31 @@ class AuthHandler {
                     localStorage.setItem("rememberedEmail", email);
                     localStorage.setItem("sessionPersistent", "true");
                 } else {
-                    localStorage.setItem("sessionPersistent", "false");
                     localStorage.removeItem("rememberedEmail");
+                    localStorage.setItem("sessionPersistent", "false");
                 }
-
+                if (messageDiv) {
+                    messageDiv.className = "flash-message success";
+                    messageDiv.textContent = data.message || "Signed in successfully";
+                    messageDiv.style.display = "block";
+                }
                 setTimeout(() => {
                     window.location.href = "/dashboard";
                 }, 1500);
             } else {
-                console.log(data.error || "Sign in failed. Please try again.");
+                if (messageDiv) {
+                    messageDiv.className = "flash-message error";
+                    messageDiv.textContent = data.message || "Sign in failed. Please try again.";
+                    messageDiv.style.display = "block";
+                }
             }
         } catch (error) {
             console.error("Sign in error:", error);
-            console.log("Network error. Please check your connection and try again.");
+            if (messageDiv) {
+                messageDiv.className = "flash-message error";
+                messageDiv.textContent = "Network error. Please check your connection.";
+                messageDiv.style.display = "block";
+            }
         } finally {
             this.setLoadingState(submitBtn, false);
         }
@@ -249,9 +278,9 @@ class AuthHandler {
 
     async handleSignUp(e) {
         e.preventDefault();
-
         const form = e.target;
         const formData = new FormData(form);
+        const messageDiv = document.getElementById("form-message");
 
         if (!this.validateSignUpForm(formData)) {
             return;
@@ -267,7 +296,7 @@ class AuthHandler {
                 password: formData.get("password"),
                 confirmPassword: formData.get("confirmPassword"),
                 contact: this.getPhoneNumberForBackend(formData.get("contact")),
-                age: Number.parseInt(formData.get("age")),
+                age: parseInt(formData.get("age")),
                 nationality: formData.get("nationality"),
                 address: formData.get("address"),
                 sex: formData.get("sex"),
@@ -286,18 +315,29 @@ class AuthHandler {
             if (response.ok) {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("sessionPersistent", "false"); // Default to non-persistent unless sign-in changes it
-
+                localStorage.setItem("sessionPersistent", "false");
+                if (messageDiv) {
+                    messageDiv.className = "flash-message success";
+                    messageDiv.textContent = data.message || "Account created successfully";
+                    messageDiv.style.display = "block";
+                }
                 setTimeout(() => {
                     window.location.href = "/dashboard";
-                }, 2000);
+                }, 1500);
             } else {
-                console.error("Sign up failed: ", data.error);
-                console.log(data.error || "Registration failed: " + data.error);
+                if (messageDiv) {
+                    messageDiv.className = "flash-message error";
+                    messageDiv.textContent = data.message || "Registration failed. Please try again.";
+                    messageDiv.style.display = "block";
+                }
             }
         } catch (error) {
-            console.error("Sign up server error:", error);
-            console.log("Network error occurred. Please check server status and try again.");
+            console.error("Sign up error:", error);
+            if (messageDiv) {
+                messageDiv.className = "flash-message error";
+                messageDiv.textContent = "Network error. Please check your connection.";
+                messageDiv.style.display = "block";
+            }
         } finally {
             this.setLoadingState(submitBtn, false);
         }
@@ -305,7 +345,6 @@ class AuthHandler {
 
     validateSignInForm(email, password) {
         let isValid = true;
-
         const emailInput = document.getElementById("email");
         const passwordInput = document.getElementById("password");
 
@@ -319,6 +358,8 @@ class AuthHandler {
         if (!password) {
             this.showError(passwordInput, "Password is required");
             isValid = false;
+        } else if (!this.validatePassword(passwordInput)) {
+            isValid = false;
         }
 
         return isValid;
@@ -326,7 +367,6 @@ class AuthHandler {
 
     validateSignUpForm(formData) {
         let isValid = true;
-
         const requiredFields = [
             { name: "fullName", message: "Full name is required" },
             { name: "email", message: "Email is required" },
@@ -342,27 +382,28 @@ class AuthHandler {
         requiredFields.forEach((field) => {
             const value = formData.get(field.name);
             const input = document.querySelector(`[name="${field.name}"]`);
-
             if (!value) {
-                if (input) {
-                    this.showError(input, field.message);
-                }
+                if (input) this.showError(input, field.message);
                 isValid = false;
             }
         });
 
-        const password = formData.get("password");
-        const confirmPassword = formData.get("confirmPassword");
-
-        if (password && password.length < 8) {
-            const passwordInput = document.getElementById("passwordSignup");
-            this.showError(passwordInput, "Password must be at least 8 characters long");
+        const emailInput = document.getElementById("emailSignup");
+        if (emailInput && formData.get("email") && !this.validateEmail(emailInput)) {
             isValid = false;
         }
 
-        if (password !== confirmPassword) {
-            const confirmPasswordInput = document.getElementById("confirmPassword");
-            this.showError(confirmPasswordInput, "Passwords do not match");
+        const passwordInput = document.getElementById("passwordSignup");
+        if (passwordInput && formData.get("password") && !this.validatePassword(passwordInput)) {
+            isValid = false;
+        }
+
+        if (formData.get("password") && formData.get("confirmPassword") && !this.validatePasswordMatch()) {
+            isValid = false;
+        }
+
+        const ageInput = document.getElementById("age");
+        if (ageInput && formData.get("age") && !this.validateAge(ageInput)) {
             isValid = false;
         }
 
@@ -375,30 +416,24 @@ class AuthHandler {
         if (rememberedEmail && emailInput) {
             emailInput.value = rememberedEmail;
             const rememberCheckbox = document.getElementById("remember");
-            if (rememberCheckbox) {
-                rememberCheckbox.checked = true;
-            }
+            if (rememberCheckbox) rememberCheckbox.checked = true;
         }
 
         const token = localStorage.getItem("authToken");
         const sessionPersistent = localStorage.getItem("sessionPersistent") === "true";
-
-        if (token && this.isTokenValid(token)) {
-            if (sessionPersistent) {
-                window.location.href = "/dashboard";
-            } else {
-                localStorage.removeItem("authToken");
-                localStorage.removeItem("user");
-                localStorage.removeItem("sessionPersistent");
-            }
+        if (token && this.isTokenValid(token) && sessionPersistent) {
+            window.location.href = "/dashboard";
+        } else if (token && !sessionPersistent) {
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("user");
+            localStorage.removeItem("sessionPersistent");
         }
     }
 
     isTokenValid(token) {
         try {
             const payload = JSON.parse(atob(token.split(".")[1]));
-            const currentTime = Date.now() / 1000;
-            return payload.exp > currentTime;
+            return payload.exp > Date.now() / 1000;
         } catch (error) {
             return false;
         }
@@ -406,9 +441,8 @@ class AuthHandler {
 
     async logout() {
         const token = localStorage.getItem("authToken");
-
-        if (token) {
-            try {
+        try {
+            if (token) {
                 await fetch(`${this.apiBaseUrl}/logout`, {
                     method: "POST",
                     headers: {
@@ -416,49 +450,42 @@ class AuthHandler {
                         "Content-Type": "application/json",
                     },
                 });
-            } catch (error) {
-                console.error("Logout error:", error);
             }
+        } catch (error) {
+            console.error("Logout error:", error);
         }
-
-        localStorage.removeItem("authToken");
-        localStorage.removeItem("user");
-        localStorage.removeItem("rememberedEmail");
-        localStorage.removeItem("sessionPersistent");
+        localStorage.clear();
         window.location.href = "/signin";
     }
 
     showError(input, message) {
         input.classList.add("error");
         input.classList.remove("success");
-
-        let errorElement = input.parentNode.nextElementSibling;
-        if (!errorElement || !errorElement.classList.contains("error-message")) {
+        let errorElement = input.parentNode.querySelector(".error-message");
+        if (!errorElement) {
             errorElement = document.createElement("div");
             errorElement.className = "error-message";
-            input.parentNode.insertAdjacentElement("afterend", errorElement);
+            input.parentNode.appendChild(errorElement);
         }
-
         errorElement.textContent = message;
-        errorElement.classList.add("show");
+        errorElement.style.display = "block";
     }
 
     showSuccess(input) {
         input.classList.add("success");
         input.classList.remove("error");
-
-        const errorElement = input.parentNode.nextElementSibling;
-        if (errorElement && errorElement.classList.contains("error-message")) {
-            errorElement.classList.remove("show");
+        const errorElement = input.parentNode.querySelector(".error-message");
+        if (errorElement) {
+            errorElement.style.display = "none";
         }
     }
 
     clearError(input) {
         input.classList.remove("error");
-
-        const errorElement = input.parentNode.nextElementSibling;
-        if (errorElement && errorElement.classList.contains("error-message")) {
-            errorElement.classList.remove("show");
+        input.classList.remove("success");
+        const errorElement = input.parentNode.querySelector(".error-message");
+        if (errorElement) {
+            errorElement.style.display = "none";
         }
     }
 
@@ -470,22 +497,19 @@ class AuthHandler {
         } else {
             button.classList.remove("loading");
             button.disabled = false;
-            const isSignUp = button.closest("form").id === "signupForm";
-            button.textContent = isSignUp ? "Create Account" : "Sign In";
+            button.textContent = button.closest("form").id === "signupForm" ? "Create Account" : "Sign In";
         }
     }
 }
 
 async function makeAuthenticatedRequest(url, options = {}) {
     const token = localStorage.getItem("authToken");
-
     const defaultOptions = {
         headers: {
             "Content-Type": "application/json",
             ...(token && { Authorization: `Bearer ${token}` }),
         },
     };
-
     const mergedOptions = {
         ...defaultOptions,
         ...options,
@@ -494,19 +518,13 @@ async function makeAuthenticatedRequest(url, options = {}) {
             ...options.headers,
         },
     };
-
     try {
         const response = await fetch(url, mergedOptions);
-
         if (response.status === 401) {
-            localStorage.removeItem("authToken");
-            localStorage.removeItem("user");
-            localStorage.removeItem("rememberedEmail");
-            localStorage.removeItem("sessionPersistent");
+            localStorage.clear();
             window.location.href = "/signin";
             return null;
         }
-
         return response;
     } catch (error) {
         console.error("API request failed:", error);
@@ -517,63 +535,3 @@ async function makeAuthenticatedRequest(url, options = {}) {
 document.addEventListener("DOMContentLoaded", () => {
     new AuthHandler();
 });
-
-document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
-    const mobileMenu = document.querySelector('.mobile-menu');
-  
-    mobileMenuToggle.addEventListener('click', () => {
-      mobileMenu.classList.add('active');
-    });
-  
-    mobileMenuClose.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-    });
-  
-    // Optional: Close menu when clicking a link
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
-    mobileMenuLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-      });
-    });
-  });
-
-  class AuthHandler {
-    formatPhoneNumber(event) {
-      const input = event.target;
-      let value = input.value.replace(/\D/g, ''); // Remove non-digits
-      if (value.length > 10) value = value.slice(0, 10); // Limit to 10 digits
-      const match = value.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
-      if (match) {
-        input.value = !match[2]
-          ? match[1]
-          : `(${match[1]}) ${match[2]}${match[3] ? `-${match[3]}` : ''}`;
-      }
-    }
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const mobileMenuClose = document.querySelector('.mobile-menu-close');
-    const mobileMenu = document.querySelector('.mobile-menu');
-  
-    if (mobileMenuToggle && mobileMenuClose && mobileMenu) {
-      mobileMenuToggle.addEventListener('click', () => {
-        mobileMenu.classList.add('active');
-      });
-  
-      mobileMenuClose.addEventListener('click', () => {
-        mobileMenu.classList.remove('active');
-      });
-  
-      // Close menu when clicking a link
-      const mobileMenuLinks = document.querySelectorAll('.mobile-menu-list a');
-      mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.remove('active');
-        });
-      });
-    }
-  });
