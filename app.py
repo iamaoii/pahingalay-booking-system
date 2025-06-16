@@ -8,6 +8,7 @@ from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
 import logging
+from flask import session, redirect, url_for, flash
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -68,11 +69,19 @@ def dashboard_page():
     logger.debug("Rendering dashboard.html")
     return render_template('dashboard.html')
 
+@app.route('/logout')
+def logout():
+    logger.debug("Processing server-side logout")
+    session.pop('user_id', None)
+    session.clear()
+    flash('You have been signed out.', 'success')
+    logger.info("User session cleared, redirecting to signin")
+    return redirect(url_for('signin_page'))
+
 @app.errorhandler(Exception)
 def handle_error(error):
     logger.error(f"Unhandled error: {str(error)}")
     return jsonify({'error': 'Internal server error'}), 500
-
 
 if __name__ == '__main__':
     with app.app_context():

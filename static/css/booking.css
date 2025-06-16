@@ -1252,7 +1252,7 @@ img {
 }
 
 .booking-form-container {
-    background-color: var(--gray-100);
+    background-color: var(--gray-300);
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
     padding: 2rem;
@@ -2042,6 +2042,8 @@ img {
     padding: 2rem 0 2rem; /* Increased top padding to push content lower */
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     text-align: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .hero-content {
@@ -2060,4 +2062,8 @@ img {
     font-size: 1.125rem;
     color: var(--text-light);
     line-height: 1.5;
+}
+
+.home-button-container {
+    padding-bottom: 20px;
 }
