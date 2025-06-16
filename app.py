@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 from flask_cors import CORS
 from models import db
 from db_config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS, SECRET_KEY
@@ -8,7 +8,6 @@ from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
 import logging
-from flask import session, redirect, url_for, flash
 
 # Set up logging
 logging.basicConfig(level=logging.DEBUG)
@@ -17,7 +16,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})  # Same origin, for safety
+CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
@@ -64,6 +63,11 @@ def booking_page():
     logger.debug("Rendering booking.html")
     return render_template('booking.html')
 
+@app.route('/booking-confirmation', methods=['GET'])
+def confirmation_page():
+    logger.debug("Rendering booking-confirmation.html")
+    return render_template('booking-confirmation.html')
+
 @app.route('/dashboard', methods=['GET'])
 def dashboard_page():
     logger.debug("Rendering dashboard.html")
@@ -72,10 +76,8 @@ def dashboard_page():
 @app.route('/logout')
 def logout():
     logger.debug("Processing server-side logout")
-    session.pop('user_id', None)
-    session.clear()
     flash('You have been signed out.', 'success')
-    logger.info("User session cleared, redirecting to signin")
+    logger.info("Redirecting to signin")
     return redirect(url_for('signin_page'))
 
 @app.errorhandler(Exception)

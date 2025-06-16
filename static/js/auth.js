@@ -229,7 +229,7 @@ class AuthHandler {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ email, password, remember: false }),
             });
 
             const data = await response.json();
@@ -243,7 +243,7 @@ class AuthHandler {
                     messageDiv.style.display = "block";
                 }
                 setTimeout(() => {
-                    window.location.href = "/dashboard";
+                    window.location.href = "/dashboard"; // Redirect to /dashboard
                 }, 1500);
             } else {
                 if (messageDiv) {
@@ -309,7 +309,7 @@ class AuthHandler {
                     messageDiv.style.display = "block";
                 }
                 setTimeout(() => {
-                    window.location.href = "/dashboard";
+                    window.location.href = "/dashboard"; // Redirect to /dashboard
                 }, 1500);
             } else {
                 if (messageDiv) {
@@ -400,7 +400,7 @@ class AuthHandler {
     loadStoredToken() {
         const token = localStorage.getItem("authToken");
         if (token && this.isTokenValid(token)) {
-            window.location.href = "/dashboard";
+            window.location.href = "/dashboard"; // Redirect to /dashboard
         } else if (token) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("user");
@@ -442,14 +442,12 @@ class AuthHandler {
         if (!errorElement) {
             errorElement = document.createElement("div");
             errorElement.className = "error-tooltip";
-            input.parentNode.style.position = "relative"; // Ensure parent can position tooltip
+            input.parentNode.style.position = "relative";
             input.parentNode.appendChild(errorElement);
         }
         errorElement.textContent = message;
         errorElement.style.display = "block";
-        // Add animation class for fade-in effect
         errorElement.classList.add("fade-in");
-        // Remove animation class after animation completes to allow re-triggering
         setTimeout(() => {
             errorElement.classList.remove("fade-in");
         }, 300);
