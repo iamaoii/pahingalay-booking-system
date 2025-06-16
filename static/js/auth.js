@@ -214,7 +214,6 @@ class AuthHandler {
         const formData = new FormData(form);
         const email = formData.get("email");
         const password = formData.get("password");
-        const remember = formData.get("remember");
         const messageDiv = document.getElementById("form-message");
 
         if (!this.validateSignInForm(email, password)) {
@@ -230,11 +229,7 @@ class AuthHandler {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    email,
-                    password,
-                    remember: !!remember,
-                }),
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
@@ -242,13 +237,6 @@ class AuthHandler {
             if (response.ok) {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                if (remember) {
-                    localStorage.setItem("rememberedEmail", email);
-                    localStorage.setItem("sessionPersistent", "true");
-                } else {
-                    localStorage.removeItem("rememberedEmail");
-                    localStorage.setItem("sessionPersistent", "false");
-                }
                 if (messageDiv) {
                     messageDiv.className = "flash-message success";
                     messageDiv.textContent = data.message || "Signed in successfully";
@@ -315,7 +303,6 @@ class AuthHandler {
             if (response.ok) {
                 localStorage.setItem("authToken", data.token);
                 localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("sessionPersistent", "false");
                 if (messageDiv) {
                     messageDiv.className = "flash-message success";
                     messageDiv.textContent = data.message || "Account created successfully";
@@ -411,22 +398,12 @@ class AuthHandler {
     }
 
     loadStoredToken() {
-        const rememberedEmail = localStorage.getItem("rememberedEmail");
-        const emailInput = document.getElementById("email");
-        if (rememberedEmail && emailInput) {
-            emailInput.value = rememberedEmail;
-            const rememberCheckbox = document.getElementById("remember");
-            if (rememberCheckbox) rememberCheckbox.checked = true;
-        }
-
         const token = localStorage.getItem("authToken");
-        const sessionPersistent = localStorage.getItem("sessionPersistent") === "true";
-        if (token && this.isTokenValid(token) && sessionPersistent) {
+        if (token && this.isTokenValid(token)) {
             window.location.href = "/dashboard";
-        } else if (token && !sessionPersistent) {
+        } else if (token) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("user");
-            localStorage.removeItem("sessionPersistent");
         }
     }
 
@@ -461,20 +438,27 @@ class AuthHandler {
     showError(input, message) {
         input.classList.add("error");
         input.classList.remove("success");
-        let errorElement = input.parentNode.querySelector(".error-message");
+        let errorElement = input.parentNode.querySelector(".error-tooltip");
         if (!errorElement) {
             errorElement = document.createElement("div");
-            errorElement.className = "error-message";
+            errorElement.className = "error-tooltip";
+            input.parentNode.style.position = "relative"; // Ensure parent can position tooltip
             input.parentNode.appendChild(errorElement);
         }
         errorElement.textContent = message;
         errorElement.style.display = "block";
+        // Add animation class for fade-in effect
+        errorElement.classList.add("fade-in");
+        // Remove animation class after animation completes to allow re-triggering
+        setTimeout(() => {
+            errorElement.classList.remove("fade-in");
+        }, 300);
     }
 
     showSuccess(input) {
         input.classList.add("success");
         input.classList.remove("error");
-        const errorElement = input.parentNode.querySelector(".error-message");
+        const errorElement = input.parentNode.querySelector(".error-tooltip");
         if (errorElement) {
             errorElement.style.display = "none";
         }
@@ -483,7 +467,7 @@ class AuthHandler {
     clearError(input) {
         input.classList.remove("error");
         input.classList.remove("success");
-        const errorElement = input.parentNode.querySelector(".error-message");
+        const errorElement = input.parentNode.querySelector(".error-tooltip");
         if (errorElement) {
             errorElement.style.display = "none";
         }
