@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 import jwt
 import datetime
 import logging
+from flask import jsonify
 from sqlalchemy import func
 
 logger = logging.getLogger(__name__)
@@ -13,15 +14,12 @@ bcrypt = Bcrypt()
 
 def generate_guest_id():
     """Generate a guestID in the format G-XXXXXXX."""
-    # Get the latest guestID
     last_guest = GuestInformation.query.order_by(func.cast(func.substr(GuestInformation.guestID, 3), db.Integer).desc()).first()
     if last_guest:
-        # Extract the numeric part (e.g., '00002841' from 'G-00002841')
-        last_number = int(last_guest.guestID[2:])  # Skip 'G-'
+        last_number = int(last_guest.guestID[2:])
         next_number = last_number + 1
     else:
-        next_number = 1  # Start at 1 if no guests exist
-    # Format as G-XXXXXXX (7 digits)
+        next_number = 1
     return f"G-{next_number:08d}"
 
 @auth_bp.route('/check-email', methods=['POST'])
@@ -40,10 +38,9 @@ def signin():
     data = request.get_json()
     email = data.get('email')
     password = data.get('password')
-    remember = data.get('remember', False)
 
     if not email or not password:
-        return jsonify(), 400
+        return jsonify({'error': 'Email and password are required'}), 400
 
     guest = GuestInformation.query.filter_by(guestEmail=email).first()
 
@@ -51,7 +48,7 @@ def signin():
         token = jwt.encode({
             'user_id': guest.guestID,
             'email': guest.guestEmail,
-            'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1 if remember else 1/24)
+            'exp': datetime.datetime.utcnow() + datetime.timedelta(hours=1)
         }, current_app.config['SECRET_KEY'], algorithm='HS256')
 
         return jsonify({
@@ -63,7 +60,7 @@ def signin():
             }
         }), 200
     else:
-        return jsonify(), 401
+        return jsonify({'error': 'Invalid email or password'}), 401
 
 @auth_bp.route('/signup', methods=['POST'])
 def signup():
@@ -74,37 +71,36 @@ def signup():
     for field in required_fields:
         if not data.get(field):
             logger.warning(f"Missing field: {field}")
-            return jsonify(), 400
+            return jsonify({'error': f'Missing required field: {field}'}), 400
 
     email = data.get('email')
     if not email or '@' not in email or '.' not in email:
         logger.warning("Invalid email format")
-        return jsonify(), 400
+        return jsonify({'error': 'Invalid email format'}), 400
 
     if GuestInformation.query.filter_by(guestEmail=email).first():
         logger.warning(f"Email already registered: {email}")
-        return jsonify(), 400
+        return jsonify({'error': 'Email already registered'}), 400
 
     if data.get('password') != data.get('confirmPassword'):
         logger.warning("Passwords do not match")
-        return jsonify(), 400
+        return jsonify({'error': 'Passwords do not match'}), 400
 
     if len(data.get('password')) < 8:
         logger.warning("Password too short")
-        return jsonify(), 400
+        return jsonify({'error': 'Password must be at least 8 characters long'}), 400
 
     try:
         age = int(data.get('age'))
         if age < 18 or age > 120:
             logger.warning(f"Invalid age: {age}")
-            return jsonify(), 400
+            return jsonify({'error': 'Age must be between 18 and 120'}), 400
     except ValueError:
         logger.warning("Invalid age format")
-        return jsonify(), 400
+        return jsonify({'error': 'Invalid age format'}), 400
 
     hashed_password = bcrypt.generate_password_hash(data.get('password')).decode('utf-8')
 
-    # Generate unique guestID
     guest_id = generate_guest_id()
 
     new_guest = GuestInformation(
@@ -141,7 +137,7 @@ def signup():
     except Exception as e:
         db.session.rollback()
         logger.error(f"Failed to create account: {str(e)}")
-        return jsonify(), 500
+        return jsonify({'error': 'Internal server error'}), 500
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():

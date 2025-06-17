@@ -329,6 +329,7 @@ body {
 }
 
 .cardHeader .btn-primary {
+  padding: 10px 20px;
   background: var(--blue);
   color: var(--white);
   border: none;
@@ -488,7 +489,6 @@ body {
   display: flex;
   flex-direction: column;
 }
-
 
 .form-group label {
   font-size: 1rem;

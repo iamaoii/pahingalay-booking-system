@@ -229,7 +229,7 @@ class AuthHandler {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email, password, remember: false }),
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
@@ -243,14 +243,15 @@ class AuthHandler {
                     messageDiv.style.display = "block";
                 }
                 setTimeout(() => {
-                    window.location.href = "/dashboard"; // Redirect to /dashboard
+                    window.location.href = "/dashboard";
                 }, 1500);
             } else {
                 if (messageDiv) {
                     messageDiv.className = "flash-message error";
-                    messageDiv.textContent = data.message || "Sign in failed. Please try again.";
+                    messageDiv.textContent = data.error || "Sign in failed. Please try again.";
                     messageDiv.style.display = "block";
                 }
+                console.error('Sign-in response:', data); // Debug the response
             }
         } catch (error) {
             console.error("Sign in error:", error);
@@ -309,12 +310,12 @@ class AuthHandler {
                     messageDiv.style.display = "block";
                 }
                 setTimeout(() => {
-                    window.location.href = "/dashboard"; // Redirect to /dashboard
+                    window.location.href = "/dashboard";
                 }, 1500);
             } else {
                 if (messageDiv) {
                     messageDiv.className = "flash-message error";
-                    messageDiv.textContent = data.message || "Registration failed. Please try again.";
+                    messageDiv.textContent = data.error || "Registration failed. Please try again.";
                     messageDiv.style.display = "block";
                 }
             }
@@ -400,7 +401,7 @@ class AuthHandler {
     loadStoredToken() {
         const token = localStorage.getItem("authToken");
         if (token && this.isTokenValid(token)) {
-            window.location.href = "/dashboard"; // Redirect to /dashboard
+            window.location.href = "/dashboard";
         } else if (token) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("user");

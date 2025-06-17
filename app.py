@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 from flask_cors import CORS
 from models import db
-from db_config import SQLALCHEMY_DATABASE_URI, SQLALCHEMY_TRACK_MODIFICATIONS, SECRET_KEY
+# Removed import from db_config.py
 from routes.auth import auth_bp
 from routes.guests import guests_bp
 from flask_bcrypt import Bcrypt
@@ -18,9 +18,9 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})
 
-app.config['SQLALCHEMY_DATABASE_URI'] = SQLALCHEMY_DATABASE_URI
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = SQLALCHEMY_TRACK_MODIFICATIONS
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY', SECRET_KEY)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False').lower() == 'true'
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
 
 db.init_app(app)
 Bcrypt(app)

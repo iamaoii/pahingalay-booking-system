@@ -238,7 +238,6 @@ body.nav-active, body.modal-open { overflow: hidden; }
 }
 
 .section-subtitle::after {
-    content: url('../images/section-subtitle.svg');
     display: block;
     width: 3em;
     margin-inline: auto;

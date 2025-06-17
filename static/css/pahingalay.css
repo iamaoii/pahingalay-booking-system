@@ -330,7 +330,6 @@ body.modal-open { overflow: hidden; }
 }
 
 .section-subtitle::after {
-  content: url('../images/section-subtitle.svg');
   display: block;
   width: 3em;
   margin-inline: auto;
@@ -932,68 +931,6 @@ body.modal-open { overflow: hidden; }
 .hero .slider-item.active .hero-text { animation-delay: 1.5s; }
 
 .hero .slider-item.active .btn { animation-delay: 2s; }
-
-
-
-/*-----------------------------------*\
-  #accomodation
-\*-----------------------------------*/
-
-  .flex-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-   }
-
-   .accomodation-card {
-    margin: 10px;
-    width: 250px;
-    padding: 2px;
-    border-radius: 10px;
-    background: linear-gradient(145deg, #121212, #151515);
-    box-shadow:  8px 8px 20px #080808,
-             -8px -8px 20px #202020;
-   }
-
-.accomodation .section-subtitle { margin-block-end: 10px; }
-
-.accomodation .section-title { margin-block-end: 16px; }
-
-.accomodation .section-text { margin-block-end: 40px; }
-
-.accomodation-card { overflow: hidden; }
-
-.accomodation-card .has-before {
-  padding-block: 30px;
-  margin-block-end: 26px;
-  z-index: 1;
-}
-
-.accomodation-card .has-before::before {
-  background-image: url('../images/img-pattern.svg');
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat;
-  transition: var(--transition-2);
-  transition-delay: 0;
-  z-index: -1;
-  will-change: transform;
-}
-
-.accomodation-card:is(:hover, :focus-within) .has-before::before {
-  transform: rotateY(0.5turn);
-  transition-delay: 300ms;
-}
-
-.accomodation-card .card-banner { transition: var(--transition-2); }
-
-.accomodation-card:is(:hover, :focus-within) .card-banner {
-  transform: scale(1.05);
-}
-
-.accomodation .card-title { margin-block-end: 12px; }
-
-
 
 /*-----------------------------------*\
   #Amenities
