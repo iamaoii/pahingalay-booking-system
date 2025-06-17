@@ -58,14 +58,14 @@ body {
   border-bottom-left-radius: 30px;
 }
 
-.navigation ul li:hover,
-.navigation ul li.hovered {
+.navigation ul li:hover:not(:first-child),
+.navigation ul li.hovered:not(:first-child),
+.navigation ul li.active:not(:first-child) {
   background-color: var(--gray);
 }
 
 .navigation ul li:nth-child(1) {
   margin-bottom: 40px;
-  pointer-events: none;
 }
 
 .navigation ul li a {
@@ -76,8 +76,9 @@ body {
   text-decoration: none;
   color: var(--white);
 }
-.navigation ul li:hover a,
-.navigation ul li.hovered a {
+.navigation ul li:hover:not(:first-child) a,
+.navigation ul li.hovered:not(:first-child) a,
+.navigation ul li.active:not(:first-child) a {
   color: var(--blue);
 }
 
@@ -124,8 +125,9 @@ body {
 }
 
 /* --------- curve outside ---------- */
-.navigation ul li:hover a::before,
-.navigation ul li.hovered a::before {
+.navigation ul li:hover:not(:first-child) a::before,
+.navigation ul li.hovered:not(:first-child) a::before,
+.navigation ul li.active:not(:first-child) a::before {
   content: "";
   position: absolute;
   right: 0;
@@ -137,8 +139,9 @@ body {
   box-shadow: 35px 35px 0 10px var(--gray);
   pointer-events: none;
 }
-.navigation ul li:hover a::after,
-.navigation ul li.hovered a::after {
+.navigation ul li:hover:not(:first-child) a::after,
+.navigation ul li.hovered:not(:first-child) a::after,
+.navigation ul li.active:not(:first-child) a::after {
   content: "";
   position: absolute;
   right: 0;
@@ -286,6 +289,10 @@ body {
   color: var(--white);
 }
 
+.dashboard-section:not(.active) {
+  display: none;
+}
+
 /* ================== Booking Details List ============== */
 .details {
   position: relative;
@@ -322,7 +329,6 @@ body {
 }
 
 .cardHeader .btn-primary {
-  padding: 10px 20px;
   background: var(--blue);
   color: var(--white);
   border: none;
@@ -434,6 +440,136 @@ body {
   color: var(--black1);
 }
 
+/* ====================== Profile Section ====================== */
+.profile-section {
+  display: none;
+  padding: 20px; /* Match .details padding */
+  min-height: calc(65vh); /* Match .details height */
+}
+
+.profile-section.active {
+  display: block;
+}
+
+.profile-card {
+  background: var(--black1);
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 7px 25px hsla(0, 0%, 0%, 0.3);
+  max-width: 2000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.profile-form {
+  flex: 1;
+  margin-bottom: 30px;
+}
+
+.cardHeader {
+  padding: 15px 0; /* Add padding to header for separation */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-details {
+  padding: 20px; /* Add padding to guest information */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.form-group label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--gray);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  background: var(--black2);
+  color: var(--white);
+  font-size: 1rem;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--blue);
+  background: var(--black1);
+}
+
+.form-group input:disabled,
+.form-group select:disabled {
+  background: var(--black1);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background: hsl(231, 93%, 60%);
+}
+
+.btn-secondary {
+  background: var(--gray);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: hsl(210, 10%, 50%);
+}
+
+.password-section {
+  padding-top: 20px;
+  border-top: 1px solid var(--gray);
+}
+
+.password-section h3 {
+  font-size: 1.3rem;
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -450,15 +586,16 @@ body {
   .main.active {
     left: 300px;
   }
-  .details .recentOrders {
-    min-height: calc(100vh - 60px);
+  .details .recentOrders,
+  .profile-section {
+    min-height: calc(65vh);
   }
 }
 
 @media (max-width: 768px) {
   .details .recentOrders {
     overflow-x: auto;
-    min-height: calc(100vh - 60px);
+    min-height: calc(65vh);
   }
   .booking-details {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -472,6 +609,9 @@ body {
   .status-pending {
     width: 100%;
     text-align: center;
+  }
+  .profile-details {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -503,10 +643,21 @@ body {
     right: 0;
     left: initial;
   }
-  .details .recentOrders {
-    min-height: calc(100vh - 60px);
+  .details .recentOrders,
+  .profile-section {
+    min-height: calc(65vh);
   }
   .booking-details {
     grid-template-columns: 1fr;
+  }
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .form-actions button {
+    width: 100%;
+  }
+  .profile-card {
+    padding: 20px;
   }
 }
