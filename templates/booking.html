@@ -36,7 +36,7 @@
                 </section>
                 <div class="booking-form-container">
                     <div class="home-button-container">
-                        <a href="/" class="btn btn-outline">Back to Home</a>
+                        <a href="{{ url_for('dashboard_page') }}" class="btn btn-outline">Back to Dashboard</a>
                     </div>
                     <div class="booking-tabs">
                         <div class="booking-tab-list">
@@ -55,19 +55,6 @@
                         </div>
 
                         <div class="booking-tab-content active" id="guest-info-tab">
-                            <div class="booking-info-box">
-                                <div class="booking-info-grid">
-                                    <div>
-                                        <p class="info-label">Reservation No.</p>
-                                        <p class="info-value" id="reservation-no">[System provided]</p>
-                                    </div>
-                                    <div>
-                                        <p class="info-label">Guest ID</p>
-                                        <p class="info-value" id="guest-id">[System provided]</p>
-                                    </div>
-                                </div>
-                            </div>
-
                             <h3 class="section-title">Primary Guest Information</h3>
 
                             <div class="form-grid-2">

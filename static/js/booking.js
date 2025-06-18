@@ -51,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = '/signin';
                 return;
             }
-            document.querySelector('#guest-id').textContent = data.guestID;
             document.querySelector('#guest-name').value = data.guestName;
             document.querySelector('#email').value = data.guestEmail;
             document.querySelector('#contact').value = data.guestContactNo;
@@ -280,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
             roomType: document.querySelector('input[name="room-type"]:checked').value,
             bedType: document.querySelector('input[name="bed-type"]:checked').value,
             smokingPref: document.querySelector('input[name="smoking"]:checked').value,
-            additionalReq: document.querySelector('#requests').value,
+            additionalRequest: document.querySelector('#requests').value,
             companions: Array.from(document.querySelectorAll('#companions-tbody tr')).map(row => ({
                 compName: row.querySelector('input[name^="companion-name"]').value,
                 compContactNo: row.querySelector('input[name^="companion-contact"]').value,
