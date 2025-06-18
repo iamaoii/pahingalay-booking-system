@@ -14,8 +14,8 @@ db.init_app(app)
 
 def migrate_guest_ids():
     with app.app_context():
-        # Step 1: Add a temporary column for new guestID
         try:
+            # Step 1: Add a temporary column for new guestID
             db.engine.execute("ALTER TABLE guest_information ADD COLUMN new_guestID CHAR(10)")
             logger.info("Added new_guestID column")
         except Exception as e:
@@ -24,16 +24,16 @@ def migrate_guest_ids():
 
         # Step 2: Update existing records with new guestID format
         guests = GuestInformation.query.all()
-        for index, guest in enumerate(guests, start=1):
-            new_guest_id = f"G-{index:07d}"  # e.g., G-0000001
-            try:
-                db.engine.execute(
-                    f"UPDATE guest_information SET new_guestID = '{new_guest_id}' WHERE guestID = {guest.guestID}"
-                )
+        try:
+            for index, guest in enumerate(guests, start=1):
+                new_guest_id = f"G-{index:08d}"
+                guest.new_guestID = new_guest_id
+                db.session.commit()
                 logger.info(f"Updated guestID {guest.guestID} to {new_guest_id}")
-            except Exception as e:
-                logger.error(f"Failed to update guestID {guest.guestID}: {str(e)}")
-                return
+        except Exception as e:
+            db.session.rollback()
+            logger.error(f"Failed to update guest IDs: {str(e)}")
+            return
 
         # Step 3: Drop old guestID column and rename new_guestID
         try:
@@ -43,12 +43,16 @@ def migrate_guest_ids():
             logger.info("Renamed new_guestID to guestID and set as primary key")
         except Exception as e:
             logger.error(f"Failed to rename column: {str(e)}")
+            db.session.rollback()
             return
 
         # Step 4: Verify changes
-        guests = GuestInformation.query.all()
-        for guest in guests:
-            logger.info(f"Guest ID: {guest.guestID}, Name: {guest.guestName}, Email: {guest.guestEmail}")
+        try:
+            guests = GuestInformation.query.all()
+            for guest in guests:
+                logger.info(f"Guest ID: {guest.guestID}, Name: {guest.guestName}, Email: {guest.guestEmail}")
+        except Exception as e:
+            logger.error(f"Failed to verify changes: {str(e)}")
 
 if __name__ == '__main__':
     migrate_guest_ids()

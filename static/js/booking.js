@@ -1,6 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve JWT token from localStorage
     const token = localStorage.getItem('authToken');
+    let prices = {
+        'single': 999,
+        'double': 1499,
+        'suite': 2499,
+        'family': 3499
+    };
+
+    // Fetch room prices
+    fetch('/api/room-prices', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        prices = data;
+        updateSummary();
+    })
+    .catch(error => {
+        console.error('Error fetching room prices:', error);
+    });
 
     // Fetch guest information
     if (token) {
@@ -91,6 +114,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function validateTab(tab) {
+        if (tab === 'guest-info') {
+            const companions = document.querySelectorAll('#companions-tbody tr');
+            for (let row of companions) {
+                if (!validateCompanion(row)) return false;
+            }
+        }
         if (tab === 'reservation-details') {
             const checkIn = document.querySelector('#check-in').value;
             const checkOut = document.querySelector('#check-out').value;
@@ -100,9 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Please fill out all required fields in Reservation Details.');
                 return false;
             }
-            return true;
         }
-        return true; // Guest Info (auto-filled) and Room Preferences have no required fields
+        return true;
+    }
+
+    function validateCompanion(row) {
+        const name = row.querySelector('input[name^="companion-name"]').value;
+        const contact = row.querySelector('input[name^="companion-contact"]').value;
+        const email = row.querySelector('input[name^="companion-email"]').value;
+        const age = parseInt(row.querySelector('input[name^="companion-age"]').value);
+        const sex = row.querySelector('select[name^="companion-sex"]').value;
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!name || !contact || !emailRegex.test(email) || isNaN(age) || age < 0 || age > 120 || !sex) {
+            alert('Please fill out all companion fields correctly (valid email, age 0-120).');
+            return false;
+        }
+        return true;
     }
 
     // Companion Management
@@ -123,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td><input type="text" placeholder="Full Name" name="companion-name-${companionCount}" required></td>
             <td><input type="tel" placeholder="Contact Number" name="companion-contact-${companionCount}" required></td>
             <td><input type="email" placeholder="Email" name="companion-email-${companionCount}" required></td>
-            <td><input type="number" placeholder="Age" name="companion-age-${companionCount}" min="0" required></td>
+            <td><input type="number" placeholder="Age" name="companion-age-${companionCount}" min="0" max="120" required></td>
             <td>
                 <select name="companion-sex-${companionCount}" required>
                     <option value="" disabled selected>Select Sex</option>
@@ -167,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 checkOutPicker.clear();
                 checkOutDate = null;
             }
-            checkOutPicker.set('minDate', new Date(checkInDate.getTime() + 86400000)); // Next day
+            checkOutPicker.set('minDate', new Date(checkInDate.getTime() + 86400000));
             updateNights();
             updateSummary();
         }
@@ -211,26 +253,21 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelector('#summary-check-out').textContent = checkOut;
         document.querySelector('#summary-guests').textContent = `${adults} Adult${adults > 1 ? 's' : ''} + ${companionCount} Companion${companionCount !== 1 ? 's' : ''}${children > 0 ? ` + ${children} Child${children > 1 ? 'ren' : ''}` : ''}`;
 
-        const prices = {
-            'single': 999,
-            'double': 1499,
-            'suite': 2499,
-            'family': 3499
-        };
         const nights = document.querySelector('#nights').value || 1;
         const roomValue = document.querySelector('input[name="room-type"]:checked').value;
         const total = prices[roomValue] * nights;
-        document.querySelector('.summary-item:last-child span:last-child').textContent = `₱${total.toFixed(2)}`;
+        document.querySelector('#summary-total').textContent = `₱${total.toFixed(2)}`;
     }
 
     function updateGuestSummary() {
         const adults = document.querySelector('#adults').value || 1;
         const children = document.querySelector('#children').value || 0;
         document.querySelector('#summary-guests').textContent = `${adults} Adult${adults > 1 ? 's' : ''} + ${companionCount} Companion${companionCount !== 1 ? 's' : ''}${children > 0 ? ` + ${children} Child${children > 1 ? 'ren' : ''}` : ''}`;
+        updateSummary();
     }
 
     // Submit Booking
-    document.querySelector('a[href="booking-confirmation.html"]').addEventListener('click', (e) => {
+    document.querySelector('#complete-reservation').addEventListener('click', (e) => {
         e.preventDefault();
         if (!validateTab(getActiveTab())) return;
 
@@ -243,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
             roomType: document.querySelector('input[name="room-type"]:checked').value,
             bedType: document.querySelector('input[name="bed-type"]:checked').value,
             smokingPref: document.querySelector('input[name="smoking"]:checked').value,
-            additionalRequest: document.querySelector('#requests').value,
+            additionalReq: document.querySelector('#requests').value,
             companions: Array.from(document.querySelectorAll('#companions-tbody tr')).map(row => ({
                 compName: row.querySelector('input[name^="companion-name"]').value,
                 compContactNo: row.querySelector('input[name^="companion-contact"]').value,
@@ -270,7 +307,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert(data.error);
                 return;
             }
-            window.location.href = `booking-confirmation.html?reservationNo=${data.reservationNo}`;
+            alert(`Booking successful! Your reservation number is ${data.reservationNo}.`);
+            window.location.href = `/booking-confirmation?reservationNo=${data.reservationNo}`;
         })
         .catch(error => {
             console.error('Error submitting booking:', error);
@@ -289,20 +327,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialize Summary
     updateSummary();
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Toggle navigation menu
-    const toggle = document.querySelector('.toggle');
-    const navigation = document.querySelector('.navigation');
-    const main = document.querySelector('.main');
-
-    if (toggle && navigation && main) {
-        toggle.addEventListener('click', () => {
-            navigation.classList.toggle('active');
-            main.classList.toggle('active');
-        });
-    }
 
     // Handle logout
     const logoutLink = document.querySelector('a[href="/logout"]');
@@ -310,27 +334,14 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutLink.addEventListener('click', async (e) => {
             e.preventDefault();
             try {
-                const token = localStorage.getItem('authToken');
-                if (token) {
-                    const response = await fetch('/api/logout', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${token}`
-                        }
-                    });
-                    if (!response.ok) {
-                        throw new Error('Logout failed');
-                    }
-                }
                 localStorage.removeItem('authToken');
                 localStorage.removeItem('user');
-                window.location.href = '/signin';
+                window.location.href = '/logout';
             } catch (error) {
                 console.error('Logout error:', error);
                 localStorage.removeItem('authToken');
                 localStorage.removeItem('user');
-                window.location.href = '/signin';
+                window.location.href = '/logout';
             }
         });
     }

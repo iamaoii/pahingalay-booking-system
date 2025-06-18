@@ -3,7 +3,7 @@ from flask_cors import CORS
 from models import db
 from routes.auth import auth_bp
 from routes.guests import guests_bp
-from booking import bookings_bp
+from routes.booking import bookings_bp
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
