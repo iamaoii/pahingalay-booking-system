@@ -30,7 +30,7 @@ class ReservationInformation(db.Model):
     bedType = db.Column(db.String(5), nullable=False)
     smokingPref = db.Column(db.String(11), nullable=False)
     additionalRequest = db.Column(db.String(100), nullable=False, default='None')
-
+    totalAmount = db.Column(db.Float, nullable=False, default=0.00)
     guest = db.relationship('GuestInformation', backref=db.backref('reservations', cascade='all, delete'))
 
 class CompanionInformation(db.Model):

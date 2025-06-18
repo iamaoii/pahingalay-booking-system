@@ -1,9 +1,9 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 from flask_cors import CORS
 from models import db
-# Removed import from db_config.py
 from routes.auth import auth_bp
 from routes.guests import guests_bp
+from booking import bookings_bp
 from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
@@ -27,6 +27,7 @@ Bcrypt(app)
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(guests_bp)
+app.register_blueprint(bookings_bp)
 
 @app.route('/')
 def home():
