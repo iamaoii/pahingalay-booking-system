@@ -311,8 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Normalize and set bedType
       const bedTypeSelect = document.querySelector('#modal-bed-type');
-      const bedType = booking.bedType ? booking.bedType.toLowerCase() : 'single';
-      bedTypeSelect.value = ['single', 'double', 'queen', 'king'].includes(bedType) ? bedType : 'single';
+      const bedType = booking.bedType ? booking.bedType.toLowerCase() : 'twin';
+      bedTypeSelect.value = ['twin', 'queen', 'king'].includes(bedType) ? bedType : 'twin';
       console.log('Bed Type set to:', bedTypeSelect.value);
 
       // Normalize and set smokingPref
