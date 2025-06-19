@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBookingModal = (show) => {
     if (bookingModal) {
       bookingModal.classList.toggle('active', show);
+      document.body.classList.toggle('modal-open', show);
     }
   };
 
@@ -298,28 +299,46 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) throw new Error(`Failed to fetch booking: ${response.status}`);
       const booking = await response.json();
 
-      document.querySelector('#reservation-no').value = booking.reservationNo;
-      document.querySelector('#modal-room-type').value = booking.roomType;
-      document.querySelector('#modal-check-in').value = booking.checkInDate;
-      document.querySelector('#modal-check-out').value = booking.checkOutDate;
-      document.querySelector('#modal-nights').value = booking.noOfNight;
-      document.querySelector('#modal-adults').value = booking.noOfAdults;
-      document.querySelector('#modal-children').value = booking.noOfChildren;
-      document.querySelector('#modal-bed-type').value = booking.bedType;
-      document.querySelector('#modal-smoking').value = booking.smokingPref;
+      console.log('Booking data:', booking); // Debug API response
+
+      document.querySelector('#reservation-no').value = booking.reservationNo || '';
+
+      // Normalize and set roomType
+      const roomTypeSelect = document.querySelector('#modal-room-type');
+      const roomType = booking.roomType ? booking.roomType.toLowerCase() : 'single';
+      roomTypeSelect.value = ['single', 'double', 'suite', 'family'].includes(roomType) ? roomType : 'single';
+      console.log('Room Type set to:', roomTypeSelect.value);
+
+      // Normalize and set bedType
+      const bedTypeSelect = document.querySelector('#modal-bed-type');
+      const bedType = booking.bedType ? booking.bedType.toLowerCase() : 'single';
+      bedTypeSelect.value = ['single', 'double', 'queen', 'king'].includes(bedType) ? bedType : 'single';
+      console.log('Bed Type set to:', bedTypeSelect.value);
+
+      // Normalize and set smokingPref
+      const smokingSelect = document.querySelector('#modal-smoking');
+      const smokingPref = booking.smokingPref ? booking.smokingPref.toLowerCase() : 'non-smoking';
+      smokingSelect.value = ['non-smoking', 'smoking'].includes(smokingPref) ? smokingPref : 'non-smoking';
+      console.log('Smoking Preference set to:', smokingSelect.value);
+
+      document.querySelector('#modal-check-in').value = booking.checkInDate || '';
+      document.querySelector('#modal-check-out').value = booking.checkOutDate || '';
+      document.querySelector('#modal-nights').value = booking.noOfNight || 1;
+      document.querySelector('#modal-adults').value = booking.noOfAdults || 1;
+      document.querySelector('#modal-children').value = booking.noOfChildren || 0;
       document.querySelector('#modal-requests').value = booking.additionalReq || '';
-      document.querySelector('#modal-total').value = `₱${booking.totalAmount.toFixed(2)}`;
+      document.querySelector('#modal-total').value = booking.totalAmount ? `₱${booking.totalAmount.toFixed(2)}` : '₱0.00';
 
       const companionsTbody = document.querySelector('#modal-companions-tbody');
       companionsTbody.innerHTML = '';
-      booking.companions.forEach((companion, index) => {
+      (booking.companions || []).forEach((companion, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
           <td>${index + 1}</td>
-          <td><input type="text" name="companion-name-${index}" value="${companion.compName}" disabled></td>
-          <td><input type="tel" name="companion-contact-${index}" value="${companion.compContactNo}" disabled></td>
-          <td><input type="email" name="companion-email-${index}" value="${companion.compEmail}" disabled></td>
-          <td><input type="number" name="companion-age-${index}" value="${companion.compAge}" min="0" max="120" disabled></td>
+          <td><input type="text" name="companion-name-${index}" value="${companion.compName || ''}" disabled></td>
+          <td><input type="tel" name="companion-contact-${index}" value="${companion.compContactNo || ''}" disabled></td>
+          <td><input type="email" name="companion-email-${index}" value="${companion.compEmail || ''}" disabled></td>
+          <td><input type="number" name="companion-age-${index}" value="${companion.compAge || 0}" min="0" max="120" disabled></td>
           <td>
             <select name="companion-sex-${index}" disabled>
               <option value="M" ${companion.compSex === 'M' ? 'selected' : ''}>Male</option>
