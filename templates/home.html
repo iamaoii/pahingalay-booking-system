@@ -153,14 +153,6 @@
           </li>
 
           <li class="navbar-item">
-            <a href="#facilities" class="navbar-link hover-underline">
-              <div class="separator"></div>
-
-              <span class="span">Facilities</span>
-            </a>
-          </li>
-
-          <li class="navbar-item">
             <a href="{{ url_for('contact_page') }}" class="navbar-link hover-underline">
               <div class="separator"></div>
 
@@ -607,9 +599,9 @@
           <h4>Quick Links</h4>
           <ul>
             <li><a href="#">About Us</a></li>
-            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="{{ url_for('rooms_page') }}">Rooms & Suites</a></li>
             <li><a href="#">Special Offers</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="{{ url_for('gallery_page') }}">Gallery</a></li>
           </ul>
         </div>
         <div class="footer-column">

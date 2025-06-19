@@ -98,12 +98,6 @@
                         </a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#facilities" class="navbar-link hover-underline">
-                            <div class="separator"></div>
-                            <span class="span">Facilities</span>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
                         <a href="{{ url_for('contact_page') }}" class="navbar-link hover-underline active">
                             <div class="separator"></div>
                             <span class="span">Contact</span>
@@ -386,9 +380,6 @@
         <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
     </a>
 
-    <!-- Google Maps API Script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initMap" async defer></script>
-
     <!-- custom js link -->
     <script src="/static/js/pahingalay.js"></script>
 
@@ -397,16 +388,13 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <!-- Map Initialization Script -->
     <script>
         function initMap() {
-            // Coordinates of PUP Main Campus in Sta. Mesa, Manila
-            const pupLocation = { lat: 14.599512, lng: 121.009601 };
+            const pahingalayLocation = { lat: 14.5979, lng: 121.0108 };
 
-            // Initialize the map
             const map = new google.maps.Map(document.getElementById("map"), {
+                center: pahingalayLocation,
                 zoom: 17,
-                center: pupLocation,
                 styles: [
                     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
                     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -414,79 +402,62 @@
                     {
                         featureType: "administrative.locality",
                         elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
+                        stylers: [{ color: "#d59563" }]
                     },
                     {
                         featureType: "poi",
                         elementType: "labels.text.fill",
-                        stylers: [{ color: "#d59563" }],
-                    },
-                    {
-                        featureType: "poi.park",
-                        elementType: "geometry",
-                        stylers: [{ color: "#263c3f" }],
-                    },
-                    {
-                        featureType: "poi.park",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#6b9a76" }],
+                        stylers: [{ color: "#d59563" }]
                     },
                     {
                         featureType: "road",
                         elementType: "geometry",
-                        stylers: [{ color: "#38414e" }],
+                        stylers: [{ color: "#38414e" }]
                     },
                     {
                         featureType: "road",
                         elementType: "geometry.stroke",
-                        stylers: [{ color: "#212a37" }],
+                        stylers: [{ color: "#212a37" }]
                     },
                     {
                         featureType: "road",
                         elementType: "labels.text.fill",
-                        stylers: [{ color: "#9ca5b3" }],
+                        stylers: [{ color: "#9ca5b3" }]
                     },
                     {
                         featureType: "water",
                         elementType: "geometry",
-                        stylers: [{ color: "#17263c" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "labels.text.fill",
-                        stylers: [{ color: "#515c6d" }],
-                    },
-                    {
-                        featureType: "water",
-                        elementType: "labels.text.stroke",
-                        stylers: [{ color: "#17263c" }],
-                    },
-                ],
+                        stylers: [{ color: "#17263c" }]
+                    }
+                ]
             });
 
-            // Info window content
-            const infoWindow = new google.maps.InfoWindow({
-                content: "<strong>Pahingalay Hotel</strong><br>123 Relaxation Avenue, Paradise City",
-            });
-
-            // Marker
             const marker = new google.maps.Marker({
-                position: pupLocation,
+                position: pahingalayLocation,
                 map: map,
-                title: "Pahingalay Hotel",
+                title: "Pahingalay Hotel"
             });
 
-            // Show info window when hovering
-            marker.addListener("mouseover", () => {
-                infoWindow.open(map, marker);
+            const infoWindow = new google.maps.InfoWindow({
+                content: `
+                    <strong>PAHINGALAY HOTEL</strong><br>
+                    1016 Anonas, Sta. Mesa, Manila<br>
+                    A peaceful urban getaway near Polytechnic University of the Philippines.
+                `
             });
 
-            // Optional: Close the info window when mouse leaves
-            marker.addListener("mouseout", () => {
-                infoWindow.close();
-            });
+            marker.addListener("mouseover", () => infoWindow.open(map, marker));
+            marker.addListener("mouseout", () => infoWindow.close());
         }
     </script>
+
+
+
+    <!-- Google Maps API Script with your actual API key -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAPS_API_KEY&callback=initMap&loading=async">
+        </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const faqItems = document.querySelectorAll('.faq-item');
@@ -519,7 +490,6 @@
             });
         });
     </script>
-
 </body>
 
 </html>

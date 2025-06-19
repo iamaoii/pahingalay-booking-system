@@ -97,12 +97,6 @@
                         </a>
                     </li>
                     <li class="navbar-item">
-                        <a href="#facilities" class="navbar-link hover-underline">
-                            <div class="separator"></div>
-                            <span class="span">Facilities</span>
-                        </a>
-                    </li>
-                    <li class="navbar-item">
                         <a href="{{ url_for('contact_page') }}" class="navbar-link hover-underline">
                             <div class="separator"></div>
                             <span class="span">Contact</span>
@@ -240,7 +234,7 @@
                         </div>
                         <div class="room-actions">
                             <a href="room-single.html" class="btn btn-outline">View Details</a>
-                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                            <a href="{{ url_for('signin_page') }}" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -300,7 +294,7 @@
                         </div>
                         <div class="room-actions">
                             <a href="room-double.html" class="btn btn-outline">View Details</a>
-                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                            <a href="{{ url_for('signin_page') }}" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -360,7 +354,7 @@
                         </div>
                         <div class="room-actions">
                             <a href="room-family.html" class="btn btn-outline">View Details</a>
-                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                            <a href="{{ url_for('signin_page') }}" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -420,7 +414,7 @@
                         </div>
                         <div class="room-actions">
                             <a href="room-deluxe.html" class="btn btn-outline">View Details</a>
-                            <a href="booking.html" class="btn btn-primary">Book Now</a>
+                            <a href="{{ url_for('signin_page') }}" class="btn btn-primary">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -438,8 +432,8 @@
                     Book your room today for the best rates.
                 </p>
                 <div class="cta-buttons">
-                    <a href="booking.html" class="btn btn-primary">Book Now</a>
-                    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                    <a href="{{ url_for('signin_page') }}" class="btn btn-primary">Book Now</a>
+                    <a href="{{ url_for('contact_page') }}" class="btn btn-outline">Contact Us</a>
                 </div>
             </div>
         </section>
