@@ -26,7 +26,7 @@ CREATE TABLE reservation_information (
 	noOfAdults INT NOT NULL,
 	noOfChildren INT NOT NULL,
     roomType VARCHAR(6) NOT NULL,
-    bedType VARCHAR(5) NOT NULL,
+    bedType VARCHAR(6) NOT NULL,
     smokingPref VARCHAR(11) NOT NULL,
 	additionalReq VARCHAR(50) NOT NULL DEFAULT 'NONE',
     totalAmount DECIMAL(10, 2) NOT NULL DEFAULT 0.00
