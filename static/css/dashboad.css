@@ -16,7 +16,6 @@
   --black1: hsla(210, 4%, 15%, 1);
   --black2: hsla(0, 0%, 10%, 1);
   --dark-bg: hsla(210, 10%, 10%, 1);
-
   --davys-grey: hsla(30, 3%, 34%, 1);
   --smoky-black-1: hsla(40, 12%, 5%, 1);
   --smoky-black-2: hsla(30, 8%, 5%, 1);
@@ -25,7 +24,6 @@
   --eerie-black-2: hsla(210, 4%, 11%, 1);
   --eerie-black-3: hsla(180, 2%, 8%, 1);
   --eerie-black-4: hsla(0, 0%, 13%, 1);
-
   --radius-circle: 50%;
   --loading-text-gradient: linear-gradient(90deg, transparent 0% 16.66%, var(--smoky-black-3) 33.33% 50%, transparent 66.66% 75%);
   --weight-bold: 700;
@@ -202,56 +200,6 @@ body {
   font-size: 2.5rem;
   cursor: pointer;
   color: var(--white);
-}
-
-.search {
-  position: relative;
-  width: 400px;
-  margin: 0 10px;
-}
-
-.search label {
-  position: relative;
-  width: 100%;
-}
-
-.search label input {
-  width: 100%;
-  height: 40px;
-  border-radius: 40px;
-  padding: 5px 20px;
-  padding-left: 35px;
-  font-size: 18px;
-  outline: none;
-  border: 1px solid var(--gray);
-  background: var(--black1);
-  color: var(--white);
-}
-
-.search label ion-icon {
-  position: absolute;
-  top: 0;
-  left: 10px;
-  font-size: 1.2rem;
-  color: var(--white);
-}
-
-.user {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 /* ======================= Cards ====================== */
@@ -437,7 +385,8 @@ body {
 }
 
 .status-confirmed,
-.status-pending {
+.status-pending,
+.status-completed {
   padding: 8px 16px;
   border-radius: 5px;
   font-size: 0.9rem;
@@ -455,11 +404,16 @@ body {
   color: var(--black1);
 }
 
+.status-completed {
+  background: #6c757d;
+  color: var(--white);
+}
+
 /* ====================== Profile Section ====================== */
 .profile-section {
   display: none;
-  padding: 20px; /* Match .details padding */
-  min-height: calc(65vh); /* Match .details height */
+  padding: 20px;
+  min-height: calc(65vh);
 }
 
 .profile-section.active {
@@ -484,7 +438,7 @@ body {
 }
 
 .cardHeader {
-  padding: 15px 0; /* Add padding to header for separation */
+  padding: 15px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -492,7 +446,7 @@ body {
 }
 
 .profile-details {
-  padding: 20px; /* Add padding to guest information */
+  padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 25px;
@@ -584,6 +538,183 @@ body {
   margin-bottom: 15px;
 }
 
+/* ====================== Modal Styles ====================== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--black1);
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  color: var(--blue);
+  font-size: 1.5rem;
+}
+
+.modal-close {
+  font-size: 1.5rem;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 20px;
+}
+
+#booking-form .form-group {
+  margin-bottom: 15px;
+}
+
+#booking-form .form-group label {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-bottom: 8px;
+  display: block;
+}
+
+#booking-form .form-group input,
+#booking-form .form-group select,
+#booking-form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  background: var(--black2);
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+#booking-form .form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+#booking-form .form-group input:disabled,
+#booking-form .form-group select:disabled,
+#booking-form .form-group textarea:disabled {
+  background: var(--black1);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+#booking-form .form-group input:focus,
+#booking-form .form-group select:focus,
+#booking-form .form-group textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  background: var(--black1);
+}
+
+.companions-section {
+  margin-top: 20px;
+}
+
+.companions-section h3 {
+  color: var(--blue);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+#modal-companions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+#modal-companions-table th,
+#modal-companions-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--gray);
+  color: var(--white);
+}
+
+#modal-companions-table th {
+  background: var(--black2);
+  color: var(--gray);
+  font-size: 0.9rem;
+}
+
+#modal-companions-table td input,
+#modal-companions-table td select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  background: var(--black2);
+  color: var(--white);
+  font-size: 0.9rem;
+}
+
+#modal-companions-table td input:disabled,
+#modal-companions-table td select:disabled {
+  background: var(--black1);
+  color: var(--gray);
+  cursor: not-allowed;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-save-btn,
+.modal-cancel-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.modal-save-btn {
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+}
+
+.modal-save-btn:hover {
+  background: hsl(231, 93%, 60%);
+}
+
+.modal-cancel-btn {
+  background: var(--gray);
+  color: var(--white);
+  border: none;
+}
+
+.modal-cancel-btn:hover {
+  background: hsl(210, 10%, 50%);
+}
+
 /* ====================== Responsive Design ========================== */
 @media (max-width: 991px) {
   .navigation {
@@ -620,12 +751,30 @@ body {
   .view-button,
   .button-delete,
   .status-confirmed,
-  .status-pending {
+  .status-pending,
+  .status-completed {
     width: 100%;
     text-align: center;
   }
   .profile-details {
     grid-template-columns: 1fr;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
+  #modal-companions-table th,
+  #modal-companions-table td {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+  .modal-actions {
+    flex-direction: column;
+  }
+  .modal-save-btn,
+  .modal-cancel-btn {
+    width: 100%;
+    text-align: center;
   }
 }
 
@@ -635,9 +784,6 @@ body {
   }
   .cardHeader h2 {
     font-size: 1.2rem;
-  }
-  .search {
-    width: 200px;
   }
   .navigation {
     width: 100%;
@@ -679,8 +825,6 @@ body {
 /*-----------------------------------*\
   #PRELOAD
 \*-----------------------------------*/
-
-
 .preload {
   position: fixed;
   top: 0;
