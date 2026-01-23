@@ -24,14 +24,18 @@ def generate_guest_id():
 
 @auth_bp.route('/check-email', methods=['POST'])
 def check_email():
-    data = request.get_json()
-    email = data.get('email')
-    
-    if not email:
-        return jsonify({'exists': False}), 400
+    try:
+        data = request.get_json()
+        email = data.get('email')
+        
+        if not email:
+            return jsonify({'exists': False}), 400
 
-    guest = GuestInformation.query.filter_by(guestEmail=email).first()
-    return jsonify({'exists': bool(guest)}), 200
+        guest = GuestInformation.query.filter_by(guestEmail=email).first()
+        return jsonify({'exists': bool(guest)}), 200
+    except Exception as e:
+        logger.error(f"Database error in check_email: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @auth_bp.route('/signin', methods=['POST'])
 def signin():

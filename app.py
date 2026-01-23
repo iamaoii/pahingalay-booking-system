@@ -1,10 +1,9 @@
 from flask import Flask, jsonify, render_template, request, redirect, url_for, flash
 from flask_cors import CORS
 from models import db
-from routes.auth import auth_bp
+from routes.auth import auth_bp, bcrypt
 from routes.guests import guests_bp
 from routes.booking import bookings_bp
-from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 import os
 import logging
@@ -20,10 +19,10 @@ CORS(app, resources={r"/api/*": {"origins": "http://localhost:5000"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv('SQLALCHEMY_TRACK_MODIFICATIONS', 'False').lower() == 'true'
-app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY')
+app.config['SECRET_KEY'] = os.getenv('FLASK_SECRET_KEY') or os.getenv('SECRET_KEY')
 
 db.init_app(app)
-Bcrypt(app)
+bcrypt.init_app(app)
 
 app.register_blueprint(auth_bp)
 app.register_blueprint(guests_bp)
